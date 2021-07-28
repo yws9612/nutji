@@ -3,31 +3,31 @@
     <item
         android:id="@+id/alarm"
         android:enabled="true"
-        android:icon="@drawable/alarm"
+
         android:title="알람"/>
 
     <item
         android:id="@+id/schedule"
         android:enabled="true"
-        android:icon="@drawable/schedule"
+
         android:title="시간표"/>
 
     <item
         android:id="@+id/transport"
         android:enabled="true"
-        android:icon="@drawable/transport"
+
         android:title="대중교통"/>
 
     <item
         android:id="@+id/navigation"
         android:enabled="true"
-        android:icon="@drawable/navigation"
+
         android:title="택시/네비게이션"/>
 
     <item
         android:id="@+id/usersetting"
         android:enabled="true"
-        android:icon="@drawable/usersetting"
+
         android:title="사용자 설정"/>
 
 </menu>

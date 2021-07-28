@@ -38,5 +38,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.google.android.material:material:1.2.1'
-    implementation files('C:/Users/BD/AndroidStudioProjects/nutji/libs/ODsayAndroidSDK.aar')
+    implementation files('C://Users/user/AndroidStudioProjects/DontLate/libs/ODsayAndroidSDK.aar')
 }
