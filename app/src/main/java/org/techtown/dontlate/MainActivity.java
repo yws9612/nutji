@@ -6,13 +6,25 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.odsay.odsayandroidsdk.API;
+import com.odsay.odsayandroidsdk.ODsayData;
+import com.odsay.odsayandroidsdk.ODsayService;
+import com.odsay.odsayandroidsdk.OnResultCallbackListener;
+
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity {
+import org.json.JSONException;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{ //객체 추가
 
     private BottomNavigationView bottomNavigationView; //바텀 네비게이션 뷰
     private FragmentManager fm;
@@ -23,14 +35,19 @@ public class MainActivity extends AppCompatActivity {
     private scheduless Scheduless;
     private transportss Transportss;
     private usersettingss Usersettingss;
-
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button btn = findViewById(R.id.test_button);
         bottomNavigationView = findViewById(R.id.bottomNavi);
+
+        textView = findViewById(R.id.test_text);
+
+        btn.setOnClickListener(this);
      /*   bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -63,8 +80,10 @@ public class MainActivity extends AppCompatActivity {
         Usersettingss = new usersettingss();
         setFrag(1); //첫 Fragment 화면 지정
 
+
     }
-//Fragment 교체 발생 실행문
+
+    //Fragment 교체 발생 실행문
     private void setFrag(int n) {
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
@@ -93,9 +112,25 @@ public class MainActivity extends AppCompatActivity {
                 ft.replace(R.id.mainFrame, Usersettingss);
                 ft.commit();
                 break;
-
-
+        }
+    }
+ //짱신기하다ㅋㅋㅋ 땡큐땡큐 ㅠㅠ 그 한김에 화면에 텍스트 보이게 해줄게 ㄱㄷ
+    @Override//자바파일이름 선언
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.test_button:
+                PublicApi publicApi = new PublicApi();
+                publicApi.apiTest(this, new PublicApi.OnSuccessListener() {
+                    @Override
+                    public void onRequestSuccess(String result) {
+                        textView.setText(result);
+                    }
+                }); //api test 함수 실행구문
         }
     }
 
+
 }
+
+
+

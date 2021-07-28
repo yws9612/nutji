@@ -17,13 +17,27 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <FrameLayout
+        android:id="@+id/mainFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/mainFrame"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/test_button"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="test">
+
+        </Button>
+
+        <TextView
+            android:id="@+id/test_text"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="test" />
 
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
