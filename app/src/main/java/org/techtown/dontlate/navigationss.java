@@ -25,29 +25,26 @@ import java.util.Map;
 public class navigationss extends Fragment {
 
 
-
+    //MainActivity activity = (MainActivity)getActivity();
     private View view;
-
-
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View v= inflater.inflate(R.layout.navigations, container, false);
 
-        MapView mapView = new MapView(this.getActivity());
+        //net.daum.mf.map.api.MapView mapView = new net.daum.mf.map.api.MapView(this);
 
-        mapView.setDaumMapApiKey("8ae57c6ab583cbe890979e12b4c0315a");
-
+        MapView mapView = new MapView(getActivity());
         ViewGroup mapViewContainer = (ViewGroup) v.findViewById(R.id.map_view);
 
         mapViewContainer.addView(mapView);
 
 
 
-        mapView.setMapViewEventListener((MapViewEventListener) this.getActivity());
-        mapView.setPOIItemEventListener((MapView.POIItemEventListener) this.getActivity());
+        mapView.setMapViewEventListener((MapViewEventListener) getActivity());
+        mapView.setPOIItemEventListener((MapView.POIItemEventListener) getActivity());
 
         // 중심점 변경 - 예제 좌표는 서울 남산
         mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.54892296550104, 126.99089033876304), true);
@@ -70,4 +67,5 @@ public class navigationss extends Fragment {
 
         return v;
     }
+
 }

@@ -1,6 +1,7 @@
 package org.techtown.dontlate;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -18,6 +19,7 @@ import android.content.pm.Signature;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,14 +29,17 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import net.daum.android.map.MapView;
+import net.daum.android.map.MapViewEventListener;
+import net.daum.mf.map.api.MapPOIItem;
+import net.daum.mf.map.api.MapPoint;
+import net.daum.mf.map.api.MapView;
 
 import org.json.JSONException;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{ //객체 추가
+public class MainActivity extends AppCompatActivity{ //객체 추가
 
     private BottomNavigationView bottomNavigationView; //바텀 네비게이션 뷰
     private FragmentManager fm;
@@ -52,14 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btn = findViewById(R.id.test_button);
-        bottomNavigationView = findViewById(R.id.bottomNavi);
 
 
-
-        textView = findViewById(R.id.test_text);
-
-        btn.setOnClickListener(this);
+        //btn.setOnClickListener(this);
      /*   bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -91,60 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Transportss = new transportss();
         Usersettingss = new usersettingss();
 
-        setFrag(1); //첫 Fragment 화면 지정
 
-
-
-
-
-    }
-
-    //Fragment 교체 발생 실행문
-    private void setFrag(int n) {
-        fm = getSupportFragmentManager();
-        ft = fm.beginTransaction();
-        switch (n) {
-            case 0:
-                ft.replace(R.id.mainFrame, Alarmss);
-                ft.commit();
-                break;
-
-            case 1:
-                ft.replace(R.id.mainFrame, Navigationss);
-                ft.commit();
-                break;
-
-            case 2:
-                ft.replace(R.id.mainFrame, Scheduless);
-                ft.commit();
-                break;
-
-            case 3:
-                ft.replace(R.id.mainFrame, Transportss);
-                ft.commit();
-                break;
-
-            case 4:
-                ft.replace(R.id.mainFrame, Usersettingss);
-                ft.commit();
-                break;
-        }
-    }
-
-    @Override//자바파일이름 선언
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.test_button:
-                PublicApi publicApi = new PublicApi();
-                publicApi.apiTest(this, new PublicApi.OnSuccessListener() {
-                    @Override
-                    public void onRequestSuccess(String result) {
-                        textView.setText(result);
-                    }
-                }); //api test 함수 실행구문
-
-
-        }
     }
 
 
