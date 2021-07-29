@@ -16,11 +16,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+
+import net.daum.android.map.MapView;
 
 import org.json.JSONException;
 
@@ -44,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button btn = findViewById(R.id.test_button);
         bottomNavigationView = findViewById(R.id.bottomNavi);
+
+
 
         textView = findViewById(R.id.test_text);
 
@@ -80,6 +85,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Usersettingss = new usersettingss();
         setFrag(1); //첫 Fragment 화면 지정
 
+        MapView mapView = new MapView(this); //객체 선언
+
+        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
+        mapViewContainer.addView(mapView); //카카오 지도 api 사용
+
 
     }
 
@@ -114,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
- //짱신기하다ㅋㅋㅋ 땡큐땡큐 ㅠㅠ 그 한김에 화면에 텍스트 보이게 해줄게 ㄱㄷ
+
     @Override//자바파일이름 선언
     public void onClick(View view) {
         switch (view.getId()) {
@@ -128,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }); //api test 함수 실행구문
         }
     }
+
 
 
 }
