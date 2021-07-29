@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+
     }
 
     //Fragment 교체 발생 실행문
@@ -141,10 +142,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         textView.setText(result);
                     }
                 }); //api test 함수 실행구문
+
+
         }
     }
 
-    
+
 
 
 

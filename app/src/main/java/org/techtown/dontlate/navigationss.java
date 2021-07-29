@@ -36,7 +36,7 @@ public class navigationss extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.navigations, container, false);
 
-        MapView mapView = new MapView(getActivity());
+        MapView mapView = new MapView(this.getActivity());
 
         mapView.setDaumMapApiKey("8ae57c6ab583cbe890979e12b4c0315a");
 
@@ -46,7 +46,8 @@ public class navigationss extends Fragment {
 
 
 
-        mapView.setMapViewEventListener((MapViewEventListener) getActivity());
+        mapView.setMapViewEventListener((MapViewEventListener) this.getActivity());
+        mapView.setPOIItemEventListener((MapView.POIItemEventListener) this.getActivity());
 
         // 중심점 변경 - 예제 좌표는 서울 남산
         mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.54892296550104, 126.99089033876304), true);
