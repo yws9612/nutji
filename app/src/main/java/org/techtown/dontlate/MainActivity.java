@@ -12,7 +12,11 @@ import com.odsay.odsayandroidsdk.ODsayService;
 import com.odsay.odsayandroidsdk.OnResultCallbackListener;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +30,9 @@ import com.google.android.material.tabs.TabLayout;
 import net.daum.android.map.MapView;
 
 import org.json.JSONException;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{ //객체 추가
 
@@ -85,10 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Usersettingss = new usersettingss();
         setFrag(1); //첫 Fragment 화면 지정
 
-        MapView mapView = new MapView(this); //객체 선언
 
-        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
-        mapViewContainer.addView(mapView); //카카오 지도 api 사용
 
 
     }
