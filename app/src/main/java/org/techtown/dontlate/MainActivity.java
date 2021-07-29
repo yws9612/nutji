@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Scheduless = new scheduless();
         Transportss = new transportss();
         Usersettingss = new usersettingss();
+
         setFrag(1); //첫 Fragment 화면 지정
 
 
@@ -142,6 +143,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }); //api test 함수 실행구문
         }
     }
+
+    
 
 
 
