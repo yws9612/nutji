@@ -7,13 +7,20 @@ import android.view.ViewGroup;
 
 
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import net.daum.android.map.MapView;
+//import net.daum.android.map.MapView;
+import net.daum.android.map.MapViewEventListener;
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
+import net.daum.mf.map.api.MapView;
+
+
+
+import java.util.Map;
 
 public class navigationss extends Fragment {
 
@@ -31,8 +38,15 @@ public class navigationss extends Fragment {
 
         MapView mapView = new MapView(getActivity());
 
+        mapView.setDaumMapApiKey("8ae57c6ab583cbe890979e12b4c0315a");
+
         ViewGroup mapViewContainer = (ViewGroup) v.findViewById(R.id.map_view);
+
         mapViewContainer.addView(mapView);
+
+
+
+        mapView.setMapViewEventListener((MapViewEventListener) getActivity());
 
         // 중심점 변경 - 예제 좌표는 서울 남산
         mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.54892296550104, 126.99089033876304), true);
