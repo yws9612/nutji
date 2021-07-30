@@ -34,12 +34,12 @@ public class navigationss extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View v= inflater.inflate(R.layout.navigations, container, false);
 
         MapView mapView = new MapView(getActivity());
 
         ViewGroup mapViewContainer = (ViewGroup) v.findViewById(R.id.map_view);
-
         mapViewContainer.addView(mapView);
 
 
@@ -53,7 +53,7 @@ public class navigationss extends Fragment {
         //마커 찍기
         MapPoint MARKER_POINT = MapPoint.mapPointWithGeoCoord(37.54892296550104, 126.99089033876304);
         MapPOIItem marker = new MapPOIItem();
-        marker.setItemName("Default Marker");
+        marker.setItemName("요기");
         marker.setTag(0);
         marker.setMapPoint(MARKER_POINT);
         marker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
