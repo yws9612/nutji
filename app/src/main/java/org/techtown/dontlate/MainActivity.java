@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 return true;
             }
-        });
+        }); //드로어블 해결함
 
         Alarmss = new alarmss();
         Navigationss = new navigationss();
