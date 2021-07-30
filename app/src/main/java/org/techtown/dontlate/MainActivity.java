@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity{ //객체 추가
                 }
                 return true;
             }
-        });*/  //drawable에 ui 파일 필요
+        }); //drawable에 ui 파일 필요
 
         Alarmss = new alarmss();
         Navigationss = new navigationss();
