@@ -29,10 +29,7 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import net.daum.android.map.MapViewEventListener;
-import net.daum.mf.map.api.MapPOIItem;
-import net.daum.mf.map.api.MapPoint;
-import net.daum.mf.map.api.MapView;
+
 
 import org.json.JSONException;
 
@@ -59,25 +56,25 @@ public class MainActivity extends AppCompatActivity{ //객체 추가
 
 
 
-        //btn.setOnClickListener(this);
-     /*   bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        btn.setOnClickListener(this);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case R.id.알람드로어블파일:
+                    case R.id.alarm:
                         setFrag(0);
                         break;
-                    case R.id.네비게이션 드로어블파일:
-                        setFrag(0);
+                    case R.id.schedule:
+                        setFrag(1);
                         break;
-                    case R.id.시간표 드로어블파일:
-                        setFrag(0);
+                    case R.id.transport:
+                        setFrag(2);
                         break;
-                    case R.id.대중교통 드로어블파일:
-                        setFrag(0);
+                    case R.id.navigation:
+                        setFrag(3);
                         break;
-                    case R.id.사용자 설정 드로어블파일:
-                        setFrag(0);
+                    case R.id.usersetting:
+                        setFrag(4);
                         break;
 
                 }
