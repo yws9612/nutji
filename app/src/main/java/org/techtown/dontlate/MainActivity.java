@@ -27,7 +27,6 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import net.daum.android.map.MapView;
 
 import org.json.JSONException;
 
@@ -60,30 +59,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textView = findViewById(R.id.test_text);
 
         btn.setOnClickListener(this);
-     /*   bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case R.id.알람드로어블파일:
+                    case R.id.alarm:
                         setFrag(0);
                         break;
-                    case R.id.네비게이션 드로어블파일:
-                        setFrag(0);
+                    case R.id.schedule:
+                        setFrag(1);
                         break;
-                    case R.id.시간표 드로어블파일:
-                        setFrag(0);
+                    case R.id.transport:
+                        setFrag(2);
                         break;
-                    case R.id.대중교통 드로어블파일:
-                        setFrag(0);
+                    case R.id.navigation:
+                        setFrag(3);
                         break;
-                    case R.id.사용자 설정 드로어블파일:
-                        setFrag(0);
+                    case R.id.usersetting:
+                        setFrag(4);
                         break;
 
                 }
                 return true;
             }
-        });*/  //drawable에 ui 파일 필요
+        });
 
         Alarmss = new alarmss();
         Navigationss = new navigationss();
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Transportss = new transportss();
         Usersettingss = new usersettingss();
 
-        setFrag(1); //첫 Fragment 화면 지정
+        setFrag(0); //첫 Fragment 화면 지정
 
 
 
