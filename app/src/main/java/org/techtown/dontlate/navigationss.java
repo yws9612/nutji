@@ -34,17 +34,12 @@ public class navigationss extends Fragment {
 
         View v= inflater.inflate(R.layout.navigations, container, false);
 
-        //net.daum.mf.map.api.MapView mapView = new net.daum.mf.map.api.MapView(this);
-
         MapView mapView = new MapView(getActivity());
-        ViewGroup mapViewContainer = (ViewGroup) v.findViewById(R.id.map_view);
 
+        ViewGroup mapViewContainer = (ViewGroup) v.findViewById(R.id.map_view);
         mapViewContainer.addView(mapView);
 
 
-
-        mapView.setMapViewEventListener((MapViewEventListener) getActivity());
-        mapView.setPOIItemEventListener((MapView.POIItemEventListener) getActivity());
 
         // 중심점 변경 - 예제 좌표는 서울 남산
         mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.54892296550104, 126.99089033876304), true);
@@ -55,7 +50,7 @@ public class navigationss extends Fragment {
         //마커 찍기
         MapPoint MARKER_POINT = MapPoint.mapPointWithGeoCoord(37.54892296550104, 126.99089033876304);
         MapPOIItem marker = new MapPOIItem();
-        marker.setItemName("Default Marker");
+        marker.setItemName("요기");
         marker.setTag(0);
         marker.setMapPoint(MARKER_POINT);
         marker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
