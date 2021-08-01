@@ -25,11 +25,8 @@ import java.util.Map;
 public class navigationss extends Fragment {
 
 
-
+    //MainActivity activity = (MainActivity)getActivity();
     private View view;
-
-
-
 
     @Nullable
     @Override
@@ -65,4 +62,5 @@ public class navigationss extends Fragment {
 
         return v;
     }
+
 }

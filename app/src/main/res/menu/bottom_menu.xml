@@ -9,7 +9,7 @@
     <item
         android:id="@+id/schedule"
         android:enabled="true"
-        android:icon="@drawable/schedule"
+
         android:title="시간표"/>
 
     <item
@@ -21,13 +21,13 @@
     <item
         android:id="@+id/navigation"
         android:enabled="true"
-        android:icon="@drawable/taxi"
-        android:title="길찾기"/>
+
+        android:title="택시/네비게이션"/>
 
     <item
         android:id="@+id/usersetting"
         android:enabled="true"
-        android:icon="@drawable/profile"
-        android:title="설정"/>
+
+        android:title="사용자 설정"/>
 
 </menu>
