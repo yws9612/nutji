@@ -30,6 +30,7 @@
             </intent-filter>
         </activity>
 
+        android:usesCleartextTraffic="true"
         <meta-data android:name="com.kakao.sdk.AppKey"
             android:value="13a910a2004f35256ca69e8101750dd0"/>
     </application>
