@@ -1,13 +1,15 @@
 package org.techtown.dontlate;
 
-import javax.xml.transform.Result;
+import org.techtown.dontlate.model.NaviAPI;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 public interface RetrofitInterface {
-
-    @GET("https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=127.1086228&y=37.4012191")
-    Call<Result> AddressInfo(@Query("x") String x, @Query("y") String y, @Query("input_coord") String input_coord, @Query("output_coord") String output_coord);
+//저거 없애니까 중단뜨네
+    @GET("v2/local/geo/coord2regioncode.json")//녱
+    Call<NaviAPI> AddressInfo(@Header("Authorization") String authorization, @Query("x") String x, @Query("y") String y);
 }
+///잠시만요
