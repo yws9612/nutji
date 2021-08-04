@@ -22,6 +22,7 @@ import net.daum.mf.map.api.MapView;
 import org.techtown.dontlate.model.CoordRegionInfo;
 import org.techtown.dontlate.model.SearchingAddress;
 import org.techtown.dontlate.model.TranslateAddress;
+import org.techtown.dontlate.model.TranslateCoord;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,7 +56,8 @@ public class navigationss extends Fragment {
 
         callCoordRegionItems();
         callAddressItems();
-        callTranslateItems();
+        callTranslateAddressItems();
+        callTranslateCoordItems();
 
 
         // 중심점 변경 - 예제 좌표는 서울 남산
@@ -114,7 +116,7 @@ public class navigationss extends Fragment {
         });
     }
 
-    public void callTranslateItems() {
+    public void callTranslateAddressItems() {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
         retrofitInterface.CoordInfo(API_KEY,"127.423084873712", "37.0789561558879").enqueue(new Callback<TranslateAddress>() {
@@ -127,6 +129,24 @@ public class navigationss extends Fragment {
             @Override
             public void onFailure(Call<TranslateAddress> call, Throwable t) {
                 Log.d("testCoord", t.toString());
+            }
+        });
+    }
+
+    public void callTranslateCoordItems() {
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitInterface = RetrofitClient.getRetrofitInterface();
+        retrofitInterface.Coordxyinfo(API_KEY, 160710.37729270622, -4388.879299157299,"WTM", "WGS84").enqueue(new Callback<TranslateCoord>() {
+            @Override
+            public void onResponse(Call<TranslateCoord> call, Response<TranslateCoord> response) {
+                TranslateCoord translateCoord = response.body();
+                Log.d("testCoordxy", translateCoord.getTranslateCoordItems().get(0).getX().toString());
+                Log.d("testCoordxy", translateCoord.getTranslateCoordItems().get(0).getY().toString());
+            }
+
+            @Override
+            public void onFailure(Call<TranslateCoord> call, Throwable t) {
+                Log.d("testCoordxy", t.toString());
             }
         });
     }

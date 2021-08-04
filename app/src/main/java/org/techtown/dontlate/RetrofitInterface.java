@@ -3,6 +3,7 @@ package org.techtown.dontlate;
 import org.techtown.dontlate.model.CoordRegionInfo;
 import org.techtown.dontlate.model.SearchingAddress;
 import org.techtown.dontlate.model.TranslateAddress;
+import org.techtown.dontlate.model.TranslateCoord;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -20,6 +21,8 @@ public interface RetrofitInterface {
     @GET("v2/local/geo/coord2address.json")
     Call<TranslateAddress> CoordInfo(@Header("Authorization") String authorization, @Query("x") String x, @Query("y") String y);
 
+    @GET("v2/local/geo/transcoord.json")
+    Call<TranslateCoord> Coordxyinfo(@Header("Authorization") String authorization, @Query("x") Double x, @Query("y") Double y,@Query("input_coord") String input_coord, @Query("output_coord") String output_coord);
 
 
 }
