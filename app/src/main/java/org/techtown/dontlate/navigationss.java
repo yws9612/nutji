@@ -20,6 +20,7 @@ import net.daum.mf.map.api.MapView;
 
 
 import org.techtown.dontlate.model.CoordRegionInfo;
+import org.techtown.dontlate.model.KeywordSearch;
 import org.techtown.dontlate.model.SearchingAddress;
 import org.techtown.dontlate.model.TranslateAddress;
 import org.techtown.dontlate.model.TranslateCoord;
@@ -58,6 +59,7 @@ public class navigationss extends Fragment {
         callAddressItems();
         callTranslateAddressItems();
         callTranslateCoordItems();
+        callKeywordSearchItems();
 
 
         // 중심점 변경 - 예제 좌표는 서울 남산
@@ -136,7 +138,7 @@ public class navigationss extends Fragment {
     public void callTranslateCoordItems() {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
-        retrofitInterface.Coordxyinfo(API_KEY, 160710.37729270622, -4388.879299157299,"WTM", "WGS84").enqueue(new Callback<TranslateCoord>() {
+        retrofitInterface.CoordxyInfo(API_KEY, 160710.37729270622, -4388.879299157299,"WTM", "WGS84").enqueue(new Callback<TranslateCoord>() {
             @Override
             public void onResponse(Call<TranslateCoord> call, Response<TranslateCoord> response) {
                 TranslateCoord translateCoord = response.body();
@@ -147,6 +149,23 @@ public class navigationss extends Fragment {
             @Override
             public void onFailure(Call<TranslateCoord> call, Throwable t) {
                 Log.d("testCoordxy", t.toString());
+            }
+        });
+    }
+
+    public void callKeywordSearchItems() {
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitInterface = RetrofitClient.getRetrofitInterface();
+        retrofitInterface.KeplaceInfo(API_KEY, "카카오프렌즈").enqueue(new Callback<KeywordSearch>() {
+            @Override
+            public void onResponse(Call<KeywordSearch> call, Response<KeywordSearch> response) {
+                KeywordSearch keywordSearch = response.body();
+                Log.d("testKplace", keywordSearch.getKeywordSearchItems().get(0).getAddressName());
+            }
+
+            @Override
+            public void onFailure(Call<KeywordSearch> call, Throwable t) {
+                Log.d("testKplace", t.toString());
             }
         });
     }
