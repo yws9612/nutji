@@ -55,6 +55,7 @@ public class navigationss extends Fragment {
 
         callCoordRegionItems();
         callAddressItems();
+        callTranslateItems();
 
 
         // 중심점 변경 - 예제 좌표는 서울 남산
@@ -113,14 +114,14 @@ public class navigationss extends Fragment {
         });
     }
 
-   /* public void callTranslateItems() {
+    public void callTranslateItems() {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
         retrofitInterface.CoordInfo(API_KEY,"127.423084873712", "37.0789561558879").enqueue(new Callback<TranslateAddress>() {
             @Override
             public void onResponse(Call<TranslateAddress> call, Response<TranslateAddress> response) {
                 TranslateAddress translateAddress = response.body();
-                Log.d("testCoord", translateAddress.getTranslateAddressItems().get(0));
+                Log.d("testCoord", translateAddress.getTranslateAddressItems().get(0).getAddress().getAddressName());
             }
 
             @Override
@@ -128,5 +129,5 @@ public class navigationss extends Fragment {
                 Log.d("testCoord", t.toString());
             }
         });
-    }*/
+    }
 }
