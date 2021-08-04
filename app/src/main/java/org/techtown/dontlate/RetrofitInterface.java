@@ -1,5 +1,6 @@
 package org.techtown.dontlate;
 
+import org.techtown.dontlate.model.CategorySearch;
 import org.techtown.dontlate.model.CoordRegionInfo;
 import org.techtown.dontlate.model.KeywordSearch;
 import org.techtown.dontlate.model.SearchingAddress;
@@ -27,4 +28,7 @@ public interface RetrofitInterface {
 
     @GET("v2/local/search/keyword.json")
     Call<KeywordSearch> KeplaceInfo(@Header("Authorization") String authorization, @Query("query") String query);
+
+    @GET("v2/local/search/category.json")
+    Call<CategorySearch> CaplaceInfo(@Header("Authorization") String authorization, @Query("category_group_code") String category_group_code, @Query("radius") Integer radius);
 }

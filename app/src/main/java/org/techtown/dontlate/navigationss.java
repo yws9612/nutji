@@ -19,6 +19,7 @@ import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
 
+import org.techtown.dontlate.model.CategorySearch;
 import org.techtown.dontlate.model.CoordRegionInfo;
 import org.techtown.dontlate.model.KeywordSearch;
 import org.techtown.dontlate.model.SearchingAddress;
@@ -60,6 +61,7 @@ public class navigationss extends Fragment {
         callTranslateAddressItems();
         callTranslateCoordItems();
         callKeywordSearchItems();
+        callCategorySearchItems();
 
 
         // 중심점 변경 - 예제 좌표는 서울 남산
@@ -169,4 +171,22 @@ public class navigationss extends Fragment {
             }
         });
     }
+
+    public void callCategorySearchItems() {
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitInterface = RetrofitClient.getRetrofitInterface();
+        retrofitInterface.CaplaceInfo(API_KEY, "PM9", 20000).enqueue(new Callback<CategorySearch>() {
+            @Override
+            public void onResponse(Call<CategorySearch> call, Response<CategorySearch> response) {
+                CategorySearch categorySearch = response.body();
+                Log.d("testCplace", categorySearch.getCategorySearchItems().get(0).getAddressName());
+            }
+
+            @Override
+            public void onFailure(Call<CategorySearch> call, Throwable t) {
+                Log.d("testCplace", t.toString());
+            }
+        });
+    }
+
 }
