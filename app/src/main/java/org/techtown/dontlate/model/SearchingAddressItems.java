@@ -19,10 +19,10 @@ public class SearchingAddressItems {
     private String addressType;
     @SerializedName("address")
     @Expose
-    private SearchingAddressAddress address;
+    private Address address;
     @SerializedName("road_address")
     @Expose
-    private SearchingAddressRoadAddress roadAddress;
+    private RoadAddress roadAddress;
 
     public String getAddressName() {
         return addressName;
@@ -56,19 +56,19 @@ public class SearchingAddressItems {
         this.addressType = addressType;
     }
 
-    public SearchingAddressAddress getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(SearchingAddressAddress address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
-    public SearchingAddressRoadAddress getRoadAddress() {
+    public RoadAddress getRoadAddress() {
         return roadAddress;
     }
 
-    public void setRoadAddress(SearchingAddressRoadAddress roadAddress) {
+    public void setRoadAddress(RoadAddress roadAddress) {
         this.roadAddress = roadAddress;
     }
 

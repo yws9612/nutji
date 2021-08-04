@@ -14,7 +14,7 @@ public class SearchingAddress {
         return searchingAddressItems;
     }
 
-    public void setDocuments(List<SearchingAddressItems> searchingAddressItems) {
+    public void setSearchingAddressItems(List<SearchingAddressItems> searchingAddressItems) {
         this.searchingAddressItems = searchingAddressItems;
     }
 }

@@ -16,7 +16,7 @@ public class CoordRegionInfo {
         return coordRegionInfoItems;
     }
 
-    public void setNaviItem(List<CoordRegionInfoItems> coordRegionInfoItems) {
+    public void setCoordRegionInfoItems(List<CoordRegionInfoItems> coordRegionInfoItems) {
         this.coordRegionInfoItems = coordRegionInfoItems;
     }
 

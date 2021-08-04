@@ -21,6 +21,7 @@ import net.daum.mf.map.api.MapView;
 
 import org.techtown.dontlate.model.CoordRegionInfo;
 import org.techtown.dontlate.model.SearchingAddress;
+import org.techtown.dontlate.model.TranslateAddress;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -52,7 +53,7 @@ public class navigationss extends Fragment {
         mapViewContainer.addView(mapView);
 
 
-        callNaviItems();
+        callCoordRegionItems();
         callAddressItems();
 
 
@@ -78,7 +79,7 @@ public class navigationss extends Fragment {
         return v;
     }
 
-    public void callNaviItems() {
+    public void callCoordRegionItems() {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
         retrofitInterface.RegionInfo(API_KEY, "127.10459896729914","37.40269721785548" ).enqueue(new Callback<CoordRegionInfo>() {
@@ -111,4 +112,21 @@ public class navigationss extends Fragment {
             }
         });
     }
+
+   /* public void callTranslateItems() {
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitInterface = RetrofitClient.getRetrofitInterface();
+        retrofitInterface.CoordInfo(API_KEY,"127.423084873712", "37.0789561558879").enqueue(new Callback<TranslateAddress>() {
+            @Override
+            public void onResponse(Call<TranslateAddress> call, Response<TranslateAddress> response) {
+                TranslateAddress translateAddress = response.body();
+                Log.d("testCoord", translateAddress.getTranslateAddressItems().get(0));
+            }
+
+            @Override
+            public void onFailure(Call<TranslateAddress> call, Throwable t) {
+                Log.d("testCoord", t.toString());
+            }
+        });
+    }*/
 }
