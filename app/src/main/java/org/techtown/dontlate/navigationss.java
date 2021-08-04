@@ -19,7 +19,8 @@ import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
 
-import org.techtown.dontlate.model.NaviAPI;
+import org.techtown.dontlate.model.CoordRegionInfo;
+import org.techtown.dontlate.model.SearchingAddress;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,7 +28,6 @@ import retrofit2.Response;
 
 public class navigationss extends Fragment {
 
-//머징 나 잠만 톡점 됐당 잘됨? 앱 중단떴어
 
     private View view;
 
@@ -51,11 +51,9 @@ public class navigationss extends Fragment {
         ViewGroup mapViewContainer = (ViewGroup) v.findViewById(R.id.map_view);
         mapViewContainer.addView(mapView);
 
-//        recyclerView = v.findViewById(R.id.recyclerView);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-//        recyclerView.setLayoutManager(layoutManager);
 
         callNaviItems();
+        callAddressItems();
 
 
         // 중심점 변경 - 예제 좌표는 서울 남산
@@ -83,16 +81,33 @@ public class navigationss extends Fragment {
     public void callNaviItems() {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
-        retrofitInterface.AddressInfo(API_KEY, "127.10459896729914","37.40269721785548" ).enqueue(new Callback<NaviAPI>() {
+        retrofitInterface.RegionInfo(API_KEY, "127.10459896729914","37.40269721785548" ).enqueue(new Callback<CoordRegionInfo>() {
             @Override
-            public void onResponse(Call<NaviAPI> call, Response<NaviAPI> response) {
-                NaviAPI naviAPI = response.body();
-                Log.d("test", naviAPI.getNaviItem().get(0).getAddressName());
+            public void onResponse(Call<CoordRegionInfo> call, Response<CoordRegionInfo> response) {
+                CoordRegionInfo coordRegionInfo = response.body();
+                Log.d("test", coordRegionInfo.getCoordRegionInfoItems().get(0).getAddressName());
             }
 
             @Override
-            public void onFailure(Call<NaviAPI> call, Throwable t) {
+            public void onFailure(Call<CoordRegionInfo> call, Throwable t) {
                 Log.d("test", t.toString());
+            }
+        });
+    }
+
+    public void callAddressItems() {
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitInterface = RetrofitClient.getRetrofitInterface();
+        retrofitInterface.AddressInfo(API_KEY, "서울특별시 강동구 풍성로 128").enqueue(new Callback<SearchingAddress>() {
+            @Override
+            public void onResponse(Call<SearchingAddress> call, Response<SearchingAddress> response) {
+                SearchingAddress searchingAddress = response.body();
+                Log.d("testAddress", searchingAddress.getSearchingAddressItems().get(0).getAddressName());
+            }
+
+            @Override
+            public void onFailure(Call<SearchingAddress> call, Throwable t) {
+                Log.d("testAddress", t.toString());
             }
         });
     }

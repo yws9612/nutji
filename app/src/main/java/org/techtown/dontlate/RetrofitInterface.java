@@ -1,6 +1,7 @@
 package org.techtown.dontlate;
 
-import org.techtown.dontlate.model.NaviAPI;
+import org.techtown.dontlate.model.CoordRegionInfo;
+import org.techtown.dontlate.model.SearchingAddress;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -8,8 +9,10 @@ import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 public interface RetrofitInterface {
-//저거 없애니까 중단뜨네
-    @GET("v2/local/geo/coord2regioncode.json")//녱
-    Call<NaviAPI> AddressInfo(@Header("Authorization") String authorization, @Query("x") String x, @Query("y") String y);
+
+    @GET("v2/local/geo/coord2regioncode.json")
+    Call<CoordRegionInfo> RegionInfo(@Header("Authorization") String authorization, @Query("x") String x, @Query("y") String y);
+
+    @GET("v2/local/search/address.json")
+    Call<SearchingAddress> AddressInfo(@Header("Authorization") String authorization, @Query("query") String query);
 }
-///잠시만요

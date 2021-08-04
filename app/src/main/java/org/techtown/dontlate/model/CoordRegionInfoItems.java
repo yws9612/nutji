@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class NaviItem {
+public class CoordRegionInfoItems {
 
     @SerializedName("region_type")
     @Expose
