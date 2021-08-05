@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
+import com.skt.Tmap.TMapTapi;
+
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
@@ -54,6 +56,9 @@ public class navigationss extends Fragment {
 
         ViewGroup mapViewContainer = (ViewGroup) v.findViewById(R.id.map_view);
         mapViewContainer.addView(mapView);
+
+        TMapTapi tmaptapi = new TMapTapi(getActivity());
+        tmaptapi.setSKTMapAuthentication ("l7xx3dc0b9112d6b4d839182426e310df3a9");
 
 
         callCoordRegionItems();
