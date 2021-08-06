@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,17 @@ import com.skt.Tmap.TMapMarkerItem;
 import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapView;
 
+import org.techtown.dontlate.model.PoiSearch;
+import org.techtown.dontlate.model.SearchPoiInfo;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class navigationss extends Fragment {
 
 
@@ -31,7 +43,8 @@ public class navigationss extends Fragment {
     private RetrofitClient retrofitClient;
     private RetrofitInterface retrofitInterface;
 
-    private String App_Key = "l7xxddf8547d834c4053946c4a168738d92f";
+
+
 
 
     @Nullable
@@ -40,14 +53,20 @@ public class navigationss extends Fragment {
 
         View v = inflater.inflate(R.layout.navigations, container, false);
 
-        Context mFcontext = getActivity();
+
 
 
         LinearLayout linearLayoutTmap = (LinearLayout) v.findViewById(R.id.linearLayoutTmap);
         TMapView tMapView = new TMapView(getActivity());
 
-        tMapView.setSKTMapApiKey(App_Key);
+        tMapView.setSKTMapApiKey("l7xxddf8547d834c4053946c4a168738d92f");
         linearLayoutTmap.addView(tMapView);
+
+
+
+
+
+        callSearchPoiInfo();
 
 //        TMapMarkerItem markerItem1 = new TMapMarkerItem();
 //
@@ -73,4 +92,29 @@ public class navigationss extends Fragment {
         return v;
     }
 
+    public void callSearchPoiInfo() {
+
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitInterface = RetrofitClient.getRetrofitInterface();
+
+        HashMap<String, String> data = new HashMap<>();
+        data.put("version", String.valueOf(1));
+        data.put("searchKeyword", "빈스빈스 마포 공덕점" );
+        data.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+        //ㅇㅇ 이런식으로 하면될듯 그럼 log.d에는 일케하면되나 아 카카오하다가 sk 로 바뀌여서 없구나 ㅋㅋ 이전코드 ㅋㅋ ㄱㄷㄱㄷ
+        retrofitInterface.getSearch(data).enqueue(new Callback<PoiSearch>() {
+            @Override
+            public void onResponse(Call<PoiSearch> call, Response<PoiSearch> response) {
+                PoiSearch poiSearch = response.body();
+                Log.d("test", response.message().toString());
+                Log.d("test", String.valueOf(poiSearch.getSearchPoiInfo().getPois().getPoi().get(0).getName()));
+            }
+
+            @Override
+            public void onFailure(Call<PoiSearch> call, Throwable t) {
+                Log.d("test", t.toString()); //실행 ㄱㄱㄱ
+            }
+        });
+
+    }
 }
