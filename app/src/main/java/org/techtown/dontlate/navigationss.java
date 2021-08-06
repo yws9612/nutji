@@ -64,32 +64,29 @@ public class navigationss extends Fragment {
         ViewGroup mapViewContainer = (ViewGroup) v.findViewById(R.id.map_view);
         mapViewContainer.addView(mapView);*/
 
-        Context mFcontext = getActivity();
+//        Context mFcontext = getActivity();
 
-
-        TMapView tmapview = new TMapView(getActivity());
-        tmapview.setSKTMapApiKey("l7xx3dc0b9112d6b4d839182426e310df3a9");
 
         LinearLayout linearLayoutTmap = (LinearLayout) v.findViewById(R.id.linearLayoutTmap);
         TMapView tMapView = new TMapView(getActivity());
 
-        tMapView.setSKTMapApiKey("l7xx3dc0b9112d6b4d839182426e310df3a9");
+        tMapView.setSKTMapApiKey("l7xxddf8547d834c4053946c4a168738d92f");
         linearLayoutTmap.addView(tMapView);
 
-        TMapMarkerItem markerItem1 = new TMapMarkerItem();
-
-        TMapPoint tMapPoint1 = new TMapPoint(37.570841, 126.985302); // SKT타워
+//        TMapMarkerItem markerItem1 = new TMapMarkerItem();
+//
+//        TMapPoint tMapPoint1 = new TMapPoint(37.570841, 126.985302); // SKT타워
 
 // 마커 아이콘
-        Bitmap bitmap = BitmapFactory.decodeResource(mFcontext.getResources(), R.drawable.pin_r_m_a);
-
-        markerItem1.setIcon(bitmap); // 마커 아이콘 지정
-        markerItem1.setPosition(0.5f, 1.0f); // 마커의 중심점을 중앙, 하단으로 설정
-        markerItem1.setTMapPoint( tMapPoint1 ); // 마커의 좌표 지정
-        markerItem1.setName("SKT타워"); // 마커의 타이틀 지정
-        tMapView.addMarkerItem("markerItem1", markerItem1); // 지도에 마커 추가
-
-        tMapView.setCenterPoint( 126.985302, 37.570841 );
+//        Bitmap bitmap = BitmapFactory.decodeResource(mFcontext.getResources(), R.drawable.pin_r_m_a);
+//
+//        markerItem1.setIcon(bitmap); // 마커 아이콘 지정
+//        markerItem1.setPosition(0.5f, 1.0f); // 마커의 중심점을 중앙, 하단으로 설정
+//        markerItem1.setTMapPoint( tMapPoint1 ); // 마커의 좌표 지정
+//        markerItem1.setName("SKT타워"); // 마커의 타이틀 지정
+//        tMapView.addMarkerItem("markerItem1", markerItem1); // 지도에 마커 추가
+//
+//        tMapView.setCenterPoint( 126.985302, 37.570841 );
 
 
 
