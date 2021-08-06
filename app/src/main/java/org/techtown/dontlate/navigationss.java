@@ -22,6 +22,7 @@ import com.skt.Tmap.TMapMarkerItem;
 import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapView;
 
+import org.techtown.dontlate.model.PoiDetailSearch;
 import org.techtown.dontlate.model.PoiSearch;
 import org.techtown.dontlate.model.SearchPoiInfo;
 
@@ -67,6 +68,7 @@ public class navigationss extends Fragment {
 
 
         callSearchPoiInfo();
+        callSearchDetailInfo();
 
 //        TMapMarkerItem markerItem1 = new TMapMarkerItem();
 //
@@ -101,7 +103,7 @@ public class navigationss extends Fragment {
         data.put("version", String.valueOf(1));
         data.put("searchKeyword", "빈스빈스 마포 공덕점" );
         data.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
-        //ㅇㅇ 이런식으로 하면될듯 그럼 log.d에는 일케하면되나 아 카카오하다가 sk 로 바뀌여서 없구나 ㅋㅋ 이전코드 ㅋㅋ ㄱㄷㄱㄷ
+
         retrofitInterface.getSearch(data).enqueue(new Callback<PoiSearch>() {
             @Override
             public void onResponse(Call<PoiSearch> call, Response<PoiSearch> response) {
@@ -112,9 +114,34 @@ public class navigationss extends Fragment {
 
             @Override
             public void onFailure(Call<PoiSearch> call, Throwable t) {
-                Log.d("test", t.toString()); //실행 ㄱㄱㄱ
+                Log.d("test", t.toString());
             }
         });
 
+    }
+
+    public void callSearchDetailInfo() {
+
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitInterface = RetrofitClient.getRetrofitInterface();
+
+
+        HashMap<String, String> dedata = new HashMap<>();
+        dedata.put("version", String.valueOf(1));
+        dedata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+
+        retrofitInterface.getDetailSearch("4670161",dedata).enqueue(new Callback<PoiDetailSearch>() {
+            @Override
+            public void onResponse(Call<PoiDetailSearch> call, Response<PoiDetailSearch> response) {
+                PoiDetailSearch poiDetailSearch = response.body();
+                Log.d("testde", String.valueOf(poiDetailSearch.getPoiDetailInfo().getId()));
+            }
+
+            @Override
+            public void onFailure(Call<PoiDetailSearch> call, Throwable t) {
+                Log.d("testde", t.toString());
+
+            }
+        });
     }
 }

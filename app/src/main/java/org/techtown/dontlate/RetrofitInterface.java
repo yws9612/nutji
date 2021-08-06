@@ -1,5 +1,6 @@
 package org.techtown.dontlate;
 
+import org.techtown.dontlate.model.PoiDetailSearch;
 import org.techtown.dontlate.model.PoiSearch;
 
 import java.util.HashMap;
@@ -15,7 +16,9 @@ import retrofit2.http.QueryMap;
 public interface RetrofitInterface {
 
     @GET("https://apis.openapi.sk.com/tmap/pois")
-    Call <PoiSearch> getSearch(
-            @QueryMap HashMap<String, String> options);
+    Call <PoiSearch> getSearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/pois")
+    Call <PoiDetailSearch> getDetailSearch(@Header("poiInfo") String poiInfo, @QueryMap HashMap<String, String> options);
 }
 
