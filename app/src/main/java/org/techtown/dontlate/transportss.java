@@ -44,19 +44,19 @@ public class transportss extends Fragment {
         view = inflater.inflate(R.layout.transports, container, false);
 
         CALL_BUS_ROUTE();
-        CALL_BUS_ROUTE_INFO();
-        CALL_SUB_STATION_INFO();
-        CALL_SUB_TIMETABLE();
-        CALL_ROUTE_GRAPH();
-        CALL_PUBLIC_TRANSIT_STOP();
-        CALL_PUBLIC_TRANSIT_POI();
-        CALL_PUBLIC_TRANSIT_POI_MAP();
-        CALL_SUB_ROUTE();
-        CALL_ROUTE_SEARCH();
-        CALL_SUB_TRANSFER();
-        CALL_CITY_CODE();
-        CALL_RADIUS_ROUTE();
-        CALL_BUS_LOCATION();
+//        CALL_BUS_ROUTE_INFO();
+//        CALL_SUB_STATION_INFO();
+//        CALL_SUB_TIMETABLE();
+//        CALL_ROUTE_GRAPH();
+//        CALL_PUBLIC_TRANSIT_STOP();
+//        CALL_PUBLIC_TRANSIT_POI();
+//        CALL_PUBLIC_TRANSIT_POI_MAP();
+//        CALL_SUB_ROUTE();
+//        CALL_ROUTE_SEARCH();
+//        CALL_SUB_TRANSFER();
+//        CALL_CITY_CODE();
+//        CALL_RADIUS_ROUTE();
+//        CALL_BUS_LOCATION();
 
         return view;
     }
@@ -66,7 +66,14 @@ public class transportss extends Fragment {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        HashMap<Integer, Integer> data = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
+        data.put("lang", String.valueOf(0));
+        data.put("busNo", String.valueOf(10));
+        data.put("CID", String.valueOf(1000));
+        data.put("stationListYn", "no");
+        data.put("busNo", String.valueOf(10));
+        data.put("displayCnt", String.valueOf(10));
+        data.put("startNO", String.valueOf(1));
 
         retrofitInterface.BUS_ROUTE_CALL(data).enqueue(new Callback<BusRoute>() {
             @Override
@@ -88,7 +95,7 @@ public class transportss extends Fragment {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        HashMap<Integer, Integer> data = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
 
         retrofitInterface.BUS_ROUTE_INFO_CALL(data).enqueue(new Callback<BusRouteInfo>() {
             @Override
@@ -110,7 +117,7 @@ public class transportss extends Fragment {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        HashMap<Integer, Integer> data = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
 
         retrofitInterface.SUB_STATION_INFO_CALL(data).enqueue(new Callback<SubStationInfo>() {
             @Override
@@ -132,7 +139,7 @@ public class transportss extends Fragment {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        HashMap<Integer, Integer> data = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
 
         retrofitInterface.SUB_TIMETABLE_CALL(data).enqueue(new Callback<SubTimetable>() {
             @Override
@@ -154,7 +161,7 @@ public class transportss extends Fragment {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        HashMap<Integer, String> data = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
 
         retrofitInterface.ROUTE_GRAPH_CALL(data).enqueue(new Callback<RouteGraph>() {
             @Override
@@ -176,7 +183,7 @@ public class transportss extends Fragment {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        HashMap<Integer, String> data = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
 
         retrofitInterface.PUBLIC_TRANSIT_STOP_CALL(data).enqueue(new Callback<PublicTransitStop>() {
             @Override
@@ -198,7 +205,7 @@ public class transportss extends Fragment {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        HashMap<Integer, String> data = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
 
         retrofitInterface.PUBLIC_TRANSIT_POI_CALL(data).enqueue(new Callback<PublicTransitPOI>() {
             @Override
@@ -220,7 +227,7 @@ public class transportss extends Fragment {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        HashMap<Integer, String> data = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
 
         retrofitInterface.PUBLIC_TRANSIT_POI_MAP_CALL(data).enqueue(new Callback<PublicTransitPOIMap>() {
             @Override
@@ -242,7 +249,7 @@ public class transportss extends Fragment {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        HashMap<Integer, Integer> data = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
 
         retrofitInterface.SUB_ROUTE_CALL(data).enqueue(new Callback<SubRoute>() {
             @Override
@@ -264,7 +271,7 @@ public class transportss extends Fragment {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        HashMap<Integer, Double> data = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
 
         retrofitInterface.ROUTE_SEARCH_CALL(data).enqueue(new Callback<RouteSearch>() {
             @Override
@@ -286,7 +293,7 @@ public class transportss extends Fragment {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        HashMap<Integer, Integer> data = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
 
         retrofitInterface.SUB_TRANSFER_CALL(data).enqueue(new Callback<SubTransfer>() {
             @Override
@@ -308,7 +315,7 @@ public class transportss extends Fragment {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        HashMap<Integer, String> data = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
 
         retrofitInterface.CITY_CODE_CALL(data).enqueue(new Callback<CityCode>() {
             @Override
@@ -330,7 +337,7 @@ public class transportss extends Fragment {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        HashMap<Integer, Double> data = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
 
         retrofitInterface.RADIUS_ROUTE_CALL(data).enqueue(new Callback<RadiusRoute>() {
             @Override
@@ -352,7 +359,7 @@ public class transportss extends Fragment {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        HashMap<Integer, Integer> data = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
 
         retrofitInterface.BUS_ROUTE_CALL(data).enqueue(new Callback<BusRoute>() {
             @Override

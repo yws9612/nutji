@@ -38,45 +38,45 @@ public interface RetrofitInterface {
     //--------------------------------------------------------------여기부터 ODSay--------------------------------------------------------------------------
 
     @GET("https://api.odsay.com/v1/api/searchBusLane")
-    Call <BusRoute> BUS_ROUTE_CALL(@QueryMap HashMap<Integer, Integer> options);
+    Call <BusRoute> BUS_ROUTE_CALL(@QueryMap HashMap<String, String> options);
 
     @GET("https://api.odsay.com/v1/api/busLaneDetail")
-    Call <BusRouteInfo> BUS_ROUTE_INFO_CALL(@QueryMap HashMap<Integer, Integer> options);
+    Call <BusRouteInfo> BUS_ROUTE_INFO_CALL(@QueryMap HashMap<String, String> options);
 
     @GET("https://api.odsay.com/v1/api/subwayStationInfo")
-    Call <SubStationInfo> SUB_STATION_INFO_CALL(@QueryMap HashMap<Integer, Integer> options);
+    Call <SubStationInfo> SUB_STATION_INFO_CALL(@QueryMap HashMap<String, String> options);
 
     @GET("https://api.odsay.com/v1/api/subwayTimeTable")
-    Call <SubTimetable> SUB_TIMETABLE_CALL(@QueryMap HashMap<Integer, Integer> options);
+    Call <SubTimetable> SUB_TIMETABLE_CALL(@QueryMap HashMap<String, String> options);
 
     @GET("https://api.odsay.com/v1/api/loadLane")
-    Call <RouteGraph> ROUTE_GRAPH_CALL(@QueryMap HashMap<Integer, String> options);
+    Call <RouteGraph> ROUTE_GRAPH_CALL(@QueryMap HashMap<String, String> options);
 
     @GET("https://api.odsay.com/v1/api/searchStation")
-    Call <PublicTransitStop> PUBLIC_TRANSIT_STOP_CALL(@QueryMap HashMap<Integer, String> options);
+    Call <PublicTransitStop> PUBLIC_TRANSIT_STOP_CALL(@QueryMap HashMap<String, String> options);
 
     @GET("https://api.odsay.com/v1/api/pointSearch")
-    Call <PublicTransitPOI> PUBLIC_TRANSIT_POI_CALL(@QueryMap HashMap<Integer, String> options);
+    Call <PublicTransitPOI> PUBLIC_TRANSIT_POI_CALL(@QueryMap HashMap<String, String> options);
 
     @GET("https://api.odsay.com/v1/api/boundarySearch")
-    Call <PublicTransitPOIMap> PUBLIC_TRANSIT_POI_MAP_CALL(@QueryMap HashMap<Integer, String> options);
+    Call <PublicTransitPOIMap> PUBLIC_TRANSIT_POI_MAP_CALL(@QueryMap HashMap<String, String> options);
 
     @GET("https://api.odsay.com/v1/api/subwayPath")
-    Call <SubRoute> SUB_ROUTE_CALL(@QueryMap HashMap<Integer, Integer> options);
+    Call <SubRoute> SUB_ROUTE_CALL(@QueryMap HashMap<String, String> options);
 
     @GET("https://api.odsay.com/v1/api/searchPubTransPathR")
-    Call <RouteSearch> ROUTE_SEARCH_CALL(@QueryMap HashMap<Integer, Double> options);
+    Call <RouteSearch> ROUTE_SEARCH_CALL(@QueryMap HashMap<String, String> options);
 
     @GET("https://api.odsay.com/v1/api/subwayTransitInfo")
-    Call <SubTransfer> SUB_TRANSFER_CALL(@QueryMap HashMap<Integer, Integer> options);
+    Call <SubTransfer> SUB_TRANSFER_CALL(@QueryMap HashMap<String, String> options);
 
     @GET("https://api.odsay.com/v1/api/searchCID")
-    Call <CityCode> CITY_CODE_CALL(@QueryMap HashMap<Integer, String> options);
+    Call <CityCode> CITY_CODE_CALL(@QueryMap HashMap<String, String> options);
 
     @GET("https://api.odsay.com/v1/api/pointBusStation")
-    Call <RadiusRoute> RADIUS_ROUTE_CALL(@QueryMap HashMap<Integer, Double> options);
+    Call <RadiusRoute> RADIUS_ROUTE_CALL(@QueryMap HashMap<String, String> options);
 
     @GET("https://api.odsay.com/v1/api/realtimeRoute")
-    Call <BusLocation> BUS_LOCATION_CALL(@QueryMap HashMap<Integer, Integer> options);
+    Call <BusLocation> BUS_LOCATION_CALL(@QueryMap HashMap<String, String> options);
 }
 
