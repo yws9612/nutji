@@ -32,10 +32,10 @@ public class PoiDetailInfo {
     private String address;
     @SerializedName("firstNo")
     @Expose
-    private Integer firstNo;
+    private String firstNo;
     @SerializedName("secondNo")
     @Expose
-    private Integer secondNo;
+    private String secondNo;
     @SerializedName("zipCode")
     @Expose
     private String zipCode;
@@ -101,13 +101,13 @@ public class PoiDetailInfo {
     private String menu5;
     @SerializedName("parkFlag")
     @Expose
-    private Integer parkFlag;
+    private String parkFlag;
     @SerializedName("twFlag")
     @Expose
-    private Integer twFlag;
+    private String twFlag;
     @SerializedName("yaFlag")
     @Expose
-    private Integer yaFlag;
+    private String yaFlag;
     @SerializedName("homepageURL")
     @Expose
     private String homepageURL;
@@ -149,7 +149,7 @@ public class PoiDetailInfo {
     private String lowerCode;
     @SerializedName("point")
     @Expose
-    private Integer point;
+    private String point;
     @SerializedName("merchantDispType")
     @Expose
     private String merchantDispType;
@@ -257,19 +257,19 @@ public class PoiDetailInfo {
         this.address = address;
     }
 
-    public Integer getFirstNo() {
+    public String getFirstNo() {
         return firstNo;
     }
 
-    public void setFirstNo(Integer firstNo) {
+    public void setFirstNo(String firstNo) {
         this.firstNo = firstNo;
     }
 
-    public Integer getSecondNo() {
+    public String getSecondNo() {
         return secondNo;
     }
 
-    public void setSecondNo(Integer secondNo) {
+    public void setSecondNo(String secondNo) {
         this.secondNo = secondNo;
     }
 
@@ -441,27 +441,27 @@ public class PoiDetailInfo {
         this.menu5 = menu5;
     }
 
-    public Integer getParkFlag() {
+    public String getParkFlag() {
         return parkFlag;
     }
 
-    public void setParkFlag(Integer parkFlag) {
+    public void setParkFlag(String parkFlag) {
         this.parkFlag = parkFlag;
     }
 
-    public Integer getTwFlag() {
+    public String getTwFlag() {
         return twFlag;
     }
 
-    public void setTwFlag(Integer twFlag) {
+    public void setTwFlag(String twFlag) {
         this.twFlag = twFlag;
     }
 
-    public Integer getYaFlag() {
+    public String getYaFlag() {
         return yaFlag;
     }
 
-    public void setYaFlag(Integer yaFlag) {
+    public void setYaFlag(String yaFlag) {
         this.yaFlag = yaFlag;
     }
 
@@ -569,11 +569,11 @@ public class PoiDetailInfo {
         this.lowerCode = lowerCode;
     }
 
-    public Integer getPoint() {
+    public String getPoint() {
         return point;
     }
 
-    public void setPoint(Integer point) {
+    public void setPoint(String point) {
         this.point = point;
     }
 
