@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,9 @@ import org.json.JSONException;
 public class transportss extends Fragment {
 
     private View view;
+
+    private RetrofitClient retrofitClient;
+    private RetrofitInterface retrofitInterface;
 
     @Nullable
     @Override
