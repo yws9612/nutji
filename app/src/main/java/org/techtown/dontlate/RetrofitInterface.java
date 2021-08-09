@@ -21,5 +21,7 @@ public interface RetrofitInterface {
 
     @GET("https://apis.openapi.sk.com/tmap/pois/{poiInfo}")
     Call <PoiDetailSearch> getDetailSearch(@Path("poiInfo") String poiInfo, @QueryMap HashMap<String, String> options);
+
+
 }
 

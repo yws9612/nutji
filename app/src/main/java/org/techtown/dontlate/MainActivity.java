@@ -76,11 +76,11 @@ public class MainActivity extends AppCompatActivity { //객체 추가  implement
                         setFrag(0);
                         break;
 
-                    case R.id.navigation:
-                        menuItem.setIcon(R.drawable.taxi_click);
-                        menu.findItem(R.id.alarm).setIcon(R.drawable.manage);
+                    case R.id.schedule:
+                        menuItem.setIcon(R.drawable.schedule_click);
+                        menu.findItem(R.id.navigation).setIcon(R.drawable.taxi);
                         menu.findItem(R.id.transport).setIcon(R.drawable.bus);
-                        menu.findItem(R.id.schedule).setIcon(R.drawable.schedule);
+                        menu.findItem(R.id.alarm).setIcon(R.drawable.manage);
                         menu.findItem(R.id.usersetting).setIcon(R.drawable.profile);
                         setFrag(1);
                         break;
@@ -94,14 +94,15 @@ public class MainActivity extends AppCompatActivity { //객체 추가  implement
                         setFrag(2);
                         break;
 
-                    case R.id.schedule:
-                        menuItem.setIcon(R.drawable.schedule_click);
-                        menu.findItem(R.id.navigation).setIcon(R.drawable.taxi);
-                        menu.findItem(R.id.transport).setIcon(R.drawable.bus);
+                    case R.id.navigation:
+                        menuItem.setIcon(R.drawable.taxi_click);
                         menu.findItem(R.id.alarm).setIcon(R.drawable.manage);
+                        menu.findItem(R.id.transport).setIcon(R.drawable.bus);
+                        menu.findItem(R.id.schedule).setIcon(R.drawable.schedule);
                         menu.findItem(R.id.usersetting).setIcon(R.drawable.profile);
                         setFrag(3);
                         break;
+
 
                     case R.id.usersetting:
                         menuItem.setIcon(R.drawable.profile_click);
