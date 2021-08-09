@@ -142,17 +142,17 @@ public class MainActivity extends AppCompatActivity { //객체 추가  implement
                 break;
 
             case 1:
-                ft.replace(R.id.mainFrame, Navigationss);
-                ft.commit();
-                break;
-
-            case 2:
                 ft.replace(R.id.mainFrame, Scheduless);
                 ft.commit();
                 break;
 
-            case 3:
+            case 2:
                 ft.replace(R.id.mainFrame, Transportss);
+                ft.commit();
+                break;
+
+            case 3:
+                ft.replace(R.id.mainFrame, Navigationss);
                 ft.commit();
                 break;
 
