@@ -129,12 +129,15 @@ public class navigationss extends Fragment {
         HashMap<String, String> dedata = new HashMap<>();
         dedata.put("version", String.valueOf(1));
         dedata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+        dedata.put("resCoordType", "WGS84GEO");
+        dedata.put("callback", "function");
+
 
         retrofitInterface.getDetailSearch("4670161",dedata).enqueue(new Callback<PoiDetailSearch>() {
             @Override
             public void onResponse(Call<PoiDetailSearch> call, Response<PoiDetailSearch> response) {
                 PoiDetailSearch poiDetailSearch = response.body();
-                Log.d("testde", String.valueOf(poiDetailSearch.getPoiDetailInfo().getId()));
+                Log.d("testde", poiDetailSearch.getPoiDetailInfo().getAddress());
             }
 
             @Override
