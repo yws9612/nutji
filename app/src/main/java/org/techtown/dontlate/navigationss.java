@@ -22,6 +22,7 @@ import com.skt.Tmap.TMapMarkerItem;
 import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapView;
 
+import org.techtown.dontlate.model.PoiCategory;
 import org.techtown.dontlate.model.PoiDetailSearch;
 import org.techtown.dontlate.model.PoiSearch;
 import org.techtown.dontlate.model.SearchPoiInfo;
@@ -69,21 +70,9 @@ public class navigationss extends Fragment {
 
         callSearchPoiInfo();
         callSearchDetailInfo();
+        callSearchCategory();
 
-//        TMapMarkerItem markerItem1 = new TMapMarkerItem();
-//
-//        TMapPoint tMapPoint1 = new TMapPoint(37.570841, 126.985302); // SKT타워
-//
-// //마커 아이콘
-//        Bitmap bitmap = BitmapFactory.decodeResource(mFcontext.getResources(), R.drawable.pin_r_m_a);
-//
-//        markerItem1.setIcon(bitmap); // 마커 아이콘 지정
-//        markerItem1.setPosition(0.5f, 1.0f); // 마커의 중심점을 중앙, 하단으로 설정
-//        markerItem1.setTMapPoint( tMapPoint1 ); // 마커의 좌표 지정
-//        markerItem1.setName("SKT타워"); // 마커의 타이틀 지정
-//        tMapView.addMarkerItem("markerItem1", markerItem1); // 지도에 마커 추가
-//
-//        tMapView.setCenterPoint( 126.985302, 37.570841 ); //정상 작동 확인 완료
+
 
 
 
@@ -144,6 +133,33 @@ public class navigationss extends Fragment {
             public void onFailure(Call<PoiDetailSearch> call, Throwable t) {
                 Log.d("testde", t.toString());
 
+            }
+        });
+    }
+
+    public void callSearchCategory() {
+
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitInterface = RetrofitClient.getRetrofitInterface();
+
+
+        HashMap<String, String>cadata = new HashMap<>();
+        cadata.put("version", String.valueOf(1));
+        cadata.put("centerLon", String.valueOf(127.027621));
+        cadata.put("centerLat", String.valueOf(37.497916));
+        cadata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+
+
+        retrofitInterface.getPoiCategory(cadata).enqueue(new Callback<PoiCategory>() {
+            @Override
+            public void onResponse(Call<PoiCategory> call, Response<PoiCategory> response) {
+                PoiCategory poiCategory = response.body();
+                Log.d("testCa", poiCategory.getSearchPoiInfo().getPois().getPoi().get(0).getName());
+            }
+
+            @Override
+            public void onFailure(Call<PoiCategory> call, Throwable t) {
+                Log.d("testCa", t.toString());
             }
         });
     }
