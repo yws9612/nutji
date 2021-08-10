@@ -1,8 +1,10 @@
 package org.techtown.dontlate;
 
+import org.techtown.dontlate.model.EupMyunDongSearch;
 import org.techtown.dontlate.model.PoiCategory;
 import org.techtown.dontlate.model.PoiDetailSearch;
 import org.techtown.dontlate.model.PoiSearch;
+import org.techtown.dontlate.model.RegionDivide;
 
 
 import java.util.HashMap;
@@ -27,6 +29,10 @@ public interface RetrofitInterface {
     @GET("https://apis.openapi.sk.com/tmap/pois/search/around")
     Call <PoiCategory> getPoiCategory(@QueryMap HashMap<String, String> options);
 
+    @GET("https://apis.openapi.sk.com/tmap/poi/findPoiAreaDataByName")
+    Call <EupMyunDongSearch> getEMDSearch(@QueryMap HashMap<String, String> options);
 
+    @GET("https://apis.openapi.sk.com/tmap/poi/areascode")
+    Call <RegionDivide> getCodeSearch(@QueryMap HashMap<String, String> options);
 }
 
