@@ -58,7 +58,6 @@ public class transportss extends Fragment {
                     // API Value 는 API 호출 메소드 명을 따라갑니다.
                     if (api == API.BUS_STATION_INFO) {
                         String stationName = odsayData.getJson().getJSONObject("result").getString("stationName");
-                        Log.d("Station name : %s", stationName);
                         onSuccessListener.onRequestSuccess(stationName);
                     }
                 } catch (JSONException e) {
