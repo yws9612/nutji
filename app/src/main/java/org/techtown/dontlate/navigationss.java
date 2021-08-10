@@ -23,11 +23,16 @@ import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapView;
 
 import org.techtown.dontlate.model.EupMyunDongSearch;
+import org.techtown.dontlate.model.FullTextGeocoding;
+import org.techtown.dontlate.model.Geocoding;
 import org.techtown.dontlate.model.PoiCategory;
 import org.techtown.dontlate.model.PoiDetailSearch;
 import org.techtown.dontlate.model.PoiSearch;
 import org.techtown.dontlate.model.RegionDivide;
+import org.techtown.dontlate.model.ReverseGeocoding;
 import org.techtown.dontlate.model.SearchPoiInfo;
+import org.techtown.dontlate.model.TransAddress;
+import org.techtown.dontlate.model.TransCoord;
 
 import java.util.HashMap;
 import java.util.List;
@@ -75,6 +80,11 @@ public class navigationss extends Fragment {
 //        callSearchCategory();
 //        callSearchEMD();
 //        callSearchCode();
+//        callSearchRGC();
+//        callSearchGC();
+//        callSearchFTGC();
+//        callSearchTC();
+        callSearchTA();
 
 
 
@@ -219,4 +229,126 @@ public class navigationss extends Fragment {
 //        });
 //    }
 
+//    public void callSearchRGC() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>rgdata = new HashMap<>();
+//
+//        rgdata.put("version", String.valueOf(1));
+//        rgdata.put("lat", "37.739874");
+//        rgdata.put("lon", "127.057990");
+//        rgdata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getRGSearch(rgdata).enqueue(new Callback<ReverseGeocoding>() {
+//            @Override
+//            public void onResponse(Call<ReverseGeocoding> call, Response<ReverseGeocoding> response) {
+//                ReverseGeocoding reverseGeocoding = response.body();
+//                Log.d("testRGC", reverseGeocoding.getAddressInfo().getCityDo());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ReverseGeocoding> call, Throwable t) {
+//                Log.d("testRGC", t.toString());
+//            }
+//        });
+//    }
+
+
+//    public void callSearchGC() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>gcdata = new HashMap<>();
+//        gcdata.put("version", String.valueOf(1));
+//        gcdata.put("city_do", "%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C");
+//        gcdata.put("gu_gun", "%EA%B0%95%EC%84%9C%EA%B5%AC");
+//        gcdata.put("dong", "%ED%99%94%EA%B3%A1%EB%8F%99");
+//        gcdata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getGSearch(gcdata).enqueue(new Callback<Geocoding>() {
+//            @Override
+//            public void onResponse(Call<Geocoding> call, Response<Geocoding> response) {
+//                Geocoding geocoding = response.body();
+//                Log.d("testG", geocoding.getCoordinateInfo().getCityDo());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Geocoding> call, Throwable t) {
+//                Log.d("testG", t.toString());
+//            }
+//        });
+//    }
+
+//    public void callSearchFTGC(){
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>ftdata = new HashMap<>();
+//        ftdata.put("version", "1");
+//        ftdata.put("addressFlag", "F00");
+//        ftdata.put("fullAddr", "서울특별시 영등포구 당산로 214, 422동 3001호");
+//        ftdata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getFTGSearch(ftdata).enqueue(new Callback<FullTextGeocoding>() {
+//            @Override
+//            public void onResponse(Call<FullTextGeocoding> call, Response<FullTextGeocoding> response) {
+//                FullTextGeocoding fullTextGeocoding = response.body();
+//                Log.d("testFTG", fullTextGeocoding.getCoordinateInfo().getCoordinate().get(0).getCityDo());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<FullTextGeocoding> call, Throwable t) {
+//                Log.d("testFTG", t.toString());
+//            }
+//        });
+//    }
+
+//    public void callSearchTC() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>tcdata = new HashMap<>();
+//        tcdata.put("version", String.valueOf(1));
+//        tcdata.put("lat", "37.5446283608815");
+//        tcdata.put("lon", "126.83529138565");
+//        tcdata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getTCSearch(tcdata).enqueue(new Callback<TransCoord>() {
+//            @Override
+//            public void onResponse(Call<TransCoord> call, Response<TransCoord> response) {
+//                TransCoord transCoord = response.body();
+//                Log.d("testTC", transCoord.getCoordinate().getLat());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<TransCoord> call, Throwable t) {
+//                Log.d("testTC", t.toString());
+//            }
+//        });
+//    }
+
+    public void callSearchTA() {
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitInterface = RetrofitClient.getRetrofitInterface();
+
+        HashMap<String, String>tadata = new HashMap<>();
+        tadata.put("version", String.valueOf(1));
+        tadata.put("searchTypCd", "NtoO");
+        tadata.put("reqAdd", "경기도 성남시 분당구 판교로 264");
+        tadata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+
+        retrofitInterface.getTASearch(tadata).enqueue(new Callback<TransAddress>() {
+            @Override
+            public void onResponse(Call<TransAddress> call, Response<TransAddress> response) {
+                TransAddress transAddress = response.body();
+                Log.d("testTA", transAddress.getConvertAdd().getLegalLowerDistName());
+            }
+
+            @Override
+            public void onFailure(Call<TransAddress> call, Throwable t) {
+                Log.d("testTA", t.toString());
+            }
+        });
+    }
 }

@@ -4,6 +4,12 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class NewAddress {
+    @SerializedName("newLat")
+    @Expose
+    private String newLat;
+    @SerializedName("newLon")
+    @Expose
+    private String newLon;
     @SerializedName("centerLat")
     @Expose
     private String centerLat;
@@ -31,6 +37,22 @@ public class NewAddress {
     @SerializedName("fullAddressRoad")
     @Expose
     private String fullAddressRoad;
+
+    public String getNewLat() {
+        return newLat;
+    }
+
+    public void setNewLat(String newLat) {
+        this.newLat = newLat;
+    }
+
+    public String getNewLon() {
+        return newLon;
+    }
+
+    public void setNewLon(String newLon) {
+        this.newLon = newLon;
+    }
 
     public String getCenterLat() {
         return centerLat;

@@ -1,10 +1,17 @@
 package org.techtown.dontlate;
 
+import android.webkit.HttpAuthHandler;
+
 import org.techtown.dontlate.model.EupMyunDongSearch;
+import org.techtown.dontlate.model.FullTextGeocoding;
+import org.techtown.dontlate.model.Geocoding;
 import org.techtown.dontlate.model.PoiCategory;
 import org.techtown.dontlate.model.PoiDetailSearch;
 import org.techtown.dontlate.model.PoiSearch;
 import org.techtown.dontlate.model.RegionDivide;
+import org.techtown.dontlate.model.ReverseGeocoding;
+import org.techtown.dontlate.model.TransAddress;
+import org.techtown.dontlate.model.TransCoord;
 
 
 import java.util.HashMap;
@@ -34,5 +41,20 @@ public interface RetrofitInterface {
 
     @GET("https://apis.openapi.sk.com/tmap/poi/areascode")
     Call <RegionDivide> getCodeSearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/geo/reversegeocoding")
+    Call <ReverseGeocoding> getRGSearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/geo/geocoding")
+    Call <Geocoding> getGSearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/geo/fullAddrGeo")
+    Call <FullTextGeocoding> getFTGSearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/geo/coordconvert")
+    Call <TransCoord> getTCSearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/geo/convertAddress")
+    Call <TransAddress> getTASearch(@QueryMap HashMap<String, String> options);
 }
 
