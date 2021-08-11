@@ -1,34 +1,78 @@
 package org.techtown.dontlate;
 
-import org.techtown.dontlate.model.CategorySearch;
-import org.techtown.dontlate.model.CoordRegionInfo;
-import org.techtown.dontlate.model.KeywordSearch;
-import org.techtown.dontlate.model.SearchingAddress;
-import org.techtown.dontlate.model.TranslateAddress;
-import org.techtown.dontlate.model.TranslateCoord;
+import android.webkit.HttpAuthHandler;
+
+import org.techtown.dontlate.model.EupMyunDongSearch;
+import org.techtown.dontlate.model.FullTextGeocoding;
+import org.techtown.dontlate.model.Geocoding;
+import org.techtown.dontlate.model.NearRoad;
+import org.techtown.dontlate.model.PoiCategory;
+import org.techtown.dontlate.model.PoiDetailSearch;
+import org.techtown.dontlate.model.PoiSearch;
+import org.techtown.dontlate.model.PostSearch;
+import org.techtown.dontlate.model.RegionDivide;
+import org.techtown.dontlate.model.ReverseGeocoding;
+import org.techtown.dontlate.model.ReverseLabel;
+import org.techtown.dontlate.model.TransAddress;
+import org.techtown.dontlate.model.TransCoord;
+
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface RetrofitInterface {
 
-    @GET("v2/local/search/address.json")
-    Call<SearchingAddress> AddressInfo(@Header("Authorization") String authorization, @Query("query") String query);
+//    ---------------------------POI 검색 API 세팅------------------------------------------
+    @GET("https://apis.openapi.sk.com/tmap/pois")
+    Call <PoiSearch> getSearch(@QueryMap HashMap<String, String> options);
 
-    @GET("v2/local/geo/coord2regioncode.json")
-    Call<CoordRegionInfo> RegionInfo(@Header("Authorization") String authorization, @Query("x") String x, @Query("y") String y);
+    @GET("https://apis.openapi.sk.com/tmap/pois/{poiInfo}")
+    Call <PoiDetailSearch> getDetailSearch(@Path("poiInfo") String poiInfo, @QueryMap HashMap<String, String> options);
 
-    @GET("v2/local/geo/coord2address.json")
-    Call<TranslateAddress> CoordInfo(@Header("Authorization") String authorization, @Query("x") String x, @Query("y") String y);
+    @GET("https://apis.openapi.sk.com/tmap/pois/search/around")
+    Call <PoiCategory> getPoiCategory(@QueryMap HashMap<String, String> options);
 
-    @GET("v2/local/geo/transcoord.json")
-    Call<TranslateCoord> CoordxyInfo(@Header("Authorization") String authorization, @Query("x") Double x, @Query("y") Double y,@Query("input_coord") String input_coord, @Query("output_coord") String output_coord);
+    @GET("https://apis.openapi.sk.com/tmap/poi/findPoiAreaDataByName")
+    Call <EupMyunDongSearch> getEMDSearch(@QueryMap HashMap<String, String> options);
 
-    @GET("v2/local/search/keyword.json")
-    Call<KeywordSearch> KeplaceInfo(@Header("Authorization") String authorization, @Query("query") String query);
+    @GET("https://apis.openapi.sk.com/tmap/poi/areascode")
+    Call <RegionDivide> getCodeSearch(@QueryMap HashMap<String, String> options);
 
-    @GET("v2/local/search/category.json")
-    Call<CategorySearch> CaplaceInfo(@Header("Authorization") String authorization, @Query("category_group_code") String category_group_code, @Query("radius") Integer radius);
+//    ---------------------------지오코딩 API 세팅------------------------------------------
+
+    @GET("https://apis.openapi.sk.com/tmap/geo/reversegeocoding")
+    Call <ReverseGeocoding> getRGSearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/geo/geocoding")
+    Call <Geocoding> getGSearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/geo/fullAddrGeo")
+    Call <FullTextGeocoding> getFTGSearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/geo/coordconvert")
+    Call <TransCoord> getTCSearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/geo/convertAddress")
+    Call <TransAddress> getTASearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/road/nearToRoad")
+    Call <NearRoad> getNRSearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/geo/postcode")
+    Call <PostSearch> getPostSearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/geo/reverseLabel")
+    Call <ReverseLabel> getRLSearch(@QueryMap HashMap<String, String> options);
+
+//    -------------------------지오펜싱 API 세팅-----------------------------
+    
 }
+

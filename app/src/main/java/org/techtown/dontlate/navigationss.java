@@ -20,20 +20,26 @@ import androidx.fragment.app.Fragment;
 
 import com.skt.Tmap.TMapMarkerItem;
 import com.skt.Tmap.TMapPoint;
-import com.skt.Tmap.TMapTapi;
 import com.skt.Tmap.TMapView;
 
-import net.daum.mf.map.api.MapPOIItem;
-import net.daum.mf.map.api.MapPoint;
-import net.daum.mf.map.api.MapView;
+import org.techtown.dontlate.model.EupMyunDongSearch;
+import org.techtown.dontlate.model.FullTextGeocoding;
+import org.techtown.dontlate.model.Geocoding;
+import org.techtown.dontlate.model.NearRoad;
+import org.techtown.dontlate.model.PoiCategory;
+import org.techtown.dontlate.model.PoiDetailSearch;
+import org.techtown.dontlate.model.PoiSearch;
+import org.techtown.dontlate.model.PostSearch;
+import org.techtown.dontlate.model.RegionDivide;
+import org.techtown.dontlate.model.ReverseGeocoding;
+import org.techtown.dontlate.model.ReverseLabel;
+import org.techtown.dontlate.model.SearchPoiInfo;
+import org.techtown.dontlate.model.TransAddress;
+import org.techtown.dontlate.model.TransCoord;
 
-
-import org.techtown.dontlate.model.CategorySearch;
-import org.techtown.dontlate.model.CoordRegionInfo;
-import org.techtown.dontlate.model.KeywordSearch;
-import org.techtown.dontlate.model.SearchingAddress;
-import org.techtown.dontlate.model.TranslateAddress;
-import org.techtown.dontlate.model.TranslateCoord;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,13 +50,13 @@ public class navigationss extends Fragment {
 
     private View view;
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
+
 
     private RetrofitClient retrofitClient;
     private RetrofitInterface retrofitInterface;
 
-    private String API_KEY = "KakaoAK 8ae57c6ab583cbe890979e12b4c0315a";
+
+
 
 
     @Nullable
@@ -59,171 +65,369 @@ public class navigationss extends Fragment {
 
         View v = inflater.inflate(R.layout.navigations, container, false);
 
-        /*MapView mapView = new MapView(getActivity());
-
-        ViewGroup mapViewContainer = (ViewGroup) v.findViewById(R.id.map_view);
-        mapViewContainer.addView(mapView);*/
-
-        Context mFcontext = getActivity();
 
 
-        TMapView tmapview = new TMapView(getActivity());
-        tmapview.setSKTMapApiKey("l7xx3dc0b9112d6b4d839182426e310df3a9");
 
         LinearLayout linearLayoutTmap = (LinearLayout) v.findViewById(R.id.linearLayoutTmap);
         TMapView tMapView = new TMapView(getActivity());
 
-        tMapView.setSKTMapApiKey("l7xx3dc0b9112d6b4d839182426e310df3a9");
+        tMapView.setSKTMapApiKey("l7xxddf8547d834c4053946c4a168738d92f");
         linearLayoutTmap.addView(tMapView);
 
-        TMapMarkerItem markerItem1 = new TMapMarkerItem();
-
-        TMapPoint tMapPoint1 = new TMapPoint(37.570841, 126.985302); // SKT타워
-
-// 마커 아이콘
-        Bitmap bitmap = BitmapFactory.decodeResource(mFcontext.getResources(), R.drawable.pin_r_m_a);
-
-        markerItem1.setIcon(bitmap); // 마커 아이콘 지정
-        markerItem1.setPosition(0.5f, 1.0f); // 마커의 중심점을 중앙, 하단으로 설정
-        markerItem1.setTMapPoint( tMapPoint1 ); // 마커의 좌표 지정
-        markerItem1.setName("SKT타워"); // 마커의 타이틀 지정
-        tMapView.addMarkerItem("markerItem1", markerItem1); // 지도에 마커 추가
-
-        tMapView.setCenterPoint( 126.985302, 37.570841 );
 
 
 
-        /*callCoordRegionItems();
-        callAddressItems();
-        callTranslateAddressItems();
-        callTranslateCoordItems();
-        callKeywordSearchItems();
-        callCategorySearchItems();
+
+//        callSearchPoiInfo();
+//        callSearchDetailInfo();
+//        callSearchCategory();
+//        callSearchEMD();
+//        callSearchCode();
+//        callSearchRGC();
+//        callSearchGC();
+//        callSearchFTGC();
+//        callSearchTC();
+//        callSearchTA();
+//        callSearchNR();
+//        callSearchPost();
+//        callSearchRL();
 
 
-        // 중심점 변경 - 예제 좌표는 서울 남산
-        mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.54892296550104, 126.99089033876304), true);
-
-        // 줌 레벨 변경
-        mapView.setZoomLevel(4, true);
-
-        //마커 찍기
-        MapPoint MARKER_POINT = MapPoint.mapPointWithGeoCoord(37.54892296550104, 126.99089033876304);//
-        MapPOIItem marker = new MapPOIItem();
-        marker.setItemName("요기");
-        marker.setTag(0);
-        marker.setMapPoint(MARKER_POINT);
-        marker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
-        marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
 
 
-        mapView.addPOIItem(marker);*/
+
+
+
 
 
         return v;
     }
+//    public void callSearchPoiInfo() {
+//
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String> data = new HashMap<>();
+//        data.put("version", String.valueOf(1));
+//        data.put("searchKeyword", "빈스빈스 마포 공덕점" );
+//        data.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getSearch(data).enqueue(new Callback<PoiSearch>() {
+//            @Override
+//            public void onResponse(Call<PoiSearch> call, Response<PoiSearch> response) {
+//                PoiSearch poiSearch = response.body();
+//                Log.d("test", response.message().toString());
+//                Log.d("test", String.valueOf(poiSearch.getSearchPoiInfo().getPois().getPoi().get(0).getName()));
+//            }
+//
+//            @Override
+//            public void onFailure(Call<PoiSearch> call, Throwable t) {
+//                Log.d("test", t.toString());
+//            }
+//        });
+//
+//    }
+//
+//    public void callSearchDetailInfo() {
+//
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//
+//        HashMap<String, String> dedata = new HashMap<>();
+//        dedata.put("version", String.valueOf(1));
+//        dedata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//        dedata.put("resCoordType", "WGS84GEO");
+//        dedata.put("callback", "function");
+//
+//
+//        retrofitInterface.getDetailSearch("4670161",dedata).enqueue(new Callback<PoiDetailSearch>() {
+//            @Override
+//            public void onResponse(Call<PoiDetailSearch> call, Response<PoiDetailSearch> response) {
+//                PoiDetailSearch poiDetailSearch = response.body();
+//                Log.d("testde", poiDetailSearch.getPoiDetailInfo().getAddress());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<PoiDetailSearch> call, Throwable t) {
+//                Log.d("testde", t.toString());
+//
+//            }
+//        });
+//    }
+//
+//    public void callSearchCategory() {
+//
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//
+//        HashMap<String, String>cadata = new HashMap<>();
+//        cadata.put("version", String.valueOf(1));
+//        cadata.put("centerLon", String.valueOf(127.027621));
+//        cadata.put("centerLat", String.valueOf(37.497916));
+//        cadata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//
+//        retrofitInterface.getPoiCategory(cadata).enqueue(new Callback<PoiCategory>() {
+//            @Override
+//            public void onResponse(Call<PoiCategory> call, Response<PoiCategory> response) {
+//                PoiCategory poiCategory = response.body();
+//                Log.d("testCa", poiCategory.getSearchPoiInfo().getPois().getPoi().get(0).getName());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<PoiCategory> call, Throwable t) {
+//                Log.d("testCa", t.toString());
+//            }
+//        });
+//    }
 
- /*   public void callCoordRegionItems() {
-        retrofitClient = RetrofitClient.getInstance();
-        retrofitInterface = RetrofitClient.getRetrofitInterface();
-        retrofitInterface.RegionInfo(API_KEY, "127.10459896729914","37.40269721785548" ).enqueue(new Callback<CoordRegionInfo>() {
-            @Override
-            public void onResponse(Call<CoordRegionInfo> call, Response<CoordRegionInfo> response) {
-                CoordRegionInfo coordRegionInfo = response.body();
-                Log.d("test", coordRegionInfo.getCoordRegionInfoItems().get(0).getAddressName());
-            }
+//    public void callSearchEMD(){
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>emddata = new HashMap<>();
+//        emddata.put("version", String.valueOf(1));
+//        emddata.put("page", String.valueOf(1));
+//        emddata.put("count", String.valueOf(1));
+//        emddata.put("area_dong", "성내동");
+//        emddata.put("appKey","l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getEMDSearch(emddata).enqueue(new Callback<EupMyunDongSearch>() {
+//            @Override
+//            public void onResponse(Call<EupMyunDongSearch> call, Response<EupMyunDongSearch> response) {
+//                EupMyunDongSearch eupMyunDongSearch = response.body();
+//                Log.d("testEMD", eupMyunDongSearch.getFindPoiAreaDataByNameInfo().getDongInfo().get(0).getAddress());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<EupMyunDongSearch> call, Throwable t) {
+//                Log.d("testEMD", t.toString());
+//            }
+//        });
+//    }
 
-            @Override
-            public void onFailure(Call<CoordRegionInfo> call, Throwable t) {
-                Log.d("test", t.toString());
-            }
-        });
-    }
+//    public void callSearchCode() {
+//
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>codata = new HashMap<>();
+//
+//        codata.put("version", "1");
+//        codata.put("count", "10");
+//        codata.put("page", "1");
+//        codata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getCodeSearch(codata).enqueue(new Callback<RegionDivide>() {
+//            @Override
+//            public void onResponse(Call<RegionDivide> call, Response<RegionDivide> response) {
+//                RegionDivide regionDivide = response.body();
+//                Log.d("testco", regionDivide.getAreaCodeInfo().getPoiAreaCodes().get(0).getDistrictName());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<RegionDivide> call, Throwable t) {
+//                Log.d("testco", t.toString());
+//            }
+//        });
+//    }
 
-    public void callAddressItems() {
-        retrofitClient = RetrofitClient.getInstance();
-        retrofitInterface = RetrofitClient.getRetrofitInterface();
-        retrofitInterface.AddressInfo(API_KEY, "서울특별시 강동구 풍성로 128").enqueue(new Callback<SearchingAddress>() {
-            @Override
-            public void onResponse(Call<SearchingAddress> call, Response<SearchingAddress> response) {
-                SearchingAddress searchingAddress = response.body();
-                Log.d("testAddress", searchingAddress.getSearchingAddressItems().get(0).getAddressName());
-            }
+//    public void callSearchRGC() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>rgdata = new HashMap<>();
+//
+//        rgdata.put("version", String.valueOf(1));
+//        rgdata.put("lat", "37.739874");
+//        rgdata.put("lon", "127.057990");
+//        rgdata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getRGSearch(rgdata).enqueue(new Callback<ReverseGeocoding>() {
+//            @Override
+//            public void onResponse(Call<ReverseGeocoding> call, Response<ReverseGeocoding> response) {
+//                ReverseGeocoding reverseGeocoding = response.body();
+//                Log.d("testRGC", reverseGeocoding.getAddressInfo().getCityDo());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ReverseGeocoding> call, Throwable t) {
+//                Log.d("testRGC", t.toString());
+//            }
+//        });
+//    }
 
-            @Override
-            public void onFailure(Call<SearchingAddress> call, Throwable t) {
-                Log.d("testAddress", t.toString());
-            }
-        });
-    }
 
-    public void callTranslateAddressItems() {
-        retrofitClient = RetrofitClient.getInstance();
-        retrofitInterface = RetrofitClient.getRetrofitInterface();
-        retrofitInterface.CoordInfo(API_KEY,"127.423084873712", "37.0789561558879").enqueue(new Callback<TranslateAddress>() {
-            @Override
-            public void onResponse(Call<TranslateAddress> call, Response<TranslateAddress> response) {
-                TranslateAddress translateAddress = response.body();
-                Log.d("testCoord", translateAddress.getTranslateAddressItems().get(0).getAddress().getAddressName());
-            }
+//    public void callSearchGC() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>gcdata = new HashMap<>();
+//        gcdata.put("version", String.valueOf(1));
+//        gcdata.put("city_do", "%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C");
+//        gcdata.put("gu_gun", "%EA%B0%95%EC%84%9C%EA%B5%AC");
+//        gcdata.put("dong", "%ED%99%94%EA%B3%A1%EB%8F%99");
+//        gcdata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getGSearch(gcdata).enqueue(new Callback<Geocoding>() {
+//            @Override
+//            public void onResponse(Call<Geocoding> call, Response<Geocoding> response) {
+//                Geocoding geocoding = response.body();
+//                Log.d("testG", geocoding.getCoordinateInfo().getCityDo());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Geocoding> call, Throwable t) {
+//                Log.d("testG", t.toString());
+//            }
+//        });
+//    }
 
-            @Override
-            public void onFailure(Call<TranslateAddress> call, Throwable t) {
-                Log.d("testCoord", t.toString());
-            }
-        });
-    }
+//    public void callSearchFTGC(){
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>ftdata = new HashMap<>();
+//        ftdata.put("version", "1");
+//        ftdata.put("addressFlag", "F00");
+//        ftdata.put("fullAddr", "서울특별시 영등포구 당산로 214, 422동 3001호");
+//        ftdata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getFTGSearch(ftdata).enqueue(new Callback<FullTextGeocoding>() {
+//            @Override
+//            public void onResponse(Call<FullTextGeocoding> call, Response<FullTextGeocoding> response) {
+//                FullTextGeocoding fullTextGeocoding = response.body();
+//                Log.d("testFTG", fullTextGeocoding.getCoordinateInfo().getCoordinate().get(0).getCityDo());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<FullTextGeocoding> call, Throwable t) {
+//                Log.d("testFTG", t.toString());
+//            }
+//        });
+//    }
 
-    public void callTranslateCoordItems() {
-        retrofitClient = RetrofitClient.getInstance();
-        retrofitInterface = RetrofitClient.getRetrofitInterface();
-        retrofitInterface.CoordxyInfo(API_KEY, 160710.37729270622, -4388.879299157299,"WTM", "WGS84").enqueue(new Callback<TranslateCoord>() {
-            @Override
-            public void onResponse(Call<TranslateCoord> call, Response<TranslateCoord> response) {
-                TranslateCoord translateCoord = response.body();
-                Log.d("testCoordxy", translateCoord.getTranslateCoordItems().get(0).getX().toString());
-                Log.d("testCoordxy", translateCoord.getTranslateCoordItems().get(0).getY().toString());
-            }
+//    public void callSearchTC() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>tcdata = new HashMap<>();
+//        tcdata.put("version", String.valueOf(1));
+//        tcdata.put("lat", "37.5446283608815");
+//        tcdata.put("lon", "126.83529138565");
+//        tcdata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getTCSearch(tcdata).enqueue(new Callback<TransCoord>() {
+//            @Override
+//            public void onResponse(Call<TransCoord> call, Response<TransCoord> response) {
+//                TransCoord transCoord = response.body();
+//                Log.d("testTC", transCoord.getCoordinate().getLat());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<TransCoord> call, Throwable t) {
+//                Log.d("testTC", t.toString());
+//            }
+//        });
+//    }
 
-            @Override
-            public void onFailure(Call<TranslateCoord> call, Throwable t) {
-                Log.d("testCoordxy", t.toString());
-            }
-        });
-    }
+//    public void callSearchTA() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>tadata = new HashMap<>();
+//        tadata.put("version", String.valueOf(1));
+//        tadata.put("searchTypCd", "NtoO");
+//        tadata.put("reqAdd", "경기도 성남시 분당구 판교로 264");
+//        tadata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getTASearch(tadata).enqueue(new Callback<TransAddress>() {
+//            @Override
+//            public void onResponse(Call<TransAddress> call, Response<TransAddress> response) {
+//                TransAddress transAddress = response.body();
+//                Log.d("testTA", transAddress.getConvertAdd().getLegalLowerDistName());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<TransAddress> call, Throwable t) {
+//                Log.d("testTA", t.toString());
+//            }
+//        });
+//    }
 
-    public void callKeywordSearchItems() {
-        retrofitClient = RetrofitClient.getInstance();
-        retrofitInterface = RetrofitClient.getRetrofitInterface();
-        retrofitInterface.KeplaceInfo(API_KEY, "카카오프렌즈").enqueue(new Callback<KeywordSearch>() {
-            @Override
-            public void onResponse(Call<KeywordSearch> call, Response<KeywordSearch> response) {
-                KeywordSearch keywordSearch = response.body();
-                Log.d("testKplace", keywordSearch.getKeywordSearchItems().get(0).getAddressName());
-            }
+//    public void callSearchNR() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>nrdata = new HashMap<>();
+//        nrdata.put("version", "1");
+//        nrdata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//        nrdata.put("lat", "37.556542");
+//        nrdata.put("lon", "127.925710");
+//
+//        retrofitInterface.getNRSearch(nrdata).enqueue(new Callback<NearRoad>() {
+//            @Override
+//            public void onResponse(Call<NearRoad> call, Response<NearRoad> response) {
+//                NearRoad nearRoad = response.body();
+//                Log.d("TestNR", nearRoad.getResultData().getHeader().getIdxName());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<NearRoad> call, Throwable t) {
+//                Log.d("TestNR", t.toString());
+//            }
+//        });
+//    } //resultData 내부 값이 비어있는데 왜 비어있는지를 모르겠음.
 
-            @Override
-            public void onFailure(Call<KeywordSearch> call, Throwable t) {
-                Log.d("testKplace", t.toString());
-            }
-        });
-    }
+//    public void callSearchPost() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>podata = new HashMap<>();
+//        podata.put("version", "1");
+//        podata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//        podata.put("addr", "%EC%84%9C%EC%9A%B8%EC%8B%9C+%EA%B0%95%EB%82%A8%EA%B5%AC+%EC%8B%A0%EC%82%AC%EB%8F%99");
+//        podata.put("addressFlag", "F00");
+//
+//        retrofitInterface.getPostSearch(podata).enqueue(new Callback<PostSearch>() {
+//            @Override
+//            public void onResponse(Call<PostSearch> call, Response<PostSearch> response) {
+//                PostSearch postSearch = response.body();
+//                Log.d("testPost", postSearch.getCoordinateInfo().getCoordinate().get(0).getCityDo());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<PostSearch> call, Throwable t) {
+//                Log.d("testPost", t.toString());
+//            }
+//        });
+//    }
 
-    public void callCategorySearchItems() {
-        retrofitClient = RetrofitClient.getInstance();
-        retrofitInterface = RetrofitClient.getRetrofitInterface();
-        retrofitInterface.CaplaceInfo(API_KEY, "PM9", 20000).enqueue(new Callback<CategorySearch>() {
-            @Override
-            public void onResponse(Call<CategorySearch> call, Response<CategorySearch> response) {
-                CategorySearch categorySearch = response.body();
-                Log.d("testCplace", categorySearch.getCategorySearchItems().get(0).getAddressName());
-            }
-
-            @Override
-            public void onFailure(Call<CategorySearch> call, Throwable t) {
-                Log.d("testCplace", t.toString());
-            }
-        });
-    }*/
-
+//    public void callSearchRL() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>rvdata = new HashMap<>();
+//        rvdata.put("version", String.valueOf(1));
+//        rvdata.put("format", "json");
+//        rvdata.put("centerLat", "37.556613");
+//        rvdata.put("centerLon", "126.89889");
+//        rvdata.put("reqLevel", String.valueOf(15));
+//        rvdata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getRLSearch(rvdata).enqueue(new Callback<ReverseLabel>() {
+//            @Override
+//            public void onResponse(Call<ReverseLabel> call, Response<ReverseLabel> response) {
+//                ReverseLabel reverseLabel = response.body();
+//                Log.d("testRL", reverseLabel.getPoiInfo().getPoiLat());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ReverseLabel> call, Throwable t) {
+//                Log.d("testRL",t.toString());
+//            }
+//        });
+//    } //얘도 오류나네 null값
 }
