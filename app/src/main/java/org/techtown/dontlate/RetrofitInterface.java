@@ -5,11 +5,14 @@ import android.webkit.HttpAuthHandler;
 import org.techtown.dontlate.model.EupMyunDongSearch;
 import org.techtown.dontlate.model.FullTextGeocoding;
 import org.techtown.dontlate.model.Geocoding;
+import org.techtown.dontlate.model.NearRoad;
 import org.techtown.dontlate.model.PoiCategory;
 import org.techtown.dontlate.model.PoiDetailSearch;
 import org.techtown.dontlate.model.PoiSearch;
+import org.techtown.dontlate.model.PostSearch;
 import org.techtown.dontlate.model.RegionDivide;
 import org.techtown.dontlate.model.ReverseGeocoding;
+import org.techtown.dontlate.model.ReverseLabel;
 import org.techtown.dontlate.model.TransAddress;
 import org.techtown.dontlate.model.TransCoord;
 
@@ -27,6 +30,7 @@ import retrofit2.http.QueryMap;
 
 public interface RetrofitInterface {
 
+//    ---------------------------POI 검색 API 세팅------------------------------------------
     @GET("https://apis.openapi.sk.com/tmap/pois")
     Call <PoiSearch> getSearch(@QueryMap HashMap<String, String> options);
 
@@ -42,6 +46,8 @@ public interface RetrofitInterface {
     @GET("https://apis.openapi.sk.com/tmap/poi/areascode")
     Call <RegionDivide> getCodeSearch(@QueryMap HashMap<String, String> options);
 
+//    ---------------------------지오코딩 API 세팅------------------------------------------
+
     @GET("https://apis.openapi.sk.com/tmap/geo/reversegeocoding")
     Call <ReverseGeocoding> getRGSearch(@QueryMap HashMap<String, String> options);
 
@@ -56,5 +62,17 @@ public interface RetrofitInterface {
 
     @GET("https://apis.openapi.sk.com/tmap/geo/convertAddress")
     Call <TransAddress> getTASearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/road/nearToRoad")
+    Call <NearRoad> getNRSearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/geo/postcode")
+    Call <PostSearch> getPostSearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/geo/reverseLabel")
+    Call <ReverseLabel> getRLSearch(@QueryMap HashMap<String, String> options);
+
+//    -------------------------지오펜싱 API 세팅-----------------------------
+    
 }
 

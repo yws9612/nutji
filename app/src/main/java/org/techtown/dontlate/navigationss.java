@@ -25,11 +25,14 @@ import com.skt.Tmap.TMapView;
 import org.techtown.dontlate.model.EupMyunDongSearch;
 import org.techtown.dontlate.model.FullTextGeocoding;
 import org.techtown.dontlate.model.Geocoding;
+import org.techtown.dontlate.model.NearRoad;
 import org.techtown.dontlate.model.PoiCategory;
 import org.techtown.dontlate.model.PoiDetailSearch;
 import org.techtown.dontlate.model.PoiSearch;
+import org.techtown.dontlate.model.PostSearch;
 import org.techtown.dontlate.model.RegionDivide;
 import org.techtown.dontlate.model.ReverseGeocoding;
+import org.techtown.dontlate.model.ReverseLabel;
 import org.techtown.dontlate.model.SearchPoiInfo;
 import org.techtown.dontlate.model.TransAddress;
 import org.techtown.dontlate.model.TransCoord;
@@ -84,7 +87,10 @@ public class navigationss extends Fragment {
 //        callSearchGC();
 //        callSearchFTGC();
 //        callSearchTC();
-        callSearchTA();
+//        callSearchTA();
+//        callSearchNR();
+//        callSearchPost();
+//        callSearchRL();
 
 
 
@@ -96,7 +102,6 @@ public class navigationss extends Fragment {
 
         return v;
     }
-
 //    public void callSearchPoiInfo() {
 //
 //        retrofitClient = RetrofitClient.getInstance();
@@ -328,27 +333,101 @@ public class navigationss extends Fragment {
 //        });
 //    }
 
-    public void callSearchTA() {
-        retrofitClient = RetrofitClient.getInstance();
-        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//    public void callSearchTA() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>tadata = new HashMap<>();
+//        tadata.put("version", String.valueOf(1));
+//        tadata.put("searchTypCd", "NtoO");
+//        tadata.put("reqAdd", "경기도 성남시 분당구 판교로 264");
+//        tadata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getTASearch(tadata).enqueue(new Callback<TransAddress>() {
+//            @Override
+//            public void onResponse(Call<TransAddress> call, Response<TransAddress> response) {
+//                TransAddress transAddress = response.body();
+//                Log.d("testTA", transAddress.getConvertAdd().getLegalLowerDistName());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<TransAddress> call, Throwable t) {
+//                Log.d("testTA", t.toString());
+//            }
+//        });
+//    }
 
-        HashMap<String, String>tadata = new HashMap<>();
-        tadata.put("version", String.valueOf(1));
-        tadata.put("searchTypCd", "NtoO");
-        tadata.put("reqAdd", "경기도 성남시 분당구 판교로 264");
-        tadata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//    public void callSearchNR() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>nrdata = new HashMap<>();
+//        nrdata.put("version", "1");
+//        nrdata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//        nrdata.put("lat", "37.556542");
+//        nrdata.put("lon", "127.925710");
+//
+//        retrofitInterface.getNRSearch(nrdata).enqueue(new Callback<NearRoad>() {
+//            @Override
+//            public void onResponse(Call<NearRoad> call, Response<NearRoad> response) {
+//                NearRoad nearRoad = response.body();
+//                Log.d("TestNR", nearRoad.getResultData().getHeader().getIdxName());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<NearRoad> call, Throwable t) {
+//                Log.d("TestNR", t.toString());
+//            }
+//        });
+//    } //resultData 내부 값이 비어있는데 왜 비어있는지를 모르겠음.
 
-        retrofitInterface.getTASearch(tadata).enqueue(new Callback<TransAddress>() {
-            @Override
-            public void onResponse(Call<TransAddress> call, Response<TransAddress> response) {
-                TransAddress transAddress = response.body();
-                Log.d("testTA", transAddress.getConvertAdd().getLegalLowerDistName());
-            }
+//    public void callSearchPost() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>podata = new HashMap<>();
+//        podata.put("version", "1");
+//        podata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//        podata.put("addr", "%EC%84%9C%EC%9A%B8%EC%8B%9C+%EA%B0%95%EB%82%A8%EA%B5%AC+%EC%8B%A0%EC%82%AC%EB%8F%99");
+//        podata.put("addressFlag", "F00");
+//
+//        retrofitInterface.getPostSearch(podata).enqueue(new Callback<PostSearch>() {
+//            @Override
+//            public void onResponse(Call<PostSearch> call, Response<PostSearch> response) {
+//                PostSearch postSearch = response.body();
+//                Log.d("testPost", postSearch.getCoordinateInfo().getCoordinate().get(0).getCityDo());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<PostSearch> call, Throwable t) {
+//                Log.d("testPost", t.toString());
+//            }
+//        });
+//    }
 
-            @Override
-            public void onFailure(Call<TransAddress> call, Throwable t) {
-                Log.d("testTA", t.toString());
-            }
-        });
-    }
+//    public void callSearchRL() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>rvdata = new HashMap<>();
+//        rvdata.put("version", String.valueOf(1));
+//        rvdata.put("format", "json");
+//        rvdata.put("centerLat", "37.556613");
+//        rvdata.put("centerLon", "126.89889");
+//        rvdata.put("reqLevel", String.valueOf(15));
+//        rvdata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getRLSearch(rvdata).enqueue(new Callback<ReverseLabel>() {
+//            @Override
+//            public void onResponse(Call<ReverseLabel> call, Response<ReverseLabel> response) {
+//                ReverseLabel reverseLabel = response.body();
+//                Log.d("testRL", reverseLabel.getPoiInfo().getPoiLat());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ReverseLabel> call, Throwable t) {
+//                Log.d("testRL",t.toString());
+//            }
+//        });
+//    } //얘도 오류나네 null값
 }
