@@ -61,6 +61,7 @@ public class TimePickerActivity extends AppCompatActivity {
                 sendIntent.putExtra("am_pm", am_pm);
                 sendIntent.putExtra("month", stMonth);
                 sendIntent.putExtra("day", stDay);
+                setResult(RESULT_OK, sendIntent);
 
                 finish();
             }
