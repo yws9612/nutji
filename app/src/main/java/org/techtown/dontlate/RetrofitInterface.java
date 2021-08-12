@@ -2,6 +2,7 @@ package org.techtown.dontlate;
 
 import android.webkit.HttpAuthHandler;
 
+import org.techtown.dontlate.model.AreaSearching;
 import org.techtown.dontlate.model.EupMyunDongSearch;
 import org.techtown.dontlate.model.FullTextGeocoding;
 import org.techtown.dontlate.model.Geocoding;
@@ -11,6 +12,7 @@ import org.techtown.dontlate.model.PoiDetailSearch;
 import org.techtown.dontlate.model.PoiSearch;
 import org.techtown.dontlate.model.PostSearch;
 import org.techtown.dontlate.model.RegionDivide;
+import org.techtown.dontlate.model.RegionSearching;
 import org.techtown.dontlate.model.ReverseGeocoding;
 import org.techtown.dontlate.model.ReverseLabel;
 import org.techtown.dontlate.model.TransAddress;
@@ -73,6 +75,11 @@ public interface RetrofitInterface {
     Call <ReverseLabel> getRLSearch(@QueryMap HashMap<String, String> options);
 
 //    -------------------------지오펜싱 API 세팅-----------------------------
+    @GET("https://apis.openapi.sk.com/tmap/geofencing/regions")
+    Call <AreaSearching> getAreaSearch(@QueryMap HashMap<String, String> options);
+
+    @GET("https://apis.openapi.sk.com/tmap/geofencing/regions/{regionId}")
+    Call <RegionSearching> getRegionSearch(@Path("regionId") String regionId, @QueryMap HashMap<String, String> options);
     
 }
 
