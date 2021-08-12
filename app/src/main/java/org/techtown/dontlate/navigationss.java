@@ -36,6 +36,7 @@ import org.techtown.dontlate.model.RegionSearching;
 import org.techtown.dontlate.model.ReverseGeocoding;
 import org.techtown.dontlate.model.ReverseLabel;
 import org.techtown.dontlate.model.SearchPoiInfo;
+import org.techtown.dontlate.model.TrafficInfo;
 import org.techtown.dontlate.model.TransAddress;
 import org.techtown.dontlate.model.TransCoord;
 
@@ -95,6 +96,7 @@ public class navigationss extends Fragment {
 //        callSearchRL();
 //        callSearchArea();
 //        callSearchRegion();
+//        callSearchTrafficInfo();
 
 
 
@@ -481,4 +483,29 @@ public class navigationss extends Fragment {
 //            }
 //        });
 //    }
+
+//    public void callSearchTrafficInfo() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>tidata = new HashMap<>();
+//        tidata.put("version", "1");
+//        tidata.put("zoomLevel", String.valueOf(7));
+//        tidata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getTISearch(tidata).enqueue(new Callback<TrafficInfo>() {
+//            @Override
+//            public void onResponse(Call<TrafficInfo> call, Response<TrafficInfo> response) {
+//                TrafficInfo trafficInfo = response.body();
+//                Log.d("testTi", trafficInfo.getFeatures().get(0).getProperties().getCategory());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<TrafficInfo> call, Throwable t) {
+//                Log.d("testTi", t.toString());
+//            }
+//        });
+//    } //얘도 null값 ㅅㅂ..
+
+
 }

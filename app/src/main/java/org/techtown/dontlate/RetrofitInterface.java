@@ -15,6 +15,7 @@ import org.techtown.dontlate.model.RegionDivide;
 import org.techtown.dontlate.model.RegionSearching;
 import org.techtown.dontlate.model.ReverseGeocoding;
 import org.techtown.dontlate.model.ReverseLabel;
+import org.techtown.dontlate.model.TrafficInfo;
 import org.techtown.dontlate.model.TransAddress;
 import org.techtown.dontlate.model.TransCoord;
 
@@ -80,6 +81,10 @@ public interface RetrofitInterface {
 
     @GET("https://apis.openapi.sk.com/tmap/geofencing/regions/{regionId}")
     Call <RegionSearching> getRegionSearch(@Path("regionId") String regionId, @QueryMap HashMap<String, String> options);
-    
+
+//        -------------------------교통정보 API 세팅-----------------------------
+    @GET("https://apis.openapi.sk.com/tmap/traffic")
+    Call <TrafficInfo> getTISearch(@QueryMap HashMap<String, String> options);
+
 }
 
