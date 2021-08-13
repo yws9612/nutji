@@ -34,56 +34,56 @@ import retrofit2.http.QueryMap;
 public interface RetrofitInterface {
 
 //    ---------------------------POI 검색 API 세팅------------------------------------------
-    @GET("https://apis.openapi.sk.com/tmap/pois")
+    @GET("tmap/pois")
     Call <PoiSearch> getSearch(@QueryMap HashMap<String, String> options);
 
-    @GET("https://apis.openapi.sk.com/tmap/pois/{poiInfo}")
+    @GET("tmap/pois/{poiInfo}")
     Call <PoiDetailSearch> getDetailSearch(@Path("poiInfo") String poiInfo, @QueryMap HashMap<String, String> options);
 
-    @GET("https://apis.openapi.sk.com/tmap/pois/search/around")
+    @GET("tmap/pois/search/around")
     Call <PoiCategory> getPoiCategory(@QueryMap HashMap<String, String> options);
 
-    @GET("https://apis.openapi.sk.com/tmap/poi/findPoiAreaDataByName")
+    @GET("tmap/poi/findPoiAreaDataByName")
     Call <EupMyunDongSearch> getEMDSearch(@QueryMap HashMap<String, String> options);
 
-    @GET("https://apis.openapi.sk.com/tmap/poi/areascode")
+    @GET("tmap/poi/areascode")
     Call <RegionDivide> getCodeSearch(@QueryMap HashMap<String, String> options);
 
 //    ---------------------------지오코딩 API 세팅------------------------------------------
 
-    @GET("https://apis.openapi.sk.com/tmap/geo/reversegeocoding")
+    @GET("tmap/geo/reversegeocoding")
     Call <ReverseGeocoding> getRGSearch(@QueryMap HashMap<String, String> options);
 
-    @GET("https://apis.openapi.sk.com/tmap/geo/geocoding")
+    @GET("tmap/geo/geocoding")
     Call <Geocoding> getGSearch(@QueryMap HashMap<String, String> options);
 
-    @GET("https://apis.openapi.sk.com/tmap/geo/fullAddrGeo")
+    @GET("tmap/geo/fullAddrGeo")
     Call <FullTextGeocoding> getFTGSearch(@QueryMap HashMap<String, String> options);
 
-    @GET("https://apis.openapi.sk.com/tmap/geo/coordconvert")
+    @GET("tmap/geo/coordconvert")
     Call <TransCoord> getTCSearch(@QueryMap HashMap<String, String> options);
 
-    @GET("https://apis.openapi.sk.com/tmap/geo/convertAddress")
+    @GET("tmap/geo/convertAddress")
     Call <TransAddress> getTASearch(@QueryMap HashMap<String, String> options);
 
-    @GET("https://apis.openapi.sk.com/tmap/road/nearToRoad")
+    @GET("tmap/road/nearToRoad")
     Call <NearRoad> getNRSearch(@QueryMap HashMap<String, String> options);
 
-    @GET("https://apis.openapi.sk.com/tmap/geo/postcode")
+    @GET("tmap/geo/postcode")
     Call <PostSearch> getPostSearch(@QueryMap HashMap<String, String> options);
 
-    @GET("https://apis.openapi.sk.com/tmap/geo/reverseLabel")
+    @GET("tmap/geo/reverseLabel")
     Call <ReverseLabel> getRLSearch(@QueryMap HashMap<String, String> options);
 
 //    -------------------------지오펜싱 API 세팅-----------------------------
-    @GET("https://apis.openapi.sk.com/tmap/geofencing/regions")
+    @GET("tmap/geofencing/regions")
     Call <AreaSearching> getAreaSearch(@QueryMap HashMap<String, String> options);
 
-    @GET("https://apis.openapi.sk.com/tmap/geofencing/regions/{regionId}")
+    @GET("tmap/geofencing/regions/{regionId}")
     Call <RegionSearching> getRegionSearch(@Path("regionId") String regionId, @QueryMap HashMap<String, String> options);
 
 //        -------------------------교통정보 API 세팅-----------------------------
-    @GET("https://apis.openapi.sk.com/tmap/traffic")
+    @GET("tmap/traffic")
     Call <TrafficInfo> getTISearch(@QueryMap HashMap<String, String> options);
 
 }
