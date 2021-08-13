@@ -1,5 +1,6 @@
 package org.techtown.dontlate;
 
+import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -120,7 +121,7 @@ public class alarmss extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == REQUEST_CODE1 && resultCode == RESULT_OK && data != null) {
+        if(requestCode == REQUEST_CODE1 && resultCode == Activity.RESULT_OK && data != null) {
             hour = data.getIntExtra("hour", 1);
             minute = data.getIntExtra("minute", 2);
             am_pm = data.getStringExtra("am_pm");
@@ -131,7 +132,7 @@ public class alarmss extends Fragment {
             arrayAdapter.notifyDataSetChanged();
         }
 
-        if (requestCode == REQUEST_CODE2 && resultCode == RESULT_OK && data != null) {
+        if (requestCode == REQUEST_CODE2 && resultCode == Activity.RESULT_OK && data != null) {
             hour = data.getIntExtra("hour", 1);
             minute = data.getIntExtra("minute", 2);
             am_pm = data.getStringExtra("am_pm");
