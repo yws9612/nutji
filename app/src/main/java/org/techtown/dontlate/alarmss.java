@@ -47,6 +47,7 @@ public class alarmss extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.alarms, container, false);
 
+
         arrayAdapter = new AdapterActivity();
 
         listView = (ListView) view.findViewById(R.id.list_view);
@@ -57,9 +58,8 @@ public class alarmss extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 adapterPosition = position;
                 arrayAdapter.removeItem(position);
-                Intent intent = new Intent(alarmss.getActivity(), TimePickerActivity.class);
+                Intent intent = new Intent(getActivity(), TimePickerActivity.class);
                 startActivityForResult(intent, REQUEST_CODE2);
-
             }
         });
 
@@ -101,7 +101,7 @@ public class alarmss extends Fragment {
         tpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent tpIntent = new Intent(alarmss.getActivity(), TimePickerActivity.class);
+                Intent tpIntent = new Intent(getActivity(), TimePickerActivity.class);
                 startActivityForResult(tpIntent, REQUEST_CODE1);
             }
         });
@@ -114,33 +114,33 @@ public class alarmss extends Fragment {
                 arrayAdapter.notifyDataSetChanged();
             }
         });
-
-
-        protected void OnActivityResult( int requestCode, int resultCode, @Nullable Intent data){
-            super.onActivityResult(requestCode, resultCode, data);
-
-            if (requestCode == REQUEST_CODE1 && resultCode == RESULT_OK && data != null) {
-                hour = data.getIntExtra("hour", 1);
-                minute = data.getIntExtra("minute", 2);
-                am_pm = data.getStringExtra("am_pm");
-                month = data.getStringExtra("month");
-                day = data.getStringExtra("day");
-
-                arrayAdapter.addItem(hour, minute, am_pm, month, day);
-                arrayAdapter.notifyDataSetChanged();
-            }
-
-            if (requestCode == REQUEST_CODE2 && resultCode == RESULT_OK && data != null) {
-                hour = data.getIntExtra("hour", 1);
-                minute = data.getIntExtra("minute", 2);
-                am_pm = data.getStringExtra("am_pm");
-                month = data.getStringExtra("month");
-                day = data.getStringExtra("day");
-
-                arrayAdapter.addItem(hour, minute, am_pm, month, day);
-                arrayAdapter.notifyDataSetChanged();
-            }
-        }
         return view;
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == REQUEST_CODE1 && resultCode == RESULT_OK && data != null) {
+            hour = data.getIntExtra("hour", 1);
+            minute = data.getIntExtra("minute", 2);
+            am_pm = data.getStringExtra("am_pm");
+            month = data.getStringExtra("month");
+            day = data.getStringExtra("day");
+
+            arrayAdapter.addItem(hour, minute, am_pm, month, day);
+            arrayAdapter.notifyDataSetChanged();
+        }
+
+        if (requestCode == REQUEST_CODE2 && resultCode == RESULT_OK && data != null) {
+            hour = data.getIntExtra("hour", 1);
+            minute = data.getIntExtra("minute", 2);
+            am_pm = data.getStringExtra("am_pm");
+            month = data.getStringExtra("month");
+            day = data.getStringExtra("day");
+
+            arrayAdapter.addItem(hour, minute, am_pm, month, day);
+            arrayAdapter.notifyDataSetChanged();
+        }
+
     }
 }
