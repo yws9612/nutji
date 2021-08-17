@@ -12,7 +12,7 @@ public class TMCarRoutes {
     private String type;
     @SerializedName("features")
     @Expose
-    private List<Feature> features = null;
+    private List<Feature> features;
 
     public String getType() {
         return type;

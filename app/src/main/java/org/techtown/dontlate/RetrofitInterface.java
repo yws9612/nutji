@@ -4,6 +4,7 @@ import android.webkit.HttpAuthHandler;
 
 import org.techtown.dontlate.model.AreaSearching;
 import org.techtown.dontlate.model.EupMyunDongSearch;
+import org.techtown.dontlate.model.Feature;
 import org.techtown.dontlate.model.FullTextGeocoding;
 import org.techtown.dontlate.model.Geocoding;
 import org.techtown.dontlate.model.NearRoad;
@@ -15,6 +16,8 @@ import org.techtown.dontlate.model.RegionDivide;
 import org.techtown.dontlate.model.RegionSearching;
 import org.techtown.dontlate.model.ReverseGeocoding;
 import org.techtown.dontlate.model.ReverseLabel;
+import org.techtown.dontlate.model.TMCarRoutes;
+import org.techtown.dontlate.model.TMCarRoutesResponse;
 import org.techtown.dontlate.model.TrafficInfo;
 import org.techtown.dontlate.model.TransAddress;
 import org.techtown.dontlate.model.TransCoord;
@@ -25,8 +28,10 @@ import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
@@ -86,5 +91,8 @@ public interface RetrofitInterface {
     @GET("tmap/traffic")
     Call <TrafficInfo> getTISearch(@QueryMap HashMap<String, String> options);
 
+//        -------------------------경로안내 API 세팅------------------------------
+    @POST("tmap/routes/prediction")
+    Call <TMCarRoutes> getTMCRRSearch(@Body Feature feature);
 }
 
