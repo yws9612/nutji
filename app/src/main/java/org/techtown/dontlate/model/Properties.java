@@ -5,6 +5,36 @@ import com.google.gson.annotations.SerializedName;
 
 public class Properties {
 
+    @SerializedName("totalDistance")
+    @Expose
+    private String totalDistance;
+    @SerializedName("totalTime")
+    @Expose
+    private String totalTime;
+    @SerializedName("totalFare")
+    @Expose
+    private String totalFare;
+    @SerializedName("taxiFare")
+    @Expose
+    private String taxiFare;
+    @SerializedName("departureTime")
+    @Expose
+    private String departureTime;
+    @SerializedName("arrivalTime")
+    @Expose
+    private String arrivalTime;
+    @SerializedName("pointIndex")
+    @Expose
+    private String pointIndex;
+    @SerializedName("nextRoadName")
+    @Expose
+    private String nextRoadName;
+    @SerializedName("turnType")
+    @Expose
+    private String turnType;
+    @SerializedName("pointType")
+    @Expose
+    private String pointType;
     @SerializedName("index")
     @Expose
     private String index;
@@ -40,7 +70,7 @@ public class Properties {
     private String distance;
     @SerializedName("time")
     @Expose
-    private Double time;
+    private String time;
     @SerializedName("speed")
     @Expose
     private String speed;
@@ -65,6 +95,10 @@ public class Properties {
     @SerializedName("viewName")
     @Expose
     private String viewName;
+    @SerializedName("facilityType")
+    @Expose
+    private String facilityType;
+
 
     public String getIndex() {
         return index;
@@ -96,6 +130,98 @@ public class Properties {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTotalDistance() {
+        return totalDistance;
+    }
+
+    public void setTotalDistance(String totalDistance) {
+        this.totalDistance = totalDistance;
+    }
+
+    public String getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(String totalTime) {
+        this.totalTime = totalTime;
+    }
+
+    public String getTotalFare() {
+        return totalFare;
+    }
+
+    public void setTotalFare(String totalFare) {
+        this.totalFare = totalFare;
+    }
+
+    public String getTaxiFare() {
+        return taxiFare;
+    }
+
+    public void setTaxiFare(String taxiFare) {
+        this.taxiFare = taxiFare;
+    }
+
+    public String getDepartureTime() {
+        return departureTime;
+    }
+
+    public void setDepartureTime(String departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    public String getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public void setArrivalTime(String arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
+
+
+    public String getPointIndex() {
+        return pointIndex;
+    }
+
+    public void setPointIndex(String pointIndex) {
+        this.pointIndex = pointIndex;
+    }
+
+
+
+    public String getNextRoadName() {
+        return nextRoadName;
+    }
+
+    public void setNextRoadName(String nextRoadName) {
+        this.nextRoadName = nextRoadName;
+    }
+
+    public String getTurnType() {
+        return turnType;
+    }
+
+    public void setTurnType(String turnType) {
+        this.turnType = turnType;
+    }
+
+    public String getPointType() {
+        return pointType;
+    }
+
+    public void setPointType(String pointType) {
+        this.pointType = pointType;
+    }
+
+
+    public String getFacilityType() {
+        return facilityType;
+    }
+
+    public void setFacilityType(String facilityType) {
+        this.facilityType = facilityType;
     }
 
 
@@ -148,11 +274,11 @@ public class Properties {
         this.distance = distance;
     }
 
-    public Double getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Double time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
