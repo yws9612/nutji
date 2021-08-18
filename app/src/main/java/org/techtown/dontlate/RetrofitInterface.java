@@ -9,6 +9,9 @@ import org.techtown.dontlate.model.EupMyunDongSearch;
 import org.techtown.dontlate.model.Feature;
 import org.techtown.dontlate.model.FullTextGeocoding;
 import org.techtown.dontlate.model.Geocoding;
+import org.techtown.dontlate.model.MatchToRoad;
+import org.techtown.dontlate.model.NamePoiDetailSearch;
+import org.techtown.dontlate.model.NearPoiDetailSearch;
 import org.techtown.dontlate.model.NearRoad;
 import org.techtown.dontlate.model.PersonNavigate;
 import org.techtown.dontlate.model.PoiCategory;
@@ -17,8 +20,10 @@ import org.techtown.dontlate.model.PoiSearch;
 import org.techtown.dontlate.model.PostSearch;
 import org.techtown.dontlate.model.RegionDivide;
 import org.techtown.dontlate.model.RegionSearching;
+import org.techtown.dontlate.model.ResultData;
 import org.techtown.dontlate.model.ReverseGeocoding;
 import org.techtown.dontlate.model.ReverseLabel;
+import org.techtown.dontlate.model.StaticMap;
 import org.techtown.dontlate.model.TMCarRoutes;
 import org.techtown.dontlate.model.TMCarRoutesResponse;
 import org.techtown.dontlate.model.TrafficInfo;
@@ -106,5 +111,20 @@ public interface RetrofitInterface {
 
     @POST("tmap/routes")
     Call <CarNavigate> getCNSearch(@Body Feature feature);
+
+//        -------------------------ROAD API 세팅------------------------------
+    @POST("tmap/road/matchToRoads")
+    Call <MatchToRoad> getMTRSearch(@Body ResultData resultData);
+
+//        -------------------------StaticMap API 세팅------------------------------
+    @GET("tmap/staticMap")
+    Call <StaticMap> getSMSearch(@QueryMap HashMap<String, String> options);
+
+//        -------------------------유가 정보 API 세팅------------------------------
+    @GET("tmap/oilinfo/aroundOil")
+    Call <NearPoiDetailSearch> getNPDSearch(@QueryMap HashMap<String, String> options);
+
+    @GET("tmap/oilinfo/poiDetailOil")
+    Call <NamePoiDetailSearch> getNaPDSearch(@QueryMap HashMap<String ,String> options);
 }
 
