@@ -12,6 +12,10 @@ public class Geometry {
     @SerializedName("coordinates")
     @Expose
     private List<List<List<String>>> coordinates;
+    @SerializedName("traffic")
+    @Expose
+    private List<String> traffic = null;
+
 
     public String getType() {
         return type;
@@ -27,5 +31,13 @@ public class Geometry {
 
     public void setCoordinates(List<List<List<String>>> coordinates) {
         this.coordinates = coordinates;
+    }
+
+    public List<String> getTraffic() {
+        return traffic;
+    }
+
+    public void setTraffic(List<String> traffic) {
+        this.traffic = traffic;
     }
 }

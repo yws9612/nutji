@@ -3,11 +3,14 @@ package org.techtown.dontlate;
 import android.webkit.HttpAuthHandler;
 
 import org.techtown.dontlate.model.AreaSearching;
+import org.techtown.dontlate.model.CarNavigate;
+import org.techtown.dontlate.model.DirectDistance;
 import org.techtown.dontlate.model.EupMyunDongSearch;
 import org.techtown.dontlate.model.Feature;
 import org.techtown.dontlate.model.FullTextGeocoding;
 import org.techtown.dontlate.model.Geocoding;
 import org.techtown.dontlate.model.NearRoad;
+import org.techtown.dontlate.model.PersonNavigate;
 import org.techtown.dontlate.model.PoiCategory;
 import org.techtown.dontlate.model.PoiDetailSearch;
 import org.techtown.dontlate.model.PoiSearch;
@@ -94,5 +97,14 @@ public interface RetrofitInterface {
 //        -------------------------경로안내 API 세팅------------------------------
     @POST("tmap/routes/prediction")
     Call <TMCarRoutes> getTMCRRSearch(@Body Feature feature);
+
+    @GET("tmap/routes/distance")
+    Call <DirectDistance> getDDSearch(@QueryMap HashMap<String, String> options);
+
+    @POST("tmap/routes/pedestrian")
+    Call <PersonNavigate> getPNSearch(@Body Feature feature);
+
+    @POST("tmap/routes")
+    Call <CarNavigate> getCNSearch(@Body Feature feature);
 }
 

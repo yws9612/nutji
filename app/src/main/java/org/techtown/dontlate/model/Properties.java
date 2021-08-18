@@ -98,6 +98,30 @@ public class Properties {
     @SerializedName("facilityType")
     @Expose
     private String facilityType;
+    @SerializedName("guidePointName")
+    @Expose
+    private String guidePointName;
+    @SerializedName("intersectionName")
+    @Expose
+    private String intersectionName;
+    @SerializedName("nearPoiName")
+    @Expose
+    private String nearPoiName;
+    @SerializedName("nearPoiX")
+    @Expose
+    private String nearPoiX;
+    @SerializedName("nearPoiY")
+    @Expose
+    private String nearPoiY;
+    @SerializedName("crossName")
+    @Expose
+    private String crossName;
+    @SerializedName("roadName")
+    @Expose
+    private String roadName;
+    @SerializedName("categoryRoadType")
+    @Expose
+    private String categoryRoadType;
 
 
     public String getIndex() {
@@ -352,5 +376,69 @@ public class Properties {
 
     public void setViewName(String viewName) {
         this.viewName = viewName;
+    }
+
+    public String getGuidePointName() {
+        return guidePointName;
+    }
+
+    public void setGuidePointName(String guidePointName) {
+        this.guidePointName = guidePointName;
+    }
+
+    public String getIntersectionName() {
+        return intersectionName;
+    }
+
+    public void setIntersectionName(String intersectionName) {
+        this.intersectionName = intersectionName;
+    }
+
+    public String getNearPoiName() {
+        return nearPoiName;
+    }
+
+    public void setNearPoiName(String nearPoiName) {
+        this.nearPoiName = nearPoiName;
+    }
+
+    public String getNearPoiX() {
+        return nearPoiX;
+    }
+
+    public void setNearPoiX(String nearPoiX) {
+        this.nearPoiX = nearPoiX;
+    }
+
+    public String getNearPoiY() {
+        return nearPoiY;
+    }
+
+    public void setNearPoiY(String nearPoiY) {
+        this.nearPoiY = nearPoiY;
+    }
+
+    public String getCrossName() {
+        return crossName;
+    }
+
+    public void setCrossName(String crossName) {
+        this.crossName = crossName;
+    }
+
+    public String getRoadName() {
+        return roadName;
+    }
+
+    public void setRoadName(String roadName) {
+        this.roadName = roadName;
+    }
+
+    public String getCategoryRoadType() {
+        return categoryRoadType;
+    }
+
+    public void setCategoryRoadType(String categoryRoadType) {
+        this.categoryRoadType = categoryRoadType;
     }
 }
