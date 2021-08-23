@@ -37,6 +37,8 @@ import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -100,21 +102,25 @@ public interface RetrofitInterface {
     Call <TrafficInfo> getTISearch(@QueryMap HashMap<String, String> options);
 
 //        -------------------------경로안내 API 세팅------------------------------
+    @FormUrlEncoded
     @POST("tmap/routes/prediction")
-    Call <TMCarRoutes> getTMCRRSearch(@Body Feature feature);
+    Call <TMCarRoutes> getTMCRRSearch(@FieldMap HashMap<String, String> param);
 
     @GET("tmap/routes/distance")
     Call <DirectDistance> getDDSearch(@QueryMap HashMap<String, String> options);
 
+    @FormUrlEncoded
     @POST("tmap/routes/pedestrian")
-    Call <PersonNavigate> getPNSearch(@Body Feature feature);
+    Call <PersonNavigate> getPNSearch(@FieldMap HashMap<String, String> param);
 
+    @FormUrlEncoded
     @POST("tmap/routes")
-    Call <CarNavigate> getCNSearch(@Body Feature feature);
+    Call <CarNavigate> getCNSearch(@FieldMap HashMap<String, String> param);
 
 //        -------------------------ROAD API 세팅------------------------------
+    @FormUrlEncoded
     @POST("tmap/road/matchToRoads")
-    Call <MatchToRoad> getMTRSearch(@Body ResultData resultData);
+    Call <MatchToRoad> getMTRSearch(@FieldMap HashMap<String, String> param);
 
 //        -------------------------StaticMap API 세팅------------------------------
     @GET("tmap/staticMap")
