@@ -104,23 +104,23 @@ public interface RetrofitInterface {
 //        -------------------------경로안내 API 세팅------------------------------
     @FormUrlEncoded
     @POST("tmap/routes/prediction")
-    Call <TMCarRoutes> getTMCRRSearch(@FieldMap HashMap<String, String> param);
+    Call <TMCarRoutes> getTMCRRSearch(@FieldMap HashMap<String, Object> param);
 
     @GET("tmap/routes/distance")
     Call <DirectDistance> getDDSearch(@QueryMap HashMap<String, String> options);
 
     @FormUrlEncoded
     @POST("tmap/routes/pedestrian")
-    Call <PersonNavigate> getPNSearch(@FieldMap HashMap<String, String> param);
+    Call <PersonNavigate> getPNSearch(@FieldMap HashMap<String, Object> param);
 
     @FormUrlEncoded
     @POST("tmap/routes")
-    Call <CarNavigate> getCNSearch(@FieldMap HashMap<String, String> param);
+    Call <CarNavigate> getCNSearch(@FieldMap HashMap<String, Object> param);
 
 //        -------------------------ROAD API 세팅------------------------------
     @FormUrlEncoded
     @POST("tmap/road/matchToRoads")
-    Call <MatchToRoad> getMTRSearch(@FieldMap HashMap<String, String> param);
+    Call <MatchToRoad> getMTRSearch(@FieldMap HashMap<String, Object> param);
 
 //        -------------------------StaticMap API 세팅------------------------------
     @GET("tmap/staticMap")
