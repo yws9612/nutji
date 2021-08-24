@@ -35,6 +35,13 @@ public class Header {
     @Expose
     private String linkFacil;
 
+    @SerializedName("totalPointCount")
+    @Expose
+    private String totalPointCount;
+    @SerializedName("matchedLinkCount")
+    @Expose
+    private String matchedLinkCount;
+
     public String getLinkId() {
         return linkId;
     }
@@ -113,5 +120,21 @@ public class Header {
 
     public void setLinkFacil(String linkFacil) {
         this.linkFacil = linkFacil;
+    }
+
+    public String getTotalPointCount() {
+        return totalPointCount;
+    }
+
+    public void setTotalPointCount(String totalPointCount) {
+        this.totalPointCount = totalPointCount;
+    }
+
+    public String getMatchedLinkCount() {
+        return matchedLinkCount;
+    }
+
+    public void setMatchedLinkCount(String matchedLinkCount) {
+        this.matchedLinkCount = matchedLinkCount;
     }
 }

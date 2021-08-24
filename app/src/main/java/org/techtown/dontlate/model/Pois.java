@@ -8,7 +8,7 @@ import java.util.List;
 public class Pois {
     @SerializedName("poi")
     @Expose
-    private List<Pous> poi = null;
+    private List<Pous> poi;
 
     public List<Pous> getPoi() {
         return poi;

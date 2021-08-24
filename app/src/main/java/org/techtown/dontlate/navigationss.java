@@ -22,6 +22,7 @@ import com.skt.Tmap.TMapMarkerItem;
 import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapView;
 
+import org.techtown.dontlate.model.AreaSearching;
 import org.techtown.dontlate.model.EupMyunDongSearch;
 import org.techtown.dontlate.model.FullTextGeocoding;
 import org.techtown.dontlate.model.Geocoding;
@@ -31,9 +32,11 @@ import org.techtown.dontlate.model.PoiDetailSearch;
 import org.techtown.dontlate.model.PoiSearch;
 import org.techtown.dontlate.model.PostSearch;
 import org.techtown.dontlate.model.RegionDivide;
+import org.techtown.dontlate.model.RegionSearching;
 import org.techtown.dontlate.model.ReverseGeocoding;
 import org.techtown.dontlate.model.ReverseLabel;
 import org.techtown.dontlate.model.SearchPoiInfo;
+import org.techtown.dontlate.model.TrafficInfo;
 import org.techtown.dontlate.model.TransAddress;
 import org.techtown.dontlate.model.TransCoord;
 
@@ -91,6 +94,9 @@ public class navigationss extends Fragment {
 //        callSearchNR();
 //        callSearchPost();
 //        callSearchRL();
+//        callSearchArea();
+//        callSearchRegion();
+//        callSearchTrafficInfo();
 
 
 
@@ -430,4 +436,76 @@ public class navigationss extends Fragment {
 //            }
 //        });
 //    } //얘도 오류나네 null값
+
+//    public void callSearchArea() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>areadata = new HashMap<>();
+//        areadata.put("version", "1");
+//        areadata.put("count", "20");
+//        areadata.put("categories", "city_do");
+//        areadata.put("searchType", "KEYWORD");
+//        areadata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getAreaSearch(areadata).enqueue(new Callback<AreaSearching>() {
+//            @Override
+//            public void onResponse(Call<AreaSearching> call, Response<AreaSearching> response) {
+//                AreaSearching areaSearching = response.body();
+//                Log.d("testArea", areaSearching.getSearchRegionsInfo().get(0).getRegionInfo().getDescription());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<AreaSearching> call, Throwable t) {
+//                Log.d("testArea", t.toString());
+//            }
+//        });
+//    }//null값 오류
+
+//    public void callSearchRegion() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>regiondata = new HashMap<>();
+//        regiondata.put("version", "1");
+//        regiondata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getRegionSearch("22805", regiondata).enqueue(new Callback<RegionSearching>() {
+//            @Override
+//            public void onResponse(Call<RegionSearching> call, Response<RegionSearching> response) {
+//                RegionSearching regionSearching = response.body();
+//                Log.d("testRegion", regionSearching.getFeatures().get(0).getProperties().getDoName());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<RegionSearching> call, Throwable t) {
+//                Log.d("testRegion", t.toString());
+//            }
+//        });
+//    }
+
+//    public void callSearchTrafficInfo() {
+//        retrofitClient = RetrofitClient.getInstance();
+//        retrofitInterface = RetrofitClient.getRetrofitInterface();
+//
+//        HashMap<String, String>tidata = new HashMap<>();
+//        tidata.put("version", "1");
+//        tidata.put("zoomLevel", String.valueOf(7));
+//        tidata.put("appKey", "l7xxddf8547d834c4053946c4a168738d92f");
+//
+//        retrofitInterface.getTISearch(tidata).enqueue(new Callback<TrafficInfo>() {
+//            @Override
+//            public void onResponse(Call<TrafficInfo> call, Response<TrafficInfo> response) {
+//                TrafficInfo trafficInfo = response.body();
+//                Log.d("testTi", trafficInfo.getFeatures().get(0).getProperties().getCategory());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<TrafficInfo> call, Throwable t) {
+//                Log.d("testTi", t.toString());
+//            }
+//        });
+//    } //얘도 null값 ㅅㅂ..
+
+
 }
