@@ -12,6 +12,9 @@ public class ResultData {
     @SerializedName("linkPoints")
     @Expose
     private List<LinkPoint> linkPoints;
+    @SerializedName("matchedPoints")
+    @Expose
+    private List<MatchedPoint> matchedPoints;
 
     public Header getHeader() {
         return header;
@@ -27,5 +30,13 @@ public class ResultData {
 
     public void setLinkPoints(List<LinkPoint> linkPoints) {
         this.linkPoints = linkPoints;
+    }
+
+    public List<MatchedPoint> getMatchedPoints() {
+        return matchedPoints;
+    }
+
+    public void setMatchedPoints(List<MatchedPoint> matchedPoints) {
+        this.matchedPoints = matchedPoints;
     }
 }

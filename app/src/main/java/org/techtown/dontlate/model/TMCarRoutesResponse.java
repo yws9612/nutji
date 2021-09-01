@@ -5,8 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class TMCarRoutes {
-
+public class TMCarRoutesResponse {
     @SerializedName("type")
     @Expose
     private String type;

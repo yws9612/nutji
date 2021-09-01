@@ -191,7 +191,22 @@ public class PoiDetailInfo {
     private String totalCnt;
     @SerializedName("evChargers")
     @Expose
-    private List<EvCharger> evChargers = null;
+    private List<EvCharger> evChargers;
+    @SerializedName("hhPrice")
+    @Expose
+    private String hhPrice;
+    @SerializedName("ggPrice")
+    @Expose
+    private String ggPrice;
+    @SerializedName("llPrice")
+    @Expose
+    private String llPrice;
+    @SerializedName("highHhPrice")
+    @Expose
+    private String highHhPrice;
+    @SerializedName("highGgPrice")
+    @Expose
+    private String highGgPrice;
 
     public String getId() {
         return id;
@@ -687,5 +702,45 @@ public class PoiDetailInfo {
 
     public void setEvChargers(List<EvCharger> evChargers) {
         this.evChargers = evChargers;
+    }
+
+    public String getHhPrice() {
+        return hhPrice;
+    }
+
+    public void setHhPrice(String hhPrice) {
+        this.hhPrice = hhPrice;
+    }
+
+    public String getGgPrice() {
+        return ggPrice;
+    }
+
+    public void setGgPrice(String ggPrice) {
+        this.ggPrice = ggPrice;
+    }
+
+    public String getLlPrice() {
+        return llPrice;
+    }
+
+    public void setLlPrice(String llPrice) {
+        this.llPrice = llPrice;
+    }
+
+    public String getHighHhPrice() {
+        return highHhPrice;
+    }
+
+    public void setHighHhPrice(String highHhPrice) {
+        this.highHhPrice = highHhPrice;
+    }
+
+    public String getHighGgPrice() {
+        return highGgPrice;
+    }
+
+    public void setHighGgPrice(String highGgPrice) {
+        this.highGgPrice = highGgPrice;
     }
 }

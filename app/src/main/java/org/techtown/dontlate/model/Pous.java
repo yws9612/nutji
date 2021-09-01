@@ -88,6 +88,48 @@ public class Pous {
     @SerializedName("newAddressList")
     @Expose
     private NewAddressList newAddressList;
+    @SerializedName("buildingNo1")
+    @Expose
+    private String buildingNo1;
+    @SerializedName("buildingNo2")
+    @Expose
+    private String buildingNo2;
+    @SerializedName("parkFlag")
+    @Expose
+    private String parkFlag;
+    @SerializedName("merchantFlag")
+    @Expose
+    private String merchantFlag;
+    @SerializedName("dataKind")
+    @Expose
+    private String dataKind;
+    @SerializedName("stId")
+    @Expose
+    private String stId;
+    @SerializedName("highHhSale")
+    @Expose
+    private String highHhSale;
+    @SerializedName("minOilYn")
+    @Expose
+    private String minOilYn;
+    @SerializedName("oilBaseSdt")
+    @Expose
+    private String oilBaseSdt;
+    @SerializedName("hhPrice")
+    @Expose
+    private String hhPrice;
+    @SerializedName("ggPrice")
+    @Expose
+    private String ggPrice;
+    @SerializedName("llPrice")
+    @Expose
+    private String llPrice;
+    @SerializedName("highHhPrice")
+    @Expose
+    private String highHhPrice;
+    @SerializedName("highGgPrice")
+    @Expose
+    private String highGgPrice;
 
     public String getId() {
         return id;
@@ -311,5 +353,117 @@ public class Pous {
 
     public void setNewAddressList(NewAddressList newAddressList) {
         this.newAddressList = newAddressList;
+    }
+
+    public String getBuildingNo1() {
+        return buildingNo1;
+    }
+
+    public void setBuildingNo1(String buildingNo1) {
+        this.buildingNo1 = buildingNo1;
+    }
+
+    public String getBuildingNo2() {
+        return buildingNo2;
+    }
+
+    public void setBuildingNo2(String buildingNo2) {
+        this.buildingNo2 = buildingNo2;
+    }
+
+    public String getParkFlag() {
+        return parkFlag;
+    }
+
+    public void setParkFlag(String parkFlag) {
+        this.parkFlag = parkFlag;
+    }
+
+    public String getMerchantFlag() {
+        return merchantFlag;
+    }
+
+    public void setMerchantFlag(String merchantFlag) {
+        this.merchantFlag = merchantFlag;
+    }
+
+    public String getDataKind() {
+        return dataKind;
+    }
+
+    public void setDataKind(String dataKind) {
+        this.dataKind = dataKind;
+    }
+
+    public String getStId() {
+        return stId;
+    }
+
+    public void setStId(String stId) {
+        this.stId = stId;
+    }
+
+    public String getHighHhSale() {
+        return highHhSale;
+    }
+
+    public void setHighHhSale(String highHhSale) {
+        this.highHhSale = highHhSale;
+    }
+
+    public String getMinOilYn() {
+        return minOilYn;
+    }
+
+    public void setMinOilYn(String minOilYn) {
+        this.minOilYn = minOilYn;
+    }
+
+    public String getOilBaseSdt() {
+        return oilBaseSdt;
+    }
+
+    public void setOilBaseSdt(String oilBaseSdt) {
+        this.oilBaseSdt = oilBaseSdt;
+    }
+
+    public String getHhPrice() {
+        return hhPrice;
+    }
+
+    public void setHhPrice(String hhPrice) {
+        this.hhPrice = hhPrice;
+    }
+
+    public String getGgPrice() {
+        return ggPrice;
+    }
+
+    public void setGgPrice(String ggPrice) {
+        this.ggPrice = ggPrice;
+    }
+
+    public String getLlPrice() {
+        return llPrice;
+    }
+
+    public void setLlPrice(String llPrice) {
+        this.llPrice = llPrice;
+    }
+
+    public String getHighHhPrice() {
+        return highHhPrice;
+    }
+
+    public void setHighHhPrice(String highHhPrice) {
+        this.highHhPrice = highHhPrice;
+    }
+
+    public String getHighGgPrice() {
+        return highGgPrice;
+    }
+
+    public void setHighGgPrice(String highGgPrice) {
+        this.highGgPrice = highGgPrice;
     }
 }
