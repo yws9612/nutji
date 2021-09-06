@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity { //객체 추가  implement
         menu=bottomNavigationView.getMenu();
 
 
-
-
         //textView = findViewById(R.id.test_text);
 
         //btn.setOnClickListener(this);
@@ -123,9 +121,6 @@ public class MainActivity extends AppCompatActivity { //객체 추가  implement
         Scheduless = new scheduless();
         Transportss = new transportss();
         Usersettingss = new usersettingss();
-
-
-
 
         bottomNavigationView.setSelectedItemId(R.id.navigation); //첫 Fragment 화면 지정
 
