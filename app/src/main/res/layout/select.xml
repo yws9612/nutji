@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/selectjob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="직업 선택"
+        android:layout_marginTop="80dp"
+        android:textSize="60dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="중/고등학생"
+        android:textSize="35dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/selectjob"
+        android:id="@+id/student"/>
+
+    <Button
+        android:id="@+id/collage"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/student"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="대학생"
+        android:textSize="35dp" />
+
+    <Button
+        android:id="@+id/worker"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/collage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="직장인"
+        android:textSize="35dp" />
+
+
+
+</RelativeLayout>
