@@ -1,48 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button_timepicker"
-        android:layout_alignParentStart="true"
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+       
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/current1"
+           android:gravity="center_horizontal|center_vertical"
+           android:paddingTop="70dp"
+           android:textSize="20dp"
+           android:text="현재 시간"/>
 
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="70dp"
+           android:id="@+id/current"
+           android:gravity="center_vertical|center_horizontal"
+           android:textStyle="bold"
+           android:text="현재 시간" />
 
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="118dp"
-        android:layout_marginLeft="118dp"
-        android:layout_marginEnd="118dp"
-        android:layout_marginRight="118dp"
-        android:layout_marginBottom="190dp"
-        android:text="설정된 알람이 없습니다."
-        android:textSize="30sp" />
-
-    <Button
-        android:id="@+id/button_timepicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="시간 수정하기"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        />
-
-    <Button
-        android:id="@+id/button_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="알람 삭제"
-        android:layout_below="@+id/button_timepicker"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
-        />
+   </LinearLayout>
 
 
-</RelativeLayout>
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/relative"
+       android:orientation="horizontal">
+
+       <Button
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/addBtn"
+           android:layout_toLeftOf="@+id/removeBtn"
+           android:text="+"/>
+
+       <Button
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/removeBtn"
+           android:layout_alignParentRight="true"
+           android:text="-"/>
+   </RelativeLayout>
+    
+    
+   <ListView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/list_view"
+       tools:listitem="@layout/round_theme">
+   </ListView>
+
+</LinearLayout>
