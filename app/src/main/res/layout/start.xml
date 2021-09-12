@@ -6,7 +6,7 @@
     <ImageView
         android:layout_width="350dp"
         android:layout_height="350dp"
-        android:src="@drawable/bus_click"
+        android:src="@drawable/loading"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:id="@+id/startimg"/>
