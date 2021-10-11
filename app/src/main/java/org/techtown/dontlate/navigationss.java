@@ -1,6 +1,7 @@
-package org.techtown.dontlate;
+ package org.techtown.dontlate;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,6 +54,7 @@ public class navigationss extends Fragment {
 
 
     private View view;
+    private Button button;
 
 
 
@@ -67,6 +70,16 @@ public class navigationss extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.navigations, container, false);
+
+        Button search = (Button) v.findViewById(R.id.button2);
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Begin_Arrived.class);
+                startActivity(intent);
+            }
+        });
 
 
 
