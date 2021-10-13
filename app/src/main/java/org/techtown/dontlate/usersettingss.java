@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,13 +14,24 @@ import androidx.fragment.app.Fragment;
 
 public class usersettingss extends Fragment {
 
-    private View view;
+    private ListView listView;
+    private UserListAdapter adapter;
+
+    private Button addPlace;
 
     @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.usersettings, container, false);
+    //@Override
+    public void onCreate(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        View v = inflater.inflate(R.layout.usersettings, container, false);
+        //setContentView(R.layout.usersettings);
 
-        return view;
+        addPlace = (Button) v.findViewById(R.id.addplace);
+        listView = (ListView) v.findViewById(R.id.listview);
+
+        //adapter = new UserListAdapter(usersettingss.this);
+        listView.setAdapter(adapter);
+
     }
+
 }
