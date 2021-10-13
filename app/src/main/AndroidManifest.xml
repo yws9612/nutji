@@ -27,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Begin_Arrived"></activity>
+        <activity android:name=".addressSearch"></activity>
         android:usesCleartextTraffic="true"
     </application>
 
