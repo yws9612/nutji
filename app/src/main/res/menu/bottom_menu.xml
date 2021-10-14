@@ -3,7 +3,7 @@
     <item
         android:id="@+id/alarm"
         android:enabled="true"
-        android:icon="@drawable/alarm"
+        android:icon="@drawable/manage"
         android:title="알람"/>
 
     <item
@@ -15,19 +15,19 @@
     <item
         android:id="@+id/transport"
         android:enabled="true"
-        android:icon="@drawable/transport"
+        android:icon="@drawable/bus"
         android:title="대중교통"/>
 
     <item
         android:id="@+id/navigation"
         android:enabled="true"
-        android:icon="@drawable/navigation"
-        android:title="택시/네비게이션"/>
+        android:icon="@drawable/taxi"
+        android:title="네비게이션"/>
 
     <item
         android:id="@+id/usersetting"
         android:enabled="true"
-        android:icon="@drawable/usersetting"
+        android:icon="@drawable/profile"
         android:title="사용자 설정"/>
 
 </menu>
