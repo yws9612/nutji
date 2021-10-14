@@ -4,5 +4,60 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="출발 지점과  도착 지점 선택"
+        android:textSize="20dp"
+        android:layout_marginLeft="95dp"
+        android:id="@+id/guideText"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/startPoint"
+            android:layout_weight="2"/>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/arrivePoint"
+            android:layout_weight="2"/>
+
+
+    </LinearLayout>
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:rowCount="1"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:text="추천"
+            android:id="@+id/recommand"/>
+
+        <Button
+            android:text="버스"
+            android:id="@+id/busRoad"/>
+
+        <Button
+            android:text="지하철"
+            android:id="@+id/subwayRoad"/>
+
+        <Button
+            android:text="최소도보"
+            android:id="@+id/minimizeWork"/>
+
+    </GridLayout>
+
+
+
+
 
 </LinearLayout>
