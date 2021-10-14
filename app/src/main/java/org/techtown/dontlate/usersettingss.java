@@ -39,11 +39,11 @@ public class usersettingss extends Fragment {
 
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                 dialog .setTitle("장소를 선택하세요")
-                        .setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+                        .setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 String Place = items[which];
-                                adapter.addItem(Place, "");
+                                adapter.addItem(Place, "클릭하세요");
                             }
                         })
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {

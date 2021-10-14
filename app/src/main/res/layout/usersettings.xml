@@ -71,10 +71,12 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginTop="210dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginBottom="320dp"
             android:id="@+id/Listview" />
+    </LinearLayout>
 
         <TextView
             android:id="@+id/jobtext"
@@ -82,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="70dp"
-            android:layout_marginTop="350dp"
+            android:layout_marginTop="400dp"
             android:text="직업"
             android:textSize="20dp" />
 
@@ -90,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="340dp"
+            android:layout_marginTop="400dp"
             android:layout_marginLeft="130dp">
 
             <RadioButton
@@ -118,6 +120,5 @@
                 android:textSize="20dp" />
 
         </RadioGroup>
-    </LinearLayout>
 
 </RelativeLayout>
