@@ -74,7 +74,7 @@
             android:layout_marginTop="200dp"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
-            android:id="@+id/listview" />
+            android:id="@+id/Listview" />
 
         <TextView
             android:id="@+id/jobtext"

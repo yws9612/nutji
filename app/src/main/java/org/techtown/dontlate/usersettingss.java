@@ -27,7 +27,7 @@ public class usersettingss extends Fragment {
         View v = inflater.inflate(R.layout.usersettings, container, false);
 
         addPlace = (Button) v.findViewById(R.id.addplace);
-        listView = (ListView) v.findViewById(R.id.listview);
+        listView = (ListView) v.findViewById(R.id.Listview);
 
         adapter = new UserListAdapter(getActivity().getApplicationContext());
         listView.setAdapter(adapter);
