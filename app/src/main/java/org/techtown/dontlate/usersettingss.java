@@ -1,7 +1,7 @@
 package org.techtown.dontlate;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,42 +17,53 @@ import androidx.fragment.app.Fragment;
 
 public class usersettingss extends Fragment {
 
-    private View view;
-    Button btn1;
-    EditText edit1;
-    @Nullable
+    private ListView listView;
+    private UserListAdapter adapter;
+
+    private Button addPlace;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.usersettings, container, false);
+        View v = inflater.inflate(R.layout.usersettings, container, false);
 
-        btn1 = (Button) view.findViewById(R.id.addplace);
-        edit1 = (EditText) view.findViewById(R.id.place);
+        addPlace = (Button) v.findViewById(R.id.addplace);
+        listView = (ListView) v.findViewById(R.id.listview);
 
-        btn1.setOnClickListener(new View.OnClickListener() {
+        adapter = new UserListAdapter(getActivity().getApplicationContext());
+        listView.setAdapter(adapter);
+
+        addPlace.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getActivity().getApplicationContext(), addressSearch.class);
-                getActivity().overridePendingTransition(0, 0);
-                startActivityForResult(i, 10000);
+                final String[] items = new String[] {"집", "회사", "학교"};
+
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                dialog .setTitle("장소를 선택하세요")
+                        .setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+                                String Place = items[which];
+                                adapter.addItem(Place, "");
+                            }
+                        })
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+                                adapter.notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        }).create().show();
+
+
             }
         });
 
-        return view;
+        return v;
     }
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-        Log.i("test", "onActivityResult");
 
-        switch (requestCode) {
-            case 10000:
-                if (resultCode == Activity.RESULT_OK) {
-                    String data = intent.getExtras().getString("data");
-                    if (data != null) {
-                        Log.i("test", "data:" + data);
-                        edit1.setText(data);
-                    }
-                }
-                break;
-        }
-    }
 }
