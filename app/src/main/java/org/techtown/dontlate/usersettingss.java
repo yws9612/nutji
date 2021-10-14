@@ -1,5 +1,7 @@
 package org.techtown.dontlate;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,19 +21,48 @@ public class usersettingss extends Fragment {
 
     private Button addPlace;
 
-    @Nullable
-    //@Override
-    public void onCreate(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.usersettings, container, false);
-        //setContentView(R.layout.usersettings);
 
         addPlace = (Button) v.findViewById(R.id.addplace);
         listView = (ListView) v.findViewById(R.id.listview);
 
-        //adapter = new UserListAdapter(usersettingss.this);
+        adapter = new UserListAdapter(getActivity().getApplicationContext());
         listView.setAdapter(adapter);
 
+        addPlace.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                final String[] items = new String[] {"집", "회사", "학교"};
+
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                dialog .setTitle("장소를 선택하세요")
+                        .setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+                                String Place = items[which];
+                                adapter.addItem(Place, "");
+                            }
+                        })
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+                                adapter.notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        }).create().show();
+
+
+            }
+        });
+
+        return v;
     }
 
 }
