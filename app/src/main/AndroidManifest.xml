@@ -21,6 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DontLate">
         <activity android:name=".MainActivity">
+        </activity>
+        <activity android:name=".Loading">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,14 +30,14 @@
         </activity>
 
         android:usesCleartextTraffic="true"
-        <meta-data android:name="com.kakao.sdk.AppKey"
-            android:value="13a910a2004f35256ca69e8101750dd0"/>
-        <activity android:name=".TimePickerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+<!--        <meta-data android:name="com.kakao.sdk.AppKey"-->
+<!--            android:value="13a910a2004f35256ca69e8101750dd0"/>-->
+<!--        <activity android:name=".TimePickerActivity">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
 
     </application>
 

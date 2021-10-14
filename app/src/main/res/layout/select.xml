@@ -25,7 +25,7 @@
         android:id="@+id/student"/>
 
     <Button
-        android:id="@+id/collage"
+        android:id="@+id/college"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/student"
@@ -38,7 +38,7 @@
         android:id="@+id/worker"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/collage"
+        android:layout_below="@+id/college"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:text="직장인"

@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity { //객체 추가  implement
     private usersettingss Usersettingss;
     private TextView textView;
 
+
+
     Menu menu;
 
     @Override
@@ -131,6 +133,10 @@ public class MainActivity extends AppCompatActivity { //객체 추가  implement
 
 
     }
+
+
+
+
 
     //Fragment 교체 발생 실행문
     private void setFrag(int n) {
