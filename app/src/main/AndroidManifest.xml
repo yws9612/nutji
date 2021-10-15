@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-sdk android:minSdkVersion="16"
+    <uses-sdk android:minSdkVersion="21"
     android:targetSdkVersion="[integer]" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
@@ -21,6 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DontLate">
         <activity android:name=".MainActivity">
+        </activity>
+        <activity android:name=".Loading">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -29,6 +31,15 @@
         <activity android:name=".Begin_Arrived"></activity>
         <activity android:name=".addressSearch"></activity>
         android:usesCleartextTraffic="true"
+<!--        <meta-data android:name="com.kakao.sdk.AppKey"-->
+<!--            android:value="13a910a2004f35256ca69e8101750dd0"/>-->
+<!--        <activity android:name=".TimePickerActivity">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+
     </application>
 
 </manifest>
