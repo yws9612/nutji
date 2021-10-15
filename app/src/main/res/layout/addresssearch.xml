@@ -21,6 +21,12 @@
 
         android:layout_width="match_parent"
 
+        android:scrollbars="none"
+
+        android:clickable="false"
+
+        android:focusable="false"
+
         android:layout_height="0dp"
 
         android:layout_weight="4" />
