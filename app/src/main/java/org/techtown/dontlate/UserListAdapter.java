@@ -2,6 +2,7 @@ package org.techtown.dontlate;
 
 import android.app.LauncherActivity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ public class UserListAdapter extends BaseAdapter {
 
     private Context mContext;
     private ArrayList<UserListItem> listItems = new ArrayList<UserListItem>();
+    private AddressClickListener addressClickListener;
 
     public UserListAdapter(Context context){
         this.mContext = context;
@@ -38,6 +40,8 @@ public class UserListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        ViewHolder viewHolder;
+
         if(convertView == null){
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item, parent, false);
@@ -45,11 +49,27 @@ public class UserListAdapter extends BaseAdapter {
             layoutParams.height = 100;
             convertView.setLayoutParams(layoutParams);
 
+            viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
+
             return  convertView;
         }
+        else
+        {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
+        viewHolder.addressholder.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (AddressClickListener != null) {
+                    AddressClickListener.onAddressClick(UserListItem.getaddress());
+                }
+            }
+        });
 
         TextView placeName = (TextView)convertView.findViewById(R.id.placeName);
-        TextView address = (TextView)convertView.findViewById(R.id.address);
+        TextView address = (TextView)convertView.findViewById(R.id.Address);
         Button btnDelete = (Button)convertView.findViewById(R.id.btnDelete);
 
         UserListItem listItem = listItems.get(position);
@@ -64,8 +84,6 @@ public class UserListAdapter extends BaseAdapter {
                 notifyDataSetChanged();
             }
         });
-
-
 
         return  convertView;
     }
