@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:text="직업 선택"
         android:layout_marginTop="80dp"
-        android:textSize="60dp"
+        android:textSize="50dp"
+        android:textColor="@color/black"
         android:layout_centerHorizontal="true"/>
 
     <Button
@@ -22,6 +23,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:layout_below="@+id/selectjob"
+        android:backgroundTint="#7ea369"
         android:id="@+id/student"/>
 
     <Button
@@ -32,6 +34,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:text="대학생"
+        android:backgroundTint="#7ea369"
         android:textSize="35dp" />
 
     <Button
@@ -42,6 +45,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:text="직장인"
+        android:backgroundTint="#7ea369"
         android:textSize="35dp" />
 
 
