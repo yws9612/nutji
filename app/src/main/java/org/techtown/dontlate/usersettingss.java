@@ -13,12 +13,19 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 import java.util.List;
 
 public class usersettingss extends Fragment {
@@ -27,12 +34,18 @@ public class usersettingss extends Fragment {
     private UserListAdapter adapter;
     private TextView address;
     private List<UserListItem> ItemList;
+    private EditText name;
 
+    FirebaseDatabase database;
+    DatabaseReference databaseReference;
+
+    private RadioGroup rg;
+    private String jobR;
+
+    private Button save;
     private Button addPlace;
 
-    public interface AddressClickListener {
-        void onAddressClick(String address);
-    }
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,6 +54,9 @@ public class usersettingss extends Fragment {
         addPlace = (Button) v.findViewById(R.id.addplace);
         listView = (ListView) v.findViewById(R.id.Listview);
         address = (TextView) v.findViewById(R.id.Address);
+        save = (Button) v.findViewById(R.id.Save);
+        rg = (RadioGroup) v.findViewById(R.id.RG);
+        name = (EditText) v.findViewById(R.id.Name);
 
         adapter = new UserListAdapter(getActivity().getApplicationContext());
         listView.setAdapter(adapter);
@@ -75,8 +91,50 @@ public class usersettingss extends Fragment {
             }
         });
 
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+                switch(i) {
+                    case R.id.radio1:
+                        jobR = "직장인";
+                        break;
+                    case R.id.radio2:
+                        jobR = "대학생";
+                        break;
+                    case R.id.radio3:
+                        jobR = "중/고등학생";
+                        break;
+                }
+            }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String add_name = name.getText().toString();
+                String job = jobR;
+
+                HashMap result = new HashMap<>();
+                result.put("Name", add_name);
+                result.put("Job", job);
+
+                databaseReference = FirebaseDatabase.getInstance().getReference();
+                databaseReference.child("User").updateChildren(result);
+
+            }
+        });
+
         return v;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        //conditionRef.add
+    }
+
 
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
@@ -92,14 +150,14 @@ public class usersettingss extends Fragment {
         private void bindList() {
             adapter = new UserListAdapter(getContext());
 
-            adapter.AddressClickListener(new AddressClickListener(){
+            adapter.setAddressClickListener(new UserListAdapter.AddressClickListener(){
                 @Override
                 public void onAddressClick(String address) {
                     Intent i = new Intent(getActivity().getApplicationContext(), addressSearch.class);
-                    // 화면전환 애니메이션 없애기
                     getActivity().overridePendingTransition(0, 0);
-                    // 주소결과
                     startActivityForResult(i, 10000);
+
+                    Toast.makeText(getContext(), "응애", Toast.LENGTH_SHORT).show();
                 }
             });
         }

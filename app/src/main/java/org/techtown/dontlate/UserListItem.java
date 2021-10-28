@@ -3,7 +3,7 @@ package org.techtown.dontlate;
 public class UserListItem {
 
     private String placeName;
-    private String address;
+    private static String address;
 
     public String getplaceName() {
         return placeName;
@@ -13,7 +13,7 @@ public class UserListItem {
         this.placeName = placeName;
     }
 
-    public String getaddress() {
+    public static String getaddress() {
         return address;
     }
 

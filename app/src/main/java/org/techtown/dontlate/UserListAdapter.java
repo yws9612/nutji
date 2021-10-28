@@ -14,9 +14,19 @@ import java.util.ArrayList;
 
 public class UserListAdapter extends BaseAdapter {
 
+    public interface AddressClickListener {
+        void onAddressClick(String address);
+    }
+
     private Context mContext;
     private ArrayList<UserListItem> listItems = new ArrayList<UserListItem>();
-    private AddressClickListener addressClickListener;
+
+    public static AddressClickListener addressClickListener = null;
+
+    public void setAddressClickListener(AddressClickListener listener)
+    {
+        this.addressClickListener = listener;
+    }
 
     public UserListAdapter(Context context){
         this.mContext = context;
@@ -59,14 +69,14 @@ public class UserListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.addressholder.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (AddressClickListener != null) {
-                    AddressClickListener.onAddressClick(UserListItem.getaddress());
-                }
-            }
-        });
+//        viewHolder.addressholder.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (addressClickListener != null) {
+//                    addressClickListener.onAddressClick(UserListItem.getaddress());
+//                }
+//            }
+//        });
 
         TextView placeName = (TextView)convertView.findViewById(R.id.placeName);
         TextView address = (TextView)convertView.findViewById(R.id.Address);
