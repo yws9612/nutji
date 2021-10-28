@@ -7,57 +7,74 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="출발 지점과  도착 지점 선택"
+        android:text="출발 지점             도착 지점"
         android:textSize="20dp"
-        android:layout_marginLeft="95dp"
-        android:id="@+id/guideText"/>
+        android:layout_marginTop="20dp"
+        android:id="@+id/guideText"
+        android:gravity="center"/>
+
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal">
 
         <Spinner
-            android:layout_width="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:id="@+id/startPoint" />
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/startPoint"
-            android:layout_weight="2"/>
+            android:text="→"
+            android:textSize="20dp"/>
 
         <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/arrivePoint"
-            android:layout_weight="2"/>
-
+            android:layout_marginLeft="10dp"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:id="@+id/arrivePoint" />
 
     </LinearLayout>
-    <GridLayout
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="4"
-        android:rowCount="1"
-        android:orientation="horizontal">
-
+        android:gravity="center_horizontal">
 
         <Button
-            android:text="추천"
-            android:id="@+id/recommand"/>
+            android:id="@+id/recommand"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#00ff0000"
+            android:text="추천" />
 
         <Button
-            android:text="버스"
-            android:id="@+id/busRoad"/>
+            android:id="@+id/busRoad"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#00ff0000"
+            android:text="버스" />
 
         <Button
-            android:text="지하철"
-            android:id="@+id/subwayRoad"/>
+            android:id="@+id/subwayRoad"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#00ff0000"
+            android:text="지하철" />
 
         <Button
-            android:text="최소도보"
-            android:id="@+id/minimizeWork"/>
-
-    </GridLayout>
-
-
-
+            android:id="@+id/minimizeWork"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#00ff0000"
+            android:text="최소도보" />
+    </LinearLayout>
 
 
 </LinearLayout>
