@@ -48,8 +48,8 @@ public class alarmss extends Fragment implements TimePickerDialog.OnTimeSetListe
     private int adapterPosition;
     private  TextView mTextView;
     private View view;
-    public static final int REQUEST_CODE1 = 1000;
-    public static final int REQUEST_CODE2 = 1001;
+    public static final int REQUEST_CODE3 = 1000;
+    public static final int REQUEST_CODE4 = 1001;
 
     @SuppressLint("WrongViewCast")
     @Nullable
@@ -75,7 +75,7 @@ public class alarmss extends Fragment implements TimePickerDialog.OnTimeSetListe
 
                 mFormat = new SimpleDateFormat("HH:mm:ss");
                 String strTime = mFormat.format(cal.getTime());
-                textView = (TextView) view.findViewById(R.id.textView);
+                textView = (TextView) view.findViewById(R.id.current1);
                 textView.setTextSize(30);
                 textView.setText(strTime);
             }
@@ -102,21 +102,21 @@ public class alarmss extends Fragment implements TimePickerDialog.OnTimeSetListe
         tpBtn = (Button) view.findViewById(R.id.button_timepicker);
         tpBtn.setOnClickListener(v -> {
             Intent tpintent = new Intent(getActivity(), TimePickerActivity.class);
-            startActivityForResult(tpintent, REQUEST_CODE1);
+            startActivityForResult(tpintent, REQUEST_CODE3);
         });
 
-        removeBtn = (Button) view.findViewById(R.id.button_cancel);
-        removeBtn.setOnClickListener(v -> {
-            arrayAdapter.removeItem();
-            arrayAdapter.notifyDataSetChanged();
-        });
+//        removeBtn = (Button) view.findViewById(R.id.button_cancel);
+//        removeBtn.setOnClickListener(v -> {
+//            arrayAdapter.removeItem();
+//            arrayAdapter.notifyDataSetChanged();
+//        });
         return view;
     }
 
         public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)    {
             super.onActivityResult(requestCode,resultCode,data);
 
-            if(requestCode == REQUEST_CODE1 && resultCode== RESULT_OK && data != null){
+            if(requestCode == REQUEST_CODE3 && resultCode== RESULT_OK && data != null){
                 hour = data.getIntExtra("hour",1);
                 minute = data.getIntExtra("minute", 2);
                 am_pm = data.getStringExtra("am_pm");
@@ -127,7 +127,7 @@ public class alarmss extends Fragment implements TimePickerDialog.OnTimeSetListe
                 arrayAdapter.notifyDataSetChanged();
             }
 
-            if(requestCode == REQUEST_CODE2 && resultCode == RESULT_OK && data != null) {
+            if(requestCode == REQUEST_CODE4 && resultCode == RESULT_OK && data != null) {
                 hour = data.getIntExtra("hour", 1);
                 minute = data.getIntExtra("minute", 2);
                 am_pm = data.getStringExtra("am_pm");

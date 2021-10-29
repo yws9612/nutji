@@ -16,7 +16,7 @@ public class addPlace extends AppCompatActivity {
         setContentView(R.layout.addplace);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
     }
 }
