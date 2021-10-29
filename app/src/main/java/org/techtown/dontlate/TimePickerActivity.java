@@ -5,31 +5,34 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.TimePicker;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Timer;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
 
 public class TimePickerActivity extends AppCompatActivity {
-
     private TimePicker timePicker;
-    private Button okBtn, cancleBtn;
+    private Button okBtn, cancelBtn;
     private int hour, minute;
     private String am_pm;
     private Date currentTime;
     private String stMonth, stDay;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_picker);
 
-        timePicker = (TimePicker)findViewById(R.id.time_picker);
+        timePicker = (TimePicker) findViewById(R.id.time_picker);
 
         currentTime = Calendar.getInstance().getTime();
         SimpleDateFormat day = new SimpleDateFormat("dd", Locale.getDefault());
@@ -41,8 +44,8 @@ public class TimePickerActivity extends AppCompatActivity {
         okBtn = (Button) findViewById(R.id.okBtn);
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if(Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            public void onClick(View v) {
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
                     hour = timePicker.getHour();
                     minute = timePicker.getMinute();
                 }
@@ -50,7 +53,6 @@ public class TimePickerActivity extends AppCompatActivity {
                     hour = timePicker.getCurrentHour();
                     minute = timePicker.getCurrentMinute();
                 }
-
                 am_pm = AM_PM(hour);
                 hour = timeSet(hour);
 
@@ -67,29 +69,29 @@ public class TimePickerActivity extends AppCompatActivity {
             }
         });
 
-        cancleBtn = (Button) findViewById(R.id.cancleBtn);
-        cancleBtn.setOnClickListener(new View.OnClickListener() {
+        cancelBtn = (Button) findViewById(R.id.cancleBtn);
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 finish();
             }
         });
     }
-
     private int timeSet(int hour) {
         if(hour > 12) {
-            hour -= 12;
+            hour-=12;
         }
         return hour;
     }
 
     private String AM_PM(int hour) {
-        if (hour > 12) {
+        if(hour >= 12) {
             am_pm = "오후";
         }
-        else{
+        else {
             am_pm = "오전";
         }
         return am_pm;
     }
+
 }

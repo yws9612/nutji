@@ -1,17 +1,22 @@
 package org.techtown.dontlate;
 
-
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.view.LayoutInflater;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+import org.techtown.dontlate.model.Time;
 
 import java.util.ArrayList;
 
+import static androidx.recyclerview.widget.RecyclerView.*;
+
 public class AdapterActivity extends BaseAdapter {
-    public ArrayList<Time> listviewitem = new ArrayList<Time>();
+    public ArrayList<Time> listviewitem = new ArrayList<>();
     private ArrayList<Time> arrayList = listviewitem;
 
     @Override
@@ -25,22 +30,22 @@ public class AdapterActivity extends BaseAdapter {
     }
 
     @Override
-    public long getItemID(int position) {
+    public long getItemId(int position) {
         return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        if (convertView == null) {
+        if(convertView == null) {
             holder = new ViewHolder();
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.round_theme, parent, false);
 
-            TextView hourText = (TextView) convertView.findViewById(R.id.textTime1);
-            TextView minuteText = (TextView) convertView.findViewById(R.id.textTime2);
-            TextView am_pm = (TextView) convertView.findViewById(R.id.am_pm);
-            TextView month = (TextView) convertView.findViewById(R.id.time_month);
-            TextView day = (TextView) convertView.findViewById(R.id.time_day);
+            TextView hourText = (TextView)convertView.findViewById(R.id.textTime1);
+            TextView minuteText = (TextView)convertView.findViewById(R.id.textTime2);
+            TextView am_pm = (TextView)convertView.findViewById(R.id.am_pm);
+            TextView month = (TextView)convertView.findViewById(R.id.time_month);
+            TextView day = (TextView)convertView.findViewById(R.id.time_day);
 
             holder.hourText = hourText;
             holder.minuteText = minuteText;
@@ -49,21 +54,20 @@ public class AdapterActivity extends BaseAdapter {
             holder.day = day;
 
             convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
+        }
+        else {
+            holder = (ViewHolder)convertView.getTag();
         }
 
         Time time = arrayList.get(position);
         holder.am_pm.setText(time.getAm_pm());
-        holder.hourText.setText(time.getHour() + "시");
-        holder.minuteText.setText(time.getMinute() + "분");
-        holder.month.setText(time.getMonth() + "월");
-        holder.day.setText(time.getDay() + "일");
+        holder.hourText.setText(time.getHour()+ "시");
+        holder.minuteText.setText(time.getMinute()+ "분");
+        holder.month.setText(time.getMonth()+ "월 ");
+        holder.day.setText(time.getDay()+ "일");
 
         return convertView;
     }
-
-
     public void addItem(int hour, int minute, String am_pm, String month, String day) {
         Time time = new Time();
 
@@ -75,12 +79,12 @@ public class AdapterActivity extends BaseAdapter {
 
         listviewitem.add(time);
     }
-
-    public void removeItem(int position){
+    //List 삭제 method
+    public void removeItem(int position) {
         if(listviewitem.size() < 1) {
 
         }
-        else{
+        else {
             listviewitem.remove(position);
         }
     }
@@ -94,7 +98,7 @@ public class AdapterActivity extends BaseAdapter {
         }
     }
 
-    static class ViewHolder{
+    static class ViewHolder {
         TextView hourText, minuteText, am_pm, month, day;
     }
 }

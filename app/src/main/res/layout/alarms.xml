@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    tools:context=".alarmss">
 
    <LinearLayout
        android:layout_width="match_parent"
@@ -31,6 +29,14 @@
 
    </LinearLayout>
 
+    <Button
+        android:id="@+id/button_timepicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="알람 추가하기"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
 
    <RelativeLayout
        android:layout_width="match_parent"
@@ -38,27 +44,15 @@
        android:id="@+id/relative"
        android:orientation="horizontal">
 
-       <Button
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:id="@+id/addBtn"
-           android:layout_toLeftOf="@+id/removeBtn"
-           android:text="+"/>
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/button_cancel"
+        tools:listitem="@layout/round_theme">
+    </ListView>
 
-       <Button
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:id="@+id/removeBtn"
-           android:layout_alignParentRight="true"
-           android:text="-"/>
-   </RelativeLayout>
-    
-    
-   <ListView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:id="@+id/list_view"
-       tools:listitem="@layout/round_theme">
-   </ListView>
 
-</LinearLayout>
+
+
+</RelativeLayout>
