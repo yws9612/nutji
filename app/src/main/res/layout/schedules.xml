@@ -2,31 +2,171 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal">
+
+<!--    <EditText-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/et_user_name"-->
+<!--        android:text="이름"-->
+<!--        android:textSize="30dp" />-->
+
+<!--    <EditText-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/et_user_email"-->
+<!--        android:text="이메일"-->
+<!--        android:textSize="30dp" />-->
 
 
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_user_name"
-        android:text="이름"
-        android:textSize="30dp" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_user_email"
-        android:text="이메일"
-        android:textSize="30dp" />
+<!--    <Button-->
+<!--        android:id="@+id/btn_save"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="저장"-->
+<!--        android:layout_marginLeft="150dp"/>-->
 
 
-    <Button
-        android:id="@+id/btn_save"
+    <TableLayout
+        android:layout_width="100dp"
+        android:layout_height="600dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        android:orientation="vertical"
+        android:weightSum="48"
+        android:background="#33691E"
+        android:padding="1dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="외출 준비"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="#C5E1A5"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="#F1F8E9" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:text="자바"
+            android:gravity="center"
+            android:background="#7CB342"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="점심시간"
+            android:gravity="center"
+            android:background="#9CCC65"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:text="우주공강"
+            android:gravity="center"
+            android:background="#558B2F"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="교양"
+            android:gravity="center"
+            android:background="#7CB342"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:background="#F1F8E9" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="저녁 운동"
+            android:gravity="center"
+            android:background="#AED581"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:background="#F1F8E9" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="과제"
+            android:gravity="center"
+            android:background="#689F38"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:background="#F1F8E9" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="휴식"
+            android:gravity="center"
+            android:background="#8BC34A"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="취침 준비"
+            android:gravity="center"
+            android:background="#558B2F"
+            android:textColor="@color/white" />
+
+
+    </TableLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="저장"
-        android:layout_marginLeft="150dp"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="80dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="7:00" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="575dp"
+            android:text="24:00" />
+
+    </LinearLayout>
 
 
 </LinearLayout>
