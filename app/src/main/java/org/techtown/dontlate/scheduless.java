@@ -38,9 +38,9 @@ public class scheduless extends Fragment {
         view = inflater.inflate(R.layout.schedules, container, false);
 
 
-        et_user_name = view.findViewById(R.id.et_user_name);
-        et_user_email = view.findViewById(R.id.et_user_email);
-        btn_save = view.findViewById(R.id.btn_save);
+//        et_user_name = view.findViewById(R.id.et_user_name);
+//        et_user_email = view.findViewById(R.id.et_user_email);
+//        btn_save = view.findViewById(R.id.btn_save);
         //firebase 정의
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
