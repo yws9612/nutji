@@ -21,22 +21,23 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class usersettingss extends Fragment {
 
-    private ListView listView;
+    private RecyclerView recyclerView;
     private UserListAdapter adapter;
     private TextView address;
-    private List<UserListItem> ItemList;
     private EditText name;
 
-    FirebaseDatabase database;
     DatabaseReference databaseReference;
 
     private RadioGroup rg;
@@ -46,20 +47,20 @@ public class usersettingss extends Fragment {
     private Button addPlace;
 
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.usersettings, container, false);
 
         addPlace = (Button) v.findViewById(R.id.addplace);
-        listView = (ListView) v.findViewById(R.id.Listview);
+        recyclerView = (RecyclerView) v.findViewById(R.id.RecyclerView);
         address = (TextView) v.findViewById(R.id.Address);
         save = (Button) v.findViewById(R.id.Save);
         rg = (RadioGroup) v.findViewById(R.id.RG);
         name = (EditText) v.findViewById(R.id.Name);
 
-        adapter = new UserListAdapter(getActivity().getApplicationContext());
-        listView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new UserListAdapter();
+        recyclerView.setAdapter(adapter);
 
         addPlace.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,13 +73,13 @@ public class usersettingss extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 String Place = items[which];
-                                adapter.addItem(Place, "클릭하세요");
+                                adapter.addItem(new UserListItem(Place, "클릭하세요"));
                             }
                         })
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
-                                adapter.notifyDataSetChanged();
+                                adapter.notifyItemInserted(0);
                             }
                         })
                         .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -88,6 +89,15 @@ public class usersettingss extends Fragment {
                             }
                         }).create().show();
 
+            }
+        });
+
+        adapter.setOnItemClicklistener(new OnRecycleItemClickListener() {
+            @Override
+            public void onItemClick(UserListAdapter.ViewHolder holder, View view, int position) {
+                Intent i = new Intent(getActivity().getApplicationContext(), addressSearch.class);
+                getActivity().overridePendingTransition(0, 0);
+               startActivityForResult(i, 10000);
             }
         });
 
@@ -147,21 +157,20 @@ public class usersettingss extends Fragment {
 //            }
 //        });
 
-        private void bindList() {
-            adapter = new UserListAdapter(getContext());
-
-            adapter.setAddressClickListener(new UserListAdapter.AddressClickListener(){
-                @Override
-                public void onAddressClick(String address) {
-                    Intent i = new Intent(getActivity().getApplicationContext(), addressSearch.class);
-                    getActivity().overridePendingTransition(0, 0);
-                    startActivityForResult(i, 10000);
-
-                    Toast.makeText(getContext(), "응애", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-
+//        private void bindList() {
+//            adapter = new UserListAdapter(getContext());
+//
+//            adapter.setAddressClickListener(new UserListAdapter.AddressClickListener(){
+//                @Override
+//                public void onAddressClick(String address) {
+//                    Intent i = new Intent(getActivity().getApplicationContext(), addressSearch.class);
+//                    getActivity().overridePendingTransition(0, 0);
+//                    startActivityForResult(i, 10000);
+//
+//                    Toast.makeText(getContext(), "응애", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        }
 
         public void onActivityResult(int requestCode, int resultCode, Intent i) {
             super.onActivityResult(requestCode, resultCode, i);
@@ -178,9 +187,6 @@ public class usersettingss extends Fragment {
                     }
                     break;
             }
-
         }
-
-
     }
 

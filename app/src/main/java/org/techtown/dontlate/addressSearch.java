@@ -69,7 +69,7 @@ public class addressSearch extends AppCompatActivity {
 
         // webview url load. php 파일 주소
 
-        daum_webView.loadUrl("http://10.0.2.2:8000/jolup/daum.php");
+        daum_webView.loadUrl("http://10.0.2.2:8000/2B/1906050/doro.php");
 
     }
 
