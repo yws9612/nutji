@@ -12,17 +12,12 @@
         android:icon="@drawable/schedule"
         android:title="시간표"/>
 
-    <item
-        android:id="@+id/transport"
-        android:enabled="true"
-        android:icon="@drawable/bus"
-        android:title="대중교통"/>
 
     <item
         android:id="@+id/navigation"
         android:enabled="true"
-        android:icon="@drawable/taxi"
-        android:title="네비게이션"/>
+        android:icon="@drawable/bus"
+        android:title="대중교통"/>
 
     <item
         android:id="@+id/usersetting"
