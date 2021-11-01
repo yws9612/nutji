@@ -5,10 +5,10 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="251dp"
-        android:layout_height="375dp"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
         android:layout_gravity="center"
         android:layout_marginTop="175dp"
-        android:src="@drawable/loading" />
+        android:src="@drawable/logo" />
 
 </LinearLayout>

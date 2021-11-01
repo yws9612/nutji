@@ -9,12 +9,16 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.w3c.dom.Text;
+
 public class addressSearch extends AppCompatActivity {
     private WebView daum_webView;
 
     private TextView daum_result;
 
     private Handler handler;
+
+    private TextView address;
 
 
     @Override
@@ -26,6 +30,7 @@ public class addressSearch extends AppCompatActivity {
         setContentView(R.layout.addresssearch);
 
         daum_result = (TextView) findViewById(R.id.daum_result);
+        address = (TextView) findViewById(R.id.Address);
 
 
         // WebView 초기화
