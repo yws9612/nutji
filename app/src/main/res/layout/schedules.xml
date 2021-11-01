@@ -29,9 +29,9 @@
 
     <TableLayout
         android:layout_width="100dp"
-        android:layout_height="600dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="30dp"
+        android:layout_height="550dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:orientation="vertical"
         android:weightSum="48"
         android:background="#33691E"
@@ -149,8 +149,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="140dp"
         android:orientation="vertical">
 
         <TextView
@@ -163,7 +163,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="575dp"
+            android:layout_marginTop="525dp"
             android:text="24:00" />
 
     </LinearLayout>
