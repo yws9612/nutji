@@ -58,6 +58,7 @@ public class alarmss extends Fragment implements TimePickerDialog.OnTimeSetListe
         view = inflater.inflate(R.layout.alarms, container, false);
         arrayAdapter = new AdapterActivity();
 
+
         listView = (ListView) view.findViewById(R.id.list_view);
         listView.setOnItemClickListener((parent, view, position, id) -> {
             adapterPosition = position;
