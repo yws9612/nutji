@@ -8,7 +8,8 @@
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:orientation="vertical">
+       android:orientation="vertical"
+       android:id="@+id/Linlayout">
        
        <TextView
            android:layout_width="match_parent"
@@ -33,16 +34,16 @@
         android:id="@+id/button_timepicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:text="알람 추가하기"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        />
+        android:layout_below="@+id/Linlayout"/>
 
-   <RelativeLayout
+    <RelativeLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:id="@+id/relative"
-       android:orientation="horizontal">
+       android:orientation="horizontal"
+       android:layout_below="@+id/button_timepicker">
 
     <ListView
         android:id="@+id/list_view"
