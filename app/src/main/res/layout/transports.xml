@@ -41,40 +41,75 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_marginTop="10dp"
+    <TabHost
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tabhost">
+
+
+
+    <TabWidget
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+        android:id="@android:id/tabs"/>
 
-        <Button
-            android:id="@+id/recommand"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:background="#00ff0000"
-            android:text="추천" />
+        <FrameLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:id="@android:id/tabcontent">
 
-        <Button
-            android:id="@+id/busRoad"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:background="#00ff0000"
-            android:text="버스" />
+             <LinearLayout
+                 android:id="@+id/recommand"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:orientation="vertical"
+                 android:background="#00ff0000" />
 
-        <Button
-            android:id="@+id/subwayRoad"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:background="#00ff0000"
-            android:text="지하철" />
+            <LinearLayout
+                android:id="@+id/busRoad"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="#00ff0000" >
 
-        <Button
-            android:id="@+id/minimizeWork"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:background="#00ff0000"
-            android:text="최소도보" />
-    </LinearLayout>
 
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayoutTmaps"
+                    android:orientation="vertical" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/subwayRoad"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00ff0000"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:id="@+id/minimizeWalk"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00ff0000"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayoutTmapss"
+                    android:orientation="vertical" />
+
+            </LinearLayout>
+
+
+        </FrameLayout>
+
+    </TabHost>
 
 </LinearLayout>
