@@ -59,14 +59,11 @@ public class alarmss extends Fragment implements TimePickerDialog.OnTimeSetListe
         arrayAdapter = new AdapterActivity();
 
         listView = (ListView) view.findViewById(R.id.list_view);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                adapterPosition = position;
-                arrayAdapter.removeItem(position);
-                Intent intent = new Intent(getActivity(), TimePicker.class);
-                startActivityForResult(intent, REQUEST_CODE2);
-            }
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            adapterPosition = position;
+            arrayAdapter.removeItem(position);
+            Intent intent = new Intent(getActivity(), TimePicker.class);
+            startActivityForResult(intent, REQUEST_CODE2);
         });
 
         handler = new Handler() {
@@ -76,7 +73,7 @@ public class alarmss extends Fragment implements TimePickerDialog.OnTimeSetListe
                 mFormat = new SimpleDateFormat("HH:mm:ss");
                 String strTime = mFormat.format(cal.getTime());
                 textView = (TextView) view.findViewById(R.id.current1);
-                textView.setTextSize(30);
+                textView.setTextSize(50);
                 textView.setText(strTime);
             }
         };

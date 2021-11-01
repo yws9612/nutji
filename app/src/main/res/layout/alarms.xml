@@ -17,7 +17,7 @@
            android:id="@+id/current1"
            android:gravity="center_horizontal|center_vertical"
            android:paddingTop="70dp"
-           android:textSize="20dp"
+           android:textSize="50dp"
            android:text="현재 시간"/>
 
        <TextView
@@ -34,9 +34,19 @@
         android:id="@+id/button_timepicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:text="알람 추가하기"
+        android:layout_toLeftOf="@+id/button_cancel"
+        android:layout_marginRight="5dp"
         android:layout_below="@+id/Linlayout"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_cancel"
+        android:text="알람 삭제하기"
+        android:layout_below="@+id/Linlayout"
+        android:layout_alignParentRight="true"
+        />
 
     <RelativeLayout
        android:layout_width="match_parent"
