@@ -28,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Begin_Arrived"></activity>
+        <activity android:name=".transportss"></activity>
         <activity android:name=".addressSearch"></activity>
         android:usesCleartextTraffic="true"
     </application>

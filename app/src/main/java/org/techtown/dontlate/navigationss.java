@@ -77,7 +77,7 @@ public class navigationss extends Fragment {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Begin_Arrived.class);
+                Intent intent = new Intent(getActivity(), transportss.class);
                 startActivity(intent);
             }
         });
