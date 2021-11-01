@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "185476814451",
-    "project_id": "datadata-98d93",
-    "storage_bucket": "datadata-98d93.appspot.com"
+    "project_number": "86988622447",
+    "project_id": "nutji-b741a",
+    "storage_bucket": "nutji-b741a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:185476814451:android:a1f7b9217e8606b0a93c06",
+        "mobilesdk_app_id": "1:86988622447:android:95cef22f1c61a582d5db9a",
         "android_client_info": {
           "package_name": "org.techtown.dontlate"
         }
       },
       "oauth_client": [
         {
-          "client_id": "185476814451-k0903fu9f2agjt0h645rs8kf8c13dmdg.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "org.techtown.dontlate",
-            "certificate_hash": "45420a9b3a951c7c8e57d2fd6e20f0e7b019c3af"
-          }
-        },
-        {
-          "client_id": "185476814451-hh5qoio75glqfhseikainpb0g1cpcmnb.apps.googleusercontent.com",
+          "client_id": "86988622447-t13l6cp7h7l4f6fgald4c22la630a0gh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDv8b6tFSjHLqfaqUtYOMKhIAVcEd-wwx4"
+          "current_key": "AIzaSyB5w-OVK641y5b9R3suU239xTRrodn5rvg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "185476814451-hh5qoio75glqfhseikainpb0g1cpcmnb.apps.googleusercontent.com",
+              "client_id": "86988622447-t13l6cp7h7l4f6fgald4c22la630a0gh.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

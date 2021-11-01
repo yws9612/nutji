@@ -6,25 +6,67 @@
 
     tools:context="org.techtown.dontlate.addPlace">
 
-    <androidx.appcompat.widget.Toolbar
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/selectjob"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
+        android:text="위치 설정"
+        android:textColor="@color/black"
+        android:layout_marginTop="80dp"
+        android:textSize="60dp"
+        android:layout_centerHorizontal="true"
         />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="안녕"
-            />
+    <Button
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:textSize="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/selectjob"
+        android:id="@+id/selpalce1"
+        android:backgroundTint="#7ea369"
+        android:text="경기도 성남시 복정로 76"
+        />
 
-    </RelativeLayout>
+    <Button
+        android:id="@+id/selplace2"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/selpalce1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:textSize="25dp"
+        android:backgroundTint="#7ea369"
+        android:text="서울특별시 송파구 잠실동 올림픽로 240"/>
+
+
+    <Button
+        android:id="@+id/selplace3"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/selplace2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:textSize="35dp"
+        android:backgroundTint="#7ea369"
+        android:text="+"
+        android:textColor="@color/black"
+        android:background="#00ff0000"
+        />
+
+    <!-- 00ff0000 ->투명하게 만들어줌-->
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="←"
+        android:textSize="10dp"
+        android:background="#00ff0000"
+        android:textColor="@color/black"
+        />
+
 
 </RelativeLayout>

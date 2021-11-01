@@ -30,6 +30,8 @@
         </activity>
         <activity android:name=".transportss"></activity>
         <activity android:name=".addressSearch"></activity>
+        <activity android:name=".TimePickerActivity"></activity>
+
         android:usesCleartextTraffic="true"
     </application>
 

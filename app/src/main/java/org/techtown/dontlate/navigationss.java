@@ -116,11 +116,6 @@ public class navigationss extends Fragment {
 
 
 
-
-
-
-
-
         return v;
     }
 //    public void callSearchPoiInfo() {

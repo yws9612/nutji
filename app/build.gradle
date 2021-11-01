@@ -1,9 +1,7 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
-apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
-
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
@@ -23,13 +21,19 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
 }
 

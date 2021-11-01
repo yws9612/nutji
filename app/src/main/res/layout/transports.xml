@@ -2,4 +2,79 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="출발 지점             도착 지점"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/guideText"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal">
+
+        <Spinner
+            android:layout_marginRight="10dp"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:id="@+id/startPoint" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="→"
+            android:textSize="20dp"/>
+
+        <Spinner
+            android:layout_marginLeft="10dp"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:id="@+id/arrivePoint" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/recommand"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#00ff0000"
+            android:text="추천" />
+
+        <Button
+            android:id="@+id/busRoad"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#00ff0000"
+            android:text="버스" />
+
+        <Button
+            android:id="@+id/subwayRoad"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#00ff0000"
+            android:text="지하철" />
+
+        <Button
+            android:id="@+id/minimizeWork"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#00ff0000"
+            android:text="최소도보" />
+    </LinearLayout>
+
+
+</LinearLayout>

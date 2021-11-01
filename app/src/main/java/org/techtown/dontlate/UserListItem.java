@@ -5,6 +5,11 @@ public class UserListItem {
     private String placeName;
     private String address;
 
+    public UserListItem(String placeName, String address) {
+        this.placeName = placeName;
+        this.address = address;
+    }
+
     public String getplaceName() {
         return placeName;
     }
