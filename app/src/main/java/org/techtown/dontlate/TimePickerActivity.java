@@ -42,40 +42,34 @@ public class TimePickerActivity extends AppCompatActivity {
         stDay = day.format(currentTime);
 
         okBtn = (Button) findViewById(R.id.okBtn);
-        okBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
-                    hour = timePicker.getHour();
-                    minute = timePicker.getMinute();
-                }
-                else {
-                    hour = timePicker.getCurrentHour();
-                    minute = timePicker.getCurrentMinute();
-                }
-                am_pm = AM_PM(hour);
-                hour = timeSet(hour);
-
-                Intent sendIntent = new Intent(TimePickerActivity.this, MainActivity.class);
-
-                sendIntent.putExtra("hour", hour);
-                sendIntent.putExtra("minute", minute);
-                sendIntent.putExtra("am_pm", am_pm);
-                sendIntent.putExtra("month", stMonth);
-                sendIntent.putExtra("day", stDay);
-                setResult(RESULT_OK, sendIntent);
-
-                finish();
+        okBtn.setOnClickListener(v -> {
+            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+                hour = timePicker.getHour();
+                minute = timePicker.getMinute();
             }
+            else {
+                hour = timePicker.getCurrentHour();
+                minute = timePicker.getCurrentMinute();
+            }
+            am_pm = AM_PM(hour);
+            hour = timeSet(hour);
+
+            Intent sendIntent = new Intent(TimePickerActivity.this, alarmss.class);
+
+            sendIntent.putExtra("hour", hour);
+            sendIntent.putExtra("minute", minute);
+            sendIntent.putExtra("am_pm", am_pm);
+            sendIntent.putExtra("month", stMonth);
+            sendIntent.putExtra("day", stDay);
+            setResult(RESULT_OK, sendIntent);
+
+            finish();
+
+
         });
 
         cancelBtn = (Button) findViewById(R.id.cancleBtn);
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        cancelBtn.setOnClickListener(v -> finish());
     }
     private int timeSet(int hour) {
         if(hour > 12) {
