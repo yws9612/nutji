@@ -24,8 +24,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,6 +49,8 @@ public class usersettingss extends Fragment {
     private Button save;
     private Button addPlace;
 
+    String jjing;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,6 +66,21 @@ public class usersettingss extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new UserListAdapter();
         recyclerView.setAdapter(adapter);
+
+        FirebaseDatabase.getInstance().getReference().child("Nutji").child("User").child("UserName").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String value = snapshot.getValue(String.class);
+                jjing = value;
+                name.setText(jjing);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         addPlace.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,11 +146,11 @@ public class usersettingss extends Fragment {
                 String job = jobR;
 
                 HashMap result = new HashMap<>();
-                result.put("Name", add_name);
+                result.put("UserName", add_name);
                 result.put("Job", job);
 
                 databaseReference = FirebaseDatabase.getInstance().getReference();
-                databaseReference.child("User").updateChildren(result);
+                databaseReference.child("Nutji").child("User").updateChildren(result);
 
             }
         });
@@ -145,32 +165,6 @@ public class usersettingss extends Fragment {
         //conditionRef.add
     }
 
-
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                Intent i = new Intent(getActivity().getApplicationContext(), addressSearch.class);
-//                // 화면전환 애니메이션 없애기
-//                getActivity().overridePendingTransition(0, 0);
-//                // 주소결과
-//                startActivityForResult(i, 10000);
-//            }
-//        });
-
-//        private void bindList() {
-//            adapter = new UserListAdapter(getContext());
-//
-//            adapter.setAddressClickListener(new UserListAdapter.AddressClickListener(){
-//                @Override
-//                public void onAddressClick(String address) {
-//                    Intent i = new Intent(getActivity().getApplicationContext(), addressSearch.class);
-//                    getActivity().overridePendingTransition(0, 0);
-//                    startActivityForResult(i, 10000);
-//
-//                    Toast.makeText(getContext(), "응애", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        }
 
         public void onActivityResult(int requestCode, int resultCode, Intent i) {
             super.onActivityResult(requestCode, resultCode, i);

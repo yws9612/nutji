@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
+
     <TextView
         android:id="@+id/nametext"
         android:layout_width="wrap_content"
@@ -72,15 +73,6 @@
                 android:layout_marginBottom="350dp"
                 android:id="@+id/RecyclerView"/>
 
-
-<!--        <ListView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="180dp"-->
-<!--            android:layout_marginLeft="70dp"-->
-<!--            android:layout_marginRight="70dp"-->
-<!--            android:layout_marginBottom="350dp"-->
-<!--            android:id="@+id/Listview" />-->
 
         <TextView
             android:id="@+id/jobtext"
