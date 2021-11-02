@@ -54,11 +54,13 @@ public class transportss extends Activity    {
         tabHost.setCurrentTab(0);
 
 
+
         LinearLayout linearLayoutTmap = (LinearLayout) findViewById(R.id.linearLayoutTmaps);
         TMapView tMapView = new TMapView(this);
 
         tMapView.setSKTMapApiKey("l7xxddf8547d834c4053946c4a168738d92f");
         linearLayoutTmap.addView(tMapView);
+
 
         LinearLayout linearLayoutTmaps= (LinearLayout) findViewById(R.id.linearLayoutTmapss);
         TMapView tMapViews = new TMapView(this);
