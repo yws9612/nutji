@@ -26,11 +26,15 @@ import org.json.JSONException;
 public class transportss extends Activity    {
 
 
+    private NetworkThread thread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.transports);
+
+        thread = new NetworkThread();
+        thread.start();
 
         TabHost tabHost = findViewById(R.id.tabhost);
         tabHost.setup();
@@ -55,18 +59,18 @@ public class transportss extends Activity    {
 
 
 
-        LinearLayout linearLayoutTmap = (LinearLayout) findViewById(R.id.linearLayoutTmaps);
-        TMapView tMapView = new TMapView(this);
+        LinearLayout linearLayoutTmaps = (LinearLayout) findViewById(R.id.linearLayoutTmaps);
+        TMapView tMapViews= new TMapView(this);
 
-        tMapView.setSKTMapApiKey("l7xxddf8547d834c4053946c4a168738d92f");
-        linearLayoutTmap.addView(tMapView);
-
-
-        LinearLayout linearLayoutTmaps= (LinearLayout) findViewById(R.id.linearLayoutTmapss);
-        TMapView tMapViews = new TMapView(this);
-
-        tMapView.setSKTMapApiKey("l7xxddf8547d834c4053946c4a168738d92f");
+        tMapViews.setSKTMapApiKey("l7xxddf8547d834c4053946c4a168738d92f");
         linearLayoutTmaps.addView(tMapViews);
+
+
+        LinearLayout linearLayoutTmapss= (LinearLayout) findViewById(R.id.linearLayoutTmapss);
+        TMapView tMapViewss = new TMapView(this);
+
+        tMapViewss.setSKTMapApiKey("l7xxddf8547d834c4053946c4a168738d92f");
+        linearLayoutTmapss.addView(tMapViewss);
 
 
     }
