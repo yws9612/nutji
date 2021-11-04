@@ -17,13 +17,8 @@ import java.util.ArrayList;
 
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHolder> implements OnRecycleItemClickListener{
 
-    private ArrayList<UserListItem> listItems = new ArrayList<UserListItem>();
+    ArrayList<UserListItem> listItems = new ArrayList<UserListItem>();
     OnRecycleItemClickListener listener;
-
-
-//    public UserListAdapter(ArrayList<UserListItem> list){
-//        listItems = list;
-//    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView placeName;

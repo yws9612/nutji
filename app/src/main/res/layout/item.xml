@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <TextView
-        android:layout_width="100dp"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:id="@+id/placeName"/>
+        android:textSize="18dp"
+        android:id="@+id/placeName"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"/>
 
     <TextView
-        android:layout_width="250dp"
+        android:layout_width="218dp"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:id="@+id/Address" />
+        android:textSize="16dp"
+        android:id="@+id/Address"
+        android:gravity="center_vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"/>
 
 <!--    <Button-->
 <!--        android:layout_width="wrap_content"-->

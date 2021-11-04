@@ -66,57 +66,11 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="200dp"
                 android:layout_marginTop="180dp"
                 android:layout_marginLeft="70dp"
                 android:layout_marginRight="70dp"
-                android:layout_marginBottom="350dp"
-                android:id="@+id/RecyclerView"/>
-
-
-        <TextView
-            android:id="@+id/jobtext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="70dp"
-            android:layout_marginTop="370dp"
-            android:text="직업"
-            android:textSize="20dp" />
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/RG"
-            android:layout_marginTop="370dp"
-            android:layout_marginLeft="130dp">
-
-            <RadioButton
-                android:id="@+id/radio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="직장인"
-                android:textSize="20dp" />
-
-            <RadioButton
-                android:id="@+id/radio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="대학생"
-                android:textSize="20dp" />
-
-            <RadioButton
-                android:id="@+id/radio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="중/고등학생"
-                android:textSize="20dp" />
-
-        </RadioGroup>
+                android:id="@+id/RecyclerView" />
 
     <Button
         android:layout_width="wrap_content"

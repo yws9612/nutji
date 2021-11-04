@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.style.AlignmentSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,18 +40,18 @@ public class usersettingss extends Fragment {
 
     private RecyclerView recyclerView;
     private UserListAdapter adapter;
+    private ArrayList<UserListItem> arrayList;
     private TextView address;
     private EditText name;
 
     DatabaseReference databaseReference;
 
-    private RadioGroup rg;
-    private String jobR;
-
     private Button save;
     private Button addPlace;
 
-    String jjing;
+    String default_name;
+    String default_address;
+    String Place;
 
 
     @Override
@@ -60,19 +62,20 @@ public class usersettingss extends Fragment {
         recyclerView = (RecyclerView) v.findViewById(R.id.RecyclerView);
         address = (TextView) v.findViewById(R.id.Address);
         save = (Button) v.findViewById(R.id.Save);
-        rg = (RadioGroup) v.findViewById(R.id.RG);
         name = (EditText) v.findViewById(R.id.Name);
+        arrayList = new ArrayList<>();
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new UserListAdapter();
-        recyclerView.setAdapter(adapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), 1));
+        recyclerView.setLayoutManager(linearLayoutManager);
+
 
         FirebaseDatabase.getInstance().getReference().child("Nutji").child("User").child("UserName").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String value = snapshot.getValue(String.class);
-                jjing = value;
-                name.setText(jjing);
+                default_name = value;
+                name.setText(default_name);
             }
 
             @Override
@@ -81,6 +84,25 @@ public class usersettingss extends Fragment {
             }
         });
 
+//        FirebaseDatabase.getInstance().getReference().child("Nutji").child("User").child("Place").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                arrayList.clear();
+//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//                    UserListItem user = dataSnapshot.getValue(UserListItem.class);
+//                    arrayList.add(user);
+//                }
+//                adapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
+        adapter = new UserListAdapter();
+        recyclerView.setAdapter(adapter);
 
         addPlace.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +114,7 @@ public class usersettingss extends Fragment {
                         .setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
-                                String Place = items[which];
+                                Place = items[which];
                                 adapter.addItem(new UserListItem(Place, "클릭하세요"));
                             }
                         })
@@ -100,6 +122,7 @@ public class usersettingss extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 adapter.notifyItemInserted(0);
+                                adapter.notifyDataSetChanged();
                             }
                         })
                         .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -116,26 +139,9 @@ public class usersettingss extends Fragment {
             @Override
             public void onItemClick(UserListAdapter.ViewHolder holder, View view, int position) {
                 Intent i = new Intent(getActivity().getApplicationContext(), addressSearch.class);
-                getActivity().overridePendingTransition(0, 0);
-               startActivityForResult(i, 10000);
-            }
-        });
+                //getActivity().overridePendingTransition(0, 0);
+                startActivityForResult(i, 10000);
 
-        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                switch(i) {
-                    case R.id.radio1:
-                        jobR = "직장인";
-                        break;
-                    case R.id.radio2:
-                        jobR = "대학생";
-                        break;
-                    case R.id.radio3:
-                        jobR = "중/고등학생";
-                        break;
-                }
             }
         });
 
@@ -143,11 +149,9 @@ public class usersettingss extends Fragment {
             @Override
             public void onClick(View v) {
                 String add_name = name.getText().toString();
-                String job = jobR;
 
                 HashMap result = new HashMap<>();
                 result.put("UserName", add_name);
-                result.put("Job", job);
 
                 databaseReference = FirebaseDatabase.getInstance().getReference();
                 databaseReference.child("Nutji").child("User").updateChildren(result);
@@ -175,8 +179,12 @@ public class usersettingss extends Fragment {
                     if (resultCode == Activity.RESULT_OK) {
                         String data = i.getExtras().getString("data");
                         if (data != null) {
-                            Log.i("test", "data:" + data);
-                            address.setText(data);
+                            ArrayList<UserListItem> list = new ArrayList<>();
+                            list.add(0, Place);
+                            list.add(data);
+
+                            adapter.setItems(list);
+                            adapter.notifyDataSetChanged();
                         }
                     }
                     break;
