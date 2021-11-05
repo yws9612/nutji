@@ -1,5 +1,6 @@
 package org.techtown.dontlate;
 
+import android.app.AlertDialog;
 import android.app.LauncherActivity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,6 +20,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
 
     ArrayList<UserListItem> listItems = new ArrayList<UserListItem>();
     OnRecycleItemClickListener listener;
+    private Context mContext;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView placeName;
@@ -37,6 +39,33 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
                         notifyDataSetChanged();
                     }
                 }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                    builder.setMessage("선택한 항목을 삭제하시겠습니까?")
+                            .setTitle("항목 삭제")
+                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    listItems.remove(getAdapterPosition());
+                                    notifyItemRemoved(getAdapterPosition());
+                                    notifyDataSetChanged();
+                                }
+                            })
+                            .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            }).show();
+
+                    return true;
+                }
+
             });
 
             placeName = itemView.findViewById(R.id.placeName);
@@ -60,6 +89,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
     public UserListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         Context context = parent.getContext();
+        mContext = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View view = inflater.inflate(R.layout.item, parent, false);

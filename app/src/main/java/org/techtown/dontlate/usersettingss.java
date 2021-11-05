@@ -139,7 +139,7 @@ public class usersettingss extends Fragment {
             @Override
             public void onItemClick(UserListAdapter.ViewHolder holder, View view, int position) {
                 Intent i = new Intent(getActivity().getApplicationContext(), addressSearch.class);
-                //getActivity().overridePendingTransition(0, 0);
+                getActivity().overridePendingTransition(0, 0);
                 startActivityForResult(i, 10000);
 
             }
@@ -179,12 +179,14 @@ public class usersettingss extends Fragment {
                     if (resultCode == Activity.RESULT_OK) {
                         String data = i.getExtras().getString("data");
                         if (data != null) {
+
+                            UserListItem item = new UserListItem(Place, data);
                             ArrayList<UserListItem> list = new ArrayList<>();
-                            list.add(0, Place);
-                            list.add(data);
+                            list.add(item);
 
                             adapter.setItems(list);
                             adapter.notifyDataSetChanged();
+                            //adapter.notifyItemChanged(adapter.getItemCount()-1, "data");
                         }
                     }
                     break;
