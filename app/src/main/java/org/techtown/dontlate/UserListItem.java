@@ -2,8 +2,8 @@ package org.techtown.dontlate;
 
 public class UserListItem {
 
-    private String placeName;
-    private String address;
+    String placeName;
+    String address;
 
     public UserListItem(String placeName, String address) {
         this.placeName = placeName;

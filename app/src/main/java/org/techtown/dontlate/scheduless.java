@@ -1,5 +1,6 @@
 package org.techtown.dontlate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,15 +34,21 @@ public class scheduless extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.schedules, container, false);
 
-
+        Button addbtn = (Button) view.findViewById(R.id.Addbtn);
 //        et_user_name = view.findViewById(R.id.et_user_name);
 //        et_user_email = view.findViewById(R.id.et_user_email);
 //        btn_save = view.findViewById(R.id.btn_save);
-        //firebase 정의
 //        mDatabase = FirebaseDatabase.getInstance().getReference();
-//
 //        readUser();
-//
+
+        addbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), addSchedule.class);
+                startActivity(intent);
+            }
+        });
+
 //        btn_save.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -57,10 +64,51 @@ public class scheduless extends Fragment {
 //
 //            }
 //        });
+//
+//    }
+//
+//    private void writeNewUser(String userId, String name, String email) {
+//        User user = new User(name, email);
+//
+//        mDatabase.child("users").child(userId).setValue(user)
+//                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//                        // Write was successful!
+//                        Toast.makeText(getContext(), "저장을 완료했습니다.", Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        // Write failed
+//                        Toast.makeText(getContext(), "저장을 실패했습니다.", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
+//    }
+//    private void readUser(){
+//        mDatabase.child("users").child("1").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                // Get Post object and use the values to update the UI
+//                if(dataSnapshot.getValue(User.class) != null){
+//                    User post = dataSnapshot.getValue(User.class);
+//                    Log.w("FireBaseData", "getData" + post.toString());
+//                } else {
+//                    Toast.makeText(getContext(), "데이터 없음...", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                // Getting Post failed, log a message
+//                Log.w("FireBaseData", "loadPost:onCancelled", databaseError.toException());
+//            }
+//        });
 
         return view;
     }
-
-
 }
+
 
