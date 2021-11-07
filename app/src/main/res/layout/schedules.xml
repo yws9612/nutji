@@ -29,7 +29,7 @@
 
     <TableLayout
         android:layout_width="100dp"
-        android:layout_height="600dp"
+        android:layout_height="520dp"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="30dp"
         android:orientation="vertical"
@@ -150,7 +150,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="150dp"
         android:orientation="vertical">
 
         <TextView
@@ -163,10 +163,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="575dp"
+            android:layout_marginTop="500dp"
             android:text="24:00" />
 
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="일정 편집"
+        android:background="#00FF0000"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="140dp"
+        android:id="@+id/Addbtn" />
 
 
 </LinearLayout>

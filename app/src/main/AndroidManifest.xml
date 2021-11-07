@@ -28,6 +28,7 @@
         </activity>
         <activity android:name=".Begin_Arrived"></activity>
         <activity android:name=".addressSearch"></activity>
+        <activity android:name=".addSchedule"></activity>
         android:usesCleartextTraffic="true"
     </application>
 
