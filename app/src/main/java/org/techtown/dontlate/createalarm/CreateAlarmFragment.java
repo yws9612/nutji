@@ -54,6 +54,7 @@ public class CreateAlarmFragment extends Fragment {
 
     private CreateAlarmViewModel createAlarmViewModel;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +84,8 @@ public class CreateAlarmFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 scheduleAlarm();
-                Navigation.findNavController(v).navigate(R.id.action_createAlarmFragment_to_alarmsListFragment);
+//                Navigation.findNavController(v).navigate(R.id.action_createAlarmFragment_to_alarmsListFragment);
+                Navigation.findNavController(getActivity(),R.id.action_createAlarmFragment_to_alarmsListFragment);
             }
         });
 

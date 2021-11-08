@@ -14,7 +14,7 @@
             android:id="@+id/fragment_listalarms_myAlarms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="My Alarms"
+            android:text="내 알람"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +22,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragment_listalarms_recylerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="590dp"
             app:layout_constraintTop_toBottomOf="@+id/fragment_listalarms_addAlarm">
 
         </androidx.recyclerview.widget.RecyclerView>
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Add Alarm"
+            android:text="알람 추가하기"
             app:layout_constraintTop_toBottomOf="@+id/fragment_listalarms_myAlarms" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

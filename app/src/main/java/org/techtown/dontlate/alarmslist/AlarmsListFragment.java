@@ -9,6 +9,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
@@ -26,6 +27,9 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
     private AlarmsListViewModel alarmsListViewModel;
     private RecyclerView alarmsRecyclerView;
     private Button addAlarm;
+
+
+    FragmentManager fragmentManager = getFragmentManager();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,17 +51,21 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_listalarms, container, false);
+        View view;
+        view = inflater.inflate(R.layout.fragment_listalarms, container, false);
 
         alarmsRecyclerView = view.findViewById(R.id.fragment_listalarms_recylerView);
         alarmsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         alarmsRecyclerView.setAdapter(alarmRecyclerViewAdapter);
 
+
         addAlarm = view.findViewById(R.id.fragment_listalarms_addAlarm);
         addAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                v.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_alarmsListFragment_to_createAlarmFragment,null));
                 Navigation.findNavController(v).navigate(R.id.action_alarmsListFragment_to_createAlarmFragment);
+
             }
         });
 

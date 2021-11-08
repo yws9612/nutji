@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.techtown.dontlate">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -31,8 +32,9 @@
         <activity android:name=".Begin_Arrived"></activity>
         <activity android:name=".addressSearch"></activity>
         <activity android:name=".TimePickerActivity"></activity>
+        <activity android:name=".activities.AlarmMainActivity"></activity>
+        <activity android:name=".activities.RingActivity"></activity>
 
-        android:usesCleartextTraffic="true"
     </application>
 
 </manifest>
