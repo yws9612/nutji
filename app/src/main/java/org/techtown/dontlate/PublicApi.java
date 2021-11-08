@@ -55,4 +55,34 @@ public class PublicApi extends Fragment {
         // API 호출
         odsayService.requestBusStationInfo("107475", onResultCallbackListener);
     }
+
+//    public void TransitStop(Context context, PublicApi.OnSuccessListener onSuccessListener) {
+//
+//
+//        ODsayService oDsayService = ODsayService.init(context, "aA9ke5zmlxhLEwa6zdtrHc1gR4YctbDBTch+0TVOm1g");
+//        oDsayService.setReadTimeout(5000);
+//        oDsayService.setConnectionTimeout(5000);
+//
+//        OnResultCallbackListener onResultCallbackListener = new OnResultCallbackListener() {
+//            @Override
+//            public void onSuccess(ODsayData oDsayData, API api) {
+//                try {
+//                    if (api == API.SEARCH_STATION) {
+//                        String ars_ID = oDsayData.getJson().getJSONObject("result").getJSONObject("station").getString("arsID");
+//                        onSuccessListener.onRequestSuccess(ars_ID);
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onError(int i, String s, API api) {
+//                if (api == API.SEARCH_STATION) {
+//                }
+//            }
+//        };
+//        oDsayService.requestSearchStation("14","1000","1:2","10","1",
+//                "127.0363583:37.5113295", onResultCallbackListener);
+//    }
 }
