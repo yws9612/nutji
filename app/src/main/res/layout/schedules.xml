@@ -4,33 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-<!--    <EditText-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/et_user_name"-->
-<!--        android:text="이름"-->
-<!--        android:textSize="30dp" />-->
-
-<!--    <EditText-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/et_user_email"-->
-<!--        android:text="이메일"-->
-<!--        android:textSize="30dp" />-->
-
-
-<!--    <Button-->
-<!--        android:id="@+id/btn_save"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="저장"-->
-<!--        android:layout_marginLeft="150dp"/>-->
-
-
     <TableLayout
         android:layout_width="100dp"
-        android:layout_height="520dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="85dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
         android:orientation="vertical"
         android:weightSum="48"
@@ -149,8 +127,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginTop="25dp"
         android:orientation="vertical">
 
         <TextView
@@ -163,19 +140,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="500dp"
+            android:layout_marginTop="520dp"
             android:text="24:00" />
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="일정 편집"
-        android:background="#00FF0000"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="140dp"
-        android:id="@+id/Addbtn" />
+        android:gravity="right">
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/setting"
+            android:background="#00FF0000"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="13dp"
+            android:id="@+id/Addbtn" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

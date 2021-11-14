@@ -17,6 +17,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:text="←"
+            android:textSize="18dp"
             android:background="#00ff0000"
             android:layout_gravity="left"/>
 
@@ -34,6 +35,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:text="+"
+            android:textSize="18dp"
             android:background="#00ff0000"
             android:layout_gravity="right"/>
 

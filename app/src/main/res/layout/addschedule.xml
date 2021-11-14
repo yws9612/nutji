@@ -4,95 +4,118 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center_horizontal">
 
+        <Button
+            android:id="@+id/Back"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="←"
+            android:textSize="18dp"
+            android:background="#00ff0000"
+            android:layout_gravity="left"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="일정 추가"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="10"/>
+
+        <Button
+            android:id="@+id/Okay"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="✓"
+            android:textSize="18dp"
+            android:background="#00ff0000"
+            android:layout_gravity="right"/>
+
+    </LinearLayout>
+
+    <View
+        android:background="#E2E2E2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp">
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TimePicker
+            android:id="@+id/startPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner"
+            android:scaleX="0.88"
+            android:scaleY="0.88"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginLeft="20dp"
-            android:text="시작"
-            android:textSize="17dp" />
+            android:text=" ━ "
+            android:textColor="#ADADAD"
+            android:layout_gravity="center_vertical"/>
 
-        <TextView
-            android:id="@+id/Start"
+        <TimePicker
+            android:id="@+id/endPicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginLeft="10dp"
-            android:text="PM 00시 00분"
-            android:textSize="17dp" />
+            android:timePickerMode="spinner"
+            android:scaleX="0.88"
+            android:scaleY="0.88"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="30dp"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginLeft="20dp"
-            android:text="종료"
-            android:textSize="17dp" />
-
-        <TextView
-            android:id="@+id/End"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginLeft="10dp"
-            android:text="PM 00시 00분"
-            android:textSize="17dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="일정 이름" />
+            android:text="일정 이름"
+            android:textSize="17dp"/>
 
         <EditText
-            android:layout_marginLeft="13dp"
+            android:layout_marginLeft="12dp"
             android:layout_width="250dp"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
 
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:text="일정 내용" />
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:gravity="center">
 
-    <EditText
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_width="320dp"
-        android:layout_height="100dp"
-        android:gravity="top" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="일정 내용"
+            android:textSize="17dp"
+            android:layout_marginRight="130dp"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="완료"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="30dp"
-        android:id="@+id/Okay"/>
+        <EditText
+            android:layout_marginTop="5dp"
+            android:layout_width="330dp"
+            android:layout_height="100dp"
+            android:gravity="top" />
 
+    </LinearLayout>
 
 </LinearLayout>
