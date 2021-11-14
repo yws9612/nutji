@@ -18,9 +18,14 @@ import java.util.ArrayList;
 
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHolder> implements OnRecycleItemClickListener{
 
-    ArrayList<UserListItem> listItems = new ArrayList<UserListItem>();
-    OnRecycleItemClickListener listener;
+    private ArrayList<UserListItem> listItems;
+    private OnRecycleItemClickListener listener;
     private Context mContext;
+
+    public UserListAdapter(ArrayList<UserListItem> item, Context context) {
+        this.listItems = item;
+        this.mContext = context;
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView placeName;
@@ -28,6 +33,9 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
 
         ViewHolder(View itemView) {
             super(itemView);
+
+            placeName = itemView.findViewById(R.id.placeName);
+            address = itemView.findViewById(R.id.Address);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -67,10 +75,6 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
                 }
 
             });
-
-            placeName = itemView.findViewById(R.id.placeName);
-            address = itemView.findViewById(R.id.Address);
-
         }
     }
 
@@ -105,13 +109,10 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
 
         holder.address.setText(item.getaddress());
         holder.placeName.setText(item.getplaceName());
-
     }
 
     @Override
-    public int getItemCount() {
-        return listItems.size();
-    }
+    public int getItemCount() { return (listItems != null ? listItems.size() : 0); }
 
     public void addItem(UserListItem item){
         listItems.add(item);

@@ -40,11 +40,13 @@ public class usersettingss extends Fragment {
 
     private RecyclerView recyclerView;
     private UserListAdapter adapter;
+    private RecyclerView.LayoutManager linearLayoutManager;
     private ArrayList<UserListItem> arrayList;
     private TextView address;
     private EditText name;
 
-    DatabaseReference databaseReference;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
 
     private Button save;
     private Button addPlace;
@@ -63,14 +65,20 @@ public class usersettingss extends Fragment {
         address = (TextView) v.findViewById(R.id.Address);
         save = (Button) v.findViewById(R.id.Save);
         name = (EditText) v.findViewById(R.id.Name);
-        arrayList = new ArrayList<>();
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        arrayList = new ArrayList<>();
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference().child("Nutji").child("User").child("Place");
+
+        recyclerView.setHasFixedSize(true);
+        linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), 1));
         recyclerView.setLayoutManager(linearLayoutManager);
 
+        adapter = new UserListAdapter(arrayList, getContext());
+        recyclerView.setAdapter(adapter);
 
-        FirebaseDatabase.getInstance().getReference().child("Nutji").child("User").child("UserName").addValueEventListener(new ValueEventListener() {
+        database.getReference().child("Nutji").child("User").child("UserName").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String value = snapshot.getValue(String.class);
@@ -84,25 +92,22 @@ public class usersettingss extends Fragment {
             }
         });
 
-//        FirebaseDatabase.getInstance().getReference().child("Nutji").child("User").child("Place").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                arrayList.clear();
-//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                    UserListItem user = dataSnapshot.getValue(UserListItem.class);
-//                    arrayList.add(user);
-//                }
-//                adapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                arrayList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    UserListItem user = snapshot.getValue(UserListItem.class);
+                    arrayList.add(user);
+                }
+                adapter.notifyDataSetChanged();
+            }
 
-        adapter = new UserListAdapter();
-        recyclerView.setAdapter(adapter);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         addPlace.setOnClickListener(new View.OnClickListener() {
             @Override

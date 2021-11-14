@@ -19,13 +19,6 @@ public class addSchedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addschedule);
 
-        String[] days = {"월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"};
-        Spinner dayPicker = findViewById(R.id.DayPicker);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String >(this, android.R.layout.simple_spinner_item, days);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dayPicker.setAdapter(adapter);
-
         final TextView start = (TextView) findViewById(R.id.Start);
         start.setOnClickListener(new View.OnClickListener() {
             @Override

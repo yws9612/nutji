@@ -5,7 +5,7 @@
     android:orientation="horizontal">
 
     <TextView
-        android:layout_width="65dp"
+        android:layout_width="78dp"
         android:layout_height="wrap_content"
         android:textSize="18dp"
         android:id="@+id/placeName"
@@ -15,7 +15,7 @@
         android:layout_marginBottom="3dp"/>
 
     <TextView
-        android:layout_width="218dp"
+        android:layout_width="235dp"
         android:layout_height="wrap_content"
         android:textSize="16dp"
         android:id="@+id/Address"

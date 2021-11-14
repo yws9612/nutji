@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="←"
+            android:background="#00ff0000"
+            android:layout_gravity="left"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="일정 편집"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="10"/>
+
+        <Button
+            android:id="@+id/addbtn"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="+"
+            android:background="#00ff0000"
+            android:layout_gravity="right"/>
+
+    </LinearLayout>
+
+    <View
+        android:background="#E2E2E2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/ScheduleList" />
+
+
+</LinearLayout>

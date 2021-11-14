@@ -1,5 +1,6 @@
 package org.techtown.dontlate;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +23,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class scheduless extends Fragment {
 
@@ -30,6 +33,8 @@ public class scheduless extends Fragment {
 
     EditText et_user_name,et_user_email;
     Button btn_save;
+    Button addbtn;
+    String day;
 
     private DatabaseReference mDatabase;
 
@@ -38,7 +43,7 @@ public class scheduless extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.schedules, container, false);
 
-        Button addbtn = (Button) view.findViewById(R.id.Addbtn);
+        addbtn = (Button) view.findViewById(R.id.Addbtn);
 //        et_user_name = view.findViewById(R.id.et_user_name);
 //        et_user_email = view.findViewById(R.id.et_user_email);
 //        btn_save = view.findViewById(R.id.btn_save);
@@ -48,8 +53,43 @@ public class scheduless extends Fragment {
         addbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), addSchedule.class);
-                startActivity(intent);
+                Intent intent = new Intent(getActivity().getApplicationContext(), editSchedule.class);
+                final String[] items = new String[]{"월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"};
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("요일을 선택하세요");
+                builder.setItems(items, (dialog, pos) -> {
+                    String selectedText = items[pos];
+                    if(selectedText.equals("월요일")){
+                        intent.putExtra( "요일", "월요일");
+                        startActivity(intent);
+                    }
+                    else if(selectedText.equals("화요일")){
+                        intent.putExtra( "요일", "화요일");
+                        startActivity(intent);
+                    }
+                    else if(selectedText.equals("수요일")){
+                        intent.putExtra( "요일", "수요일");
+                        startActivity(intent);
+                    }
+                    else if(selectedText.equals("목요일")){
+                        intent.putExtra( "요일", "목요일");
+                        startActivity(intent);
+                    }
+                    else if(selectedText.equals("금요일")){
+                        intent.putExtra( "요일", "금요일");
+                        startActivity(intent);
+                    }
+                    else if(selectedText.equals("토요일")){
+                        intent.putExtra( "요일", "토요일");
+                        startActivity(intent);
+                    }
+                    else if(selectedText.equals("일요일")){
+                        intent.putExtra( "요일", "일요일");
+                        startActivity(intent);
+                    }
+                });
+                builder.show();
             }
         });
 
@@ -65,7 +105,6 @@ public class scheduless extends Fragment {
 //                result.put("email", getUserEmail);
 //
 //                writeNewUser("1",getUserName,getUserEmail);
-//
 //            }
 //        });
 //
