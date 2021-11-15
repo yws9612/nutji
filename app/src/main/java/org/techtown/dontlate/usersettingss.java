@@ -52,7 +52,6 @@ public class usersettingss extends Fragment {
     private Button addPlace;
 
     String default_name;
-    String default_address;
     String Place;
 
 
@@ -158,8 +157,7 @@ public class usersettingss extends Fragment {
                 HashMap result = new HashMap<>();
                 result.put("UserName", add_name);
 
-                databaseReference = FirebaseDatabase.getInstance().getReference();
-                databaseReference.child("Nutji").child("User").updateChildren(result);
+                FirebaseDatabase.getInstance().getReference().child("Nutji").child("User").updateChildren(result);
 
             }
         });

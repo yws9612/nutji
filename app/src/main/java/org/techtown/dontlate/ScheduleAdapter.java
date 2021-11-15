@@ -11,12 +11,18 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHolder> {
 
     private ArrayList<ScheduleListItem> schedules;
     private Context context;
+
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
 
     public ScheduleAdapter(ArrayList<ScheduleListItem> schedules, Context context) {
         this.schedules = schedules;
@@ -35,6 +41,9 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
             this.endTime = v.findViewById(R.id.endtext);
             this.scheduleName = v.findViewById(R.id.scheduleText);
             this.scheduleMemo = v.findViewById(R.id.memotext);
+
+            database = FirebaseDatabase.getInstance();
+            databaseReference = database.getReference();
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override

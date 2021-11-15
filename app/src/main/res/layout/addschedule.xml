@@ -92,7 +92,10 @@
         <EditText
             android:layout_marginLeft="12dp"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/SCName"
+            android:maxLines="1"
+            android:singleLine="true"/>
 
     </LinearLayout>
 
@@ -111,10 +114,27 @@
             android:layout_marginRight="130dp"/>
 
         <EditText
+            android:id="@+id/SCMemo"
             android:layout_marginTop="5dp"
             android:layout_width="330dp"
             android:layout_height="100dp"
             android:gravity="top" />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="10dp">
+
+        <CheckBox
+            android:id="@+id/Check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="알람 설정"
+            android:textColor="#808080" />
 
     </LinearLayout>
 

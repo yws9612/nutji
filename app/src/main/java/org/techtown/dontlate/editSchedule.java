@@ -1,5 +1,6 @@
 package org.techtown.dontlate;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -35,10 +36,12 @@ public class editSchedule extends AppCompatActivity {
     private Button addbtn;
     private Button back;
 
+    public static Context context;
+
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
-    String day;
+    private String day;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,8 @@ public class editSchedule extends AppCompatActivity {
         scheduleList = (RecyclerView) findViewById(R.id.ScheduleList);
         addbtn = (Button) findViewById(R.id.addbtn);
         back = (Button) findViewById(R.id.back);
+
+        context = this;
 
         Intent intent = getIntent();
         day = intent.getStringExtra("요일");
@@ -83,6 +88,7 @@ public class editSchedule extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(editSchedule.this, addSchedule.class);
+                intent.putExtra("요일", day);
                 startActivity(intent);
             }
         });
@@ -94,6 +100,5 @@ public class editSchedule extends AppCompatActivity {
             }
         });
     }
-
 
 }
