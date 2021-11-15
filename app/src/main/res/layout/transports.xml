@@ -5,10 +5,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText"/>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -109,21 +106,14 @@
                      android:layout_width="match_parent"
                      android:layout_height="match_parent"
                      android:orientation="vertical"
-                     android:background="#00ff0000" />
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                     android:background="#00ff0000">
+                     <androidx.recyclerview.widget.RecyclerView
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="vertical"
+                         android:id="@+id/rcmdRecycler"/>
 
-                     <TextView
-                         android:id="@+id/textview"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_alignParentEnd="true"
-                         android:layout_marginEnd="163dp" />
-
-                    </ScrollView>
-
-
+                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/busRoad"
                     android:layout_width="match_parent"
@@ -131,14 +121,12 @@
                     android:orientation="vertical"
                     android:background="#00ff0000" >
 
-
-
-
-                    <LinearLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/transRecycler"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/linearLayoutTmaps"
-                        android:orientation="vertical" />
+                        android:scrollbars="vertical"/>
+
 
 
                 </LinearLayout>
@@ -146,11 +134,16 @@
 
                 <LinearLayout
                     android:id="@+id/subwayRoad"
+                    xmlns:tools="http://schemas.android.com/tools"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#00ff0000"
-                    android:orientation="vertical" />
+                    android:orientation="vertical"
+                    tools:context=".transportss">
 
+
+
+                </LinearLayout>
                 <LinearLayout
                     android:id="@+id/minimizeWalk"
                     android:layout_width="match_parent"
@@ -158,11 +151,7 @@
                     android:background="#00ff0000"
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/linearLayoutTmapss"
-                        android:orientation="vertical" />
+
 
                 </LinearLayout>
 
