@@ -1,91 +1,98 @@
 package org.techtown.dontlate;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TimePicker;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
+import org.techtown.dontlate.createalarm.CreateAlarmViewModel;
+import org.techtown.dontlate.createalarm.TimePickerUtil;
+import org.techtown.dontlate.data.Alarm;
+
+import java.util.Random;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class TimePickerActivity extends AppCompatActivity {
-    private TimePicker timePicker;
-    private Button okBtn, cancelBtn;
-    private int hour, minute;
-    private String am_pm;
-    private Date currentTime;
-    private String stMonth, stDay;
 
+    @BindView(R.id.fragment_createalarm_timePicker) TimePicker timePicker;
+    @BindView(R.id.fragment_createalarm_recurring) CheckBox recurring;
+    @BindView(R.id.fragment_createalarm_title) EditText title;
+    @BindView(R.id.fragment_createalarm_checkMon) CheckBox mon;
+    @BindView(R.id.fragment_createalarm_checkTue) CheckBox tue;
+    @BindView(R.id.fragment_createalarm_checkWed) CheckBox wed;
+    @BindView(R.id.fragment_createalarm_checkThu) CheckBox thu;
+    @BindView(R.id.fragment_createalarm_checkFri) CheckBox fri;
+    @BindView(R.id.fragment_createalarm_checkSat) CheckBox sat;
+    @BindView(R.id.fragment_createalarm_checkSun) CheckBox sun;
+    @BindView(R.id.fragment_createalarm_recurring_options) LinearLayout recurringOptions;
+    @BindView(R.id.okBtn) Button okBtn;
+
+
+    private CreateAlarmViewModel createAlarmViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_time_picker);
+        setContentView(R.layout.fragment_createalarm);
 
-        timePicker = (TimePicker) findViewById(R.id.time_picker);
+        createAlarmViewModel = ViewModelProviders.of(this).get(CreateAlarmViewModel.class);
 
-        currentTime = Calendar.getInstance().getTime();
-        SimpleDateFormat day = new SimpleDateFormat("dd", Locale.getDefault());
-        SimpleDateFormat month = new SimpleDateFormat("MM", Locale.getDefault());
+        ButterKnife.bind(this);
 
-        stMonth = month.format(currentTime);
-        stDay = day.format(currentTime);
-
-        okBtn = (Button) findViewById(R.id.okBtn);
-        okBtn.setOnClickListener(v -> {
-            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
-                hour = timePicker.getHour();
-                minute = timePicker.getMinute();
+        recurring.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked){
+                recurringOptions.setVisibility(View.VISIBLE);
+            }else{
+                recurringOptions.setVisibility(View.GONE);
             }
-            else {
-                hour = timePicker.getCurrentHour();
-                minute = timePicker.getCurrentMinute();
-            }
-            am_pm = AM_PM(hour);
-            hour = timeSet(hour);
-
-            Intent sendIntent = new Intent(TimePickerActivity.this, alarmss.class);
-
-            sendIntent.putExtra("hour", hour);
-            sendIntent.putExtra("minute", minute);
-            sendIntent.putExtra("am_pm", am_pm);
-            sendIntent.putExtra("month", stMonth);
-            sendIntent.putExtra("day", stDay);
-            setResult(RESULT_OK, sendIntent);
-
-            finish();
-
-
         });
 
-        cancelBtn = (Button) findViewById(R.id.cancleBtn);
-        cancelBtn.setOnClickListener(v -> finish());
-    }
-    private int timeSet(int hour) {
-        if(hour > 12) {
-            hour-=12;
-        }
-        return hour;
+        okBtn = (Button) findViewById(R.id.okBtn);
+        okBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scheduleAlarm();
+                Intent intent = new Intent(getApplication(), MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
-    private String AM_PM(int hour) {
-        if(hour >= 12) {
-            am_pm = "오후";
-        }
-        else {
-            am_pm = "오전";
-        }
-        return am_pm;
-    }
 
+    private void scheduleAlarm() {
+        int alarmId = new Random().nextInt(Integer.MAX_VALUE);
+
+        Alarm alarm = new Alarm(
+                alarmId,
+                TimePickerUtil.getTimePickerHour(timePicker),
+                TimePickerUtil.getTimePickerMinute(timePicker),
+                title.getText().toString(),
+                System.currentTimeMillis(),
+                true,
+                recurring.isChecked(),
+                mon.isChecked(),
+                tue.isChecked(),
+                wed.isChecked(),
+                thu.isChecked(),
+                fri.isChecked(),
+                sat.isChecked(),
+                sun.isChecked()
+        );
+
+        createAlarmViewModel.insert(alarm);
+
+        alarm.schedule(getApplicationContext());
+
+    }
 }

@@ -1,5 +1,6 @@
 package org.techtown.dontlate.alarmslist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +13,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.techtown.dontlate.R;
+import org.techtown.dontlate.TimePickerActivity;
 import org.techtown.dontlate.data.Alarm;
 
 import java.util.List;
@@ -64,7 +65,12 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
             @Override
             public void onClick(View v) {
 //                v.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_alarmsListFragment_to_createAlarmFragment,null));
-                Navigation.findNavController(v).navigate(R.id.action_alarmsListFragment_to_createAlarmFragment);
+//                Navigation.findNavController(v).navigate(R.id.createAlarmFragment);
+                Intent intent = new Intent(getActivity(), TimePickerActivity.class);
+                startActivity(intent);
+                System.out.println("인텐트");
+                System.out.println(intent);
+
 
             }
         });

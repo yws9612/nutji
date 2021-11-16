@@ -46,13 +46,13 @@ public class AlarmViewHolder extends RecyclerView.ViewHolder {
             alarmRecurringDays.setText(alarm.getRecurringDaysText());
         } else {
             alarmRecurring.setImageResource(R.drawable.ic_looks_one_black_24dp);
-            alarmRecurringDays.setText("Once Off");
+            alarmRecurringDays.setText("한번만 울림");
         }
 
         if (alarm.getTitle().length() != 0) {
             alarmTitle.setText(String.format("%s", alarm.getTitle()));
         } else {
-            alarmTitle.setText(String.format("%s", "Alarm"));
+            alarmTitle.setText(String.format("%s", "알람"));
         }
 
         alarmStarted.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

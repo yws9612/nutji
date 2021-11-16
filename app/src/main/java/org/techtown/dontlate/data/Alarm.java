@@ -14,7 +14,6 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import org.techtown.dontlate.broadcastreceiver.AlarmBroadcastReceiver;
-import org.techtown.dontlate.createalarm.DayUtil;
 
 import java.util.Calendar;
 
@@ -149,7 +148,7 @@ public class Alarm {
         if (!recurring) {
             String toastText = null;
             try {
-                toastText = String.format("One Time Alarm %s scheduled for %s at %02d:%02d", title, DayUtil.toDay(calendar.get(Calendar.DAY_OF_WEEK)), hour, minute, alarmId);
+                toastText = String.format("%s 알람이 %02d:%02d 에 울리도록 설정되었습니다.", title, hour, minute, alarmId);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -161,7 +160,7 @@ public class Alarm {
                     alarmPendingIntent
             );
         } else {
-            String toastText = String.format("Recurring Alarm %s scheduled for %s at %02d:%02d", title, getRecurringDaysText(), hour, minute, alarmId);
+            String toastText = String.format("반복알람 %s (이)가 %s 요일마다 울리도록 설정되었습니다.", title, getRecurringDaysText());
             Toast.makeText(context, toastText, Toast.LENGTH_LONG).show();
 
             final long RUN_DAILY = 24 * 60 * 60 * 1000;
@@ -183,7 +182,7 @@ public class Alarm {
         alarmManager.cancel(alarmPendingIntent);
         this.started = false;
 
-        String toastText = String.format("Alarm cancelled for %02d:%02d with id %d", hour, minute, alarmId);
+        String toastText = String.format("알람이 취소되었습니다.");
         Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
         Log.i("cancel", toastText);
     }
@@ -195,25 +194,25 @@ public class Alarm {
 
         String days = "";
         if (monday) {
-            days += "Mo ";
+            days += "월 ";
         }
         if (tuesday) {
-            days += "Tu ";
+            days += "화 ";
         }
         if (wednesday) {
-            days += "We ";
+            days += "수 ";
         }
         if (thursday) {
-            days += "Th ";
+            days += "목 ";
         }
         if (friday) {
-            days += "Fr ";
+            days += "금 ";
         }
         if (saturday) {
-            days += "Sa ";
+            days += "토 ";
         }
         if (sunday) {
-            days += "Su ";
+            days += "일 ";
         }
 
         return days;

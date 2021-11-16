@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity { //객체 추가  implement
         Transportss = new transportss();
         Usersettingss = new usersettingss();
 
-        bottomNavigationView.setSelectedItemId(R.id.navigation); //첫 Fragment 화면 지정
+        bottomNavigationView.setSelectedItemId(R.id.alarm); //첫 Fragment 화면 지정(알람화면으로 해둠)
 
 
     }

@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="false"
-            android:text="Recurring Alarm"
+            android:text="반복 설정"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_title" />
 
@@ -118,11 +118,11 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/fragment_createalarm_scheduleAlarm"
+            android:id="@+id/okBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Schedule Alarm"
+            android:text="알람 설정하기"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:layout_editor_absoluteX="133dp" />
 

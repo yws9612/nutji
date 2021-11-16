@@ -31,7 +31,7 @@ public class CreateAlarmFragment extends Fragment {
     TimePicker timePicker;
     @BindView(R.id.fragment_createalarm_title)
     EditText title;
-    @BindView(R.id.fragment_createalarm_scheduleAlarm)
+    @BindView(R.id.okBtn)
     Button scheduleAlarm;
     @BindView(R.id.fragment_createalarm_recurring)
     CheckBox recurring;
