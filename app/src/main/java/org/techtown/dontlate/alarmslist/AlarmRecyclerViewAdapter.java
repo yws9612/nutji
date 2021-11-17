@@ -20,6 +20,17 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHold
     private List<Alarm> alarms;
     private OnToggleAlarmListener listener;
 
+
+    public interface OnItemClickListener{
+        void onItemClick(View v, int pos);
+    }
+
+    private OnItemClickListener mListener = null;
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.mListener = listener;
+    }
+
     public AlarmRecyclerViewAdapter(OnToggleAlarmListener listener) {
         this.alarms = new ArrayList<Alarm>();
         this.listener = listener;
@@ -52,6 +63,12 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHold
     public void onViewRecycled(@NonNull AlarmViewHolder holder) {
         super.onViewRecycled(holder);
         holder.alarmStarted.setOnCheckedChangeListener(null);
+    }
+
+    public void removeItem(int position){
+        alarms.remove(position);
+        notifyItemRemoved(position);
+        notifyDataSetChanged();
     }
 }
 

@@ -36,6 +36,7 @@ public class TimePickerActivity extends AppCompatActivity {
     @BindView(R.id.fragment_createalarm_checkSun) CheckBox sun;
     @BindView(R.id.fragment_createalarm_recurring_options) LinearLayout recurringOptions;
     @BindView(R.id.okBtn) Button okBtn;
+    @BindView(R.id.backBtn) Button backBtn;
 
 
     private CreateAlarmViewModel createAlarmViewModel;
@@ -67,8 +68,25 @@ public class TimePickerActivity extends AppCompatActivity {
 
             }
         });
+
+        //뒤로가기 버튼 클릭 시 메인으로 복귀
+        backBtn = (Button)findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        
+
     }
 
+    //휴대폰 뒤로가기버튼 터치 시 메인으로 복귀
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     private void scheduleAlarm() {
         int alarmId = new Random().nextInt(Integer.MAX_VALUE);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -163,10 +164,20 @@ public class MainActivity extends AppCompatActivity { //객체 추가  implement
         }
     }*/
 
+    //뒤로가기버튼 1회 터치 후 2초안에 추가 터치시 어플 종료
+    long pressedtime = 0;
 
+    @Override
+    public void onBackPressed() {
+        if(System.currentTimeMillis()>pressedtime+2000){
+            pressedtime = System.currentTimeMillis();
+            Toast.makeText(getApplicationContext(),"한번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT).show();
+        } else{
+            Toast.makeText(getApplicationContext(),"어플을 종료합니다.",Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
-
-
+    }
 }
 
 
