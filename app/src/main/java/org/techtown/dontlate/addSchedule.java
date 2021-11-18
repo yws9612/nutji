@@ -2,12 +2,14 @@ package org.techtown.dontlate;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -19,6 +21,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -30,21 +33,12 @@ public class addSchedule extends AppCompatActivity {
     private String day;
     private String active;
 
-    private FirebaseDatabase database;
-    private DatabaseReference databaseReference;
-
-    private ScheduleAdapter Sadapter;
-    private ArrayList<ScheduleListItem> arrayList;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addschedule);
 
         EditText SCname = (EditText) findViewById(R.id.SCName);
         EditText SCmemo = (EditText) findViewById(R.id.SCMemo);
-
-//        arrayList = new ArrayList<>();
-//        Sadapter = new ScheduleAdapter(arrayList, this);
 
         Intent intent = getIntent();
         day = intent.getStringExtra("요일");
