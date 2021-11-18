@@ -56,6 +56,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     schedules.remove(getAdapterPosition());
                                     notifyItemRemoved(getAdapterPosition());
+                                    deleteSchedule(getAdapterPosition());
+
                                     notifyDataSetChanged();
                                 }
                             })
@@ -102,5 +104,10 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     public void setItems(ArrayList<ScheduleListItem> items) { this.schedules = items; }
 
     public ScheduleListItem getItem(int i) { return schedules.get(i); }
+
+    private void deleteSchedule(final int position) {
+        databaseReference.child("Nutji").child("Schedule").child(schedules.get(position).ScheduleName).removeValue();
+        //삭제 안 됨 오류
+    }
 
 }

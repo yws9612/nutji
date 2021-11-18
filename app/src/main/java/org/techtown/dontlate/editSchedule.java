@@ -3,6 +3,7 @@ package org.techtown.dontlate;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,7 +25,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.techtown.dontlate.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class editSchedule extends AppCompatActivity {
 
@@ -35,6 +38,7 @@ public class editSchedule extends AppCompatActivity {
 
     private Button addbtn;
     private Button back;
+    private TextView test;
 
     public static Context context;
 
@@ -50,6 +54,7 @@ public class editSchedule extends AppCompatActivity {
         scheduleList = (RecyclerView) findViewById(R.id.ScheduleList);
         addbtn = (Button) findViewById(R.id.addbtn);
         back = (Button) findViewById(R.id.back);
+        test = (TextView) findViewById(R.id.test);
 
         context = this;
 
@@ -99,6 +104,7 @@ public class editSchedule extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
 }

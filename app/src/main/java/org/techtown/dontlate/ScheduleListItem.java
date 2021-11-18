@@ -7,7 +7,7 @@ public class ScheduleListItem {
     String ScheduleName;
     String ScheduleMemo;
 
-    public  ScheduleListItem() {
+    public ScheduleListItem() {
         this.StartTime = "시작 시간";
         this.EndTime = "종료 시간";
         this.ScheduleName = "일정 이름";

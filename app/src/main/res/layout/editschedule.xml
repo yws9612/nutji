@@ -41,6 +41,12 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="배열 테스트"
+        android:id="@+id/test" />
+
     <View
         android:background="#E2E2E2"
         android:layout_width="match_parent"
@@ -54,6 +60,8 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
         android:id="@+id/ScheduleList" />
+
+
 
 
 </LinearLayout>
