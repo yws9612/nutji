@@ -100,18 +100,6 @@
                  android:layout_height="match_parent"
                  android:id="@android:id/tabcontent">
 
-                 <LinearLayout
-                     android:id="@+id/recommand"
-                     android:layout_width="match_parent"
-                     android:layout_height="match_parent"
-                     android:orientation="vertical"
-                     android:background="#00ff0000">
-                     <TextView
-                         android:layout_width="match_parent"
-                         android:layout_height="match_parent"
-                         android:id="@+id/testTextView"/>
-
-                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/busRoad"
                     android:layout_width="match_parent"
@@ -142,16 +130,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scrollbars="vertical"/>
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/minimizeWalk"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#00ff0000"
-                    android:orientation="vertical">
-
 
 
                 </LinearLayout>

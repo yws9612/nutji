@@ -52,7 +52,7 @@ public class SubwayAdapter extends RecyclerView.Adapter<SubwayAdapter.SubwayView
 
     @Override
     public int getItemCount(){
-        return (sList != null ? sList.size() : 0);
+        return sList.size();
     }
 
     public static class SubwayViewHolder extends RecyclerView.ViewHolder{
@@ -70,15 +70,15 @@ public class SubwayAdapter extends RecyclerView.Adapter<SubwayAdapter.SubwayView
             super(subWayView);
 
 
-            this.gtTimes = subWayView.findViewById(R.id.tv_gtTimes);
-            this.glsNames = subWayView.findViewById(R.id.tv_glsNames);
-            this.gleNames = subWayView.findViewById(R.id.tv_gleNames);
-            this.glsCounts = subWayView.findViewById(R.id.tv_glsCounts);
-            this.adFares= subWayView.findViewById(R.id.tv_adFares);
-            this.lnNames = subWayView.findViewById(R.id.tv_lnNames);
-            this.sttNames = subWayView.findViewById(R.id.tv_sttNames);
-            this.sttCounts = subWayView.findViewById(R.id.tv_sttCounts);
-            this.waNames = subWayView.findViewById(R.id.tv_waNames);
+            gtTimes = subWayView.findViewById(R.id.tv_gtTimes);
+            glsNames = subWayView.findViewById(R.id.tv_glsNames);
+            gleNames = subWayView.findViewById(R.id.tv_gleNames);
+            glsCounts = subWayView.findViewById(R.id.tv_glsCounts);
+            adFares= subWayView.findViewById(R.id.tv_adFares);
+            lnNames = subWayView.findViewById(R.id.tv_lnNames);
+            sttNames = subWayView.findViewById(R.id.tv_sttNames);
+            sttCounts = subWayView.findViewById(R.id.tv_sttCounts);
+            waNames = subWayView.findViewById(R.id.tv_waNames);
         }
     }
 }
