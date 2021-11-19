@@ -33,6 +33,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.internal.InternalTokenProvider;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -69,22 +70,27 @@ public class transportss extends Activity {
 
     Button fnBtn, sOkBtn;
     EditText editText;
-    TextView textView, textView1,ttview;
+    TextView textView, textView1, ttview;
     private NetworkThread thread;
     private NetworkThreadArsId threadArsId;
     private String queryUrl;
     private FirebaseDatabase database;
     ArrayList<Item> list = null;
+    ArrayList<SubwayItems> slist = null;
     ArrayList<String> stCode = new ArrayList<>();
+    ArrayList<String> etCode = new ArrayList<>();
+    ArrayList<String> swItem = new ArrayList<>();
     Item bus = null;
+    SubwayItems sub = null;
     String data;
     String test;
     RecyclerView recyclerView;
+    RecyclerView srecyclerView;
     String startPoint, arrivePoint;
     public double stplo, stpla, arplo, arpla;
-    public String SX,SY,EX,EY;
-    String globalStartName, globalEndName;
-
+    public String SX, SY, EX, EY;
+    String ssId, esId, globalStartName, globalEndName;
+    String glsName, gleName, gltTime, glsCount, adFare, laName, selaName, thlaName, sttName, sesttName, thsttName, stCount, sestCount, thstCount, waName, sewaName, thwaName;
 
 
     //seoulCitySubway.json 자체
@@ -92,8 +98,7 @@ public class transportss extends Activity {
 
     //??
 
-    private String getJsonString()
-    {
+    private String getJsonString() {
         String json = "";
 
         try {
@@ -101,7 +106,7 @@ public class transportss extends Activity {
 
             int fileSize = is.available();
 
-            byte [] buffer = new byte[fileSize];
+            byte[] buffer = new byte[fileSize];
             is.read(buffer);
             is.close();
 
@@ -109,28 +114,25 @@ public class transportss extends Activity {
             json = new String(buffer, "UTF-8");
             JSONArray jsonArray = new JSONArray(json);
 
-            for (int i = 0; i<jsonArray.length(); i++)
-            {
+            globalStartName = "강동구청";
+
+            globalEndName = "강남";
+
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject obj = jsonArray.getJSONObject(i);
 
-                if(obj.getString("station_nm").equals(startPoint))
-                {
+                if (obj.getString("station_nm").equals(globalStartName)) {
                     stCode.add(obj.getString("fr_code"));
                 }
 
-                if(obj.getString("station_nm").equals(arrivePoint))
-                {
-                    stCode.add(obj.getString("fr_code"));
+                if (obj.getString("station_nm").equals(globalEndName)) {
+                    etCode.add(obj.getString("fr_code"));
                 }
             }
-            Log.d("testas", stCode.toString());
-        }
-        catch (IOException ex)
-        {
+
+        } catch (IOException ex) {
             ex.printStackTrace();
-        }
-        catch (JSONException e)
-        {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return json;
@@ -142,7 +144,7 @@ public class transportss extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.transports);
 
-        getJsonString();
+        Context context = this;
 
 
         PublicApi.OnSuccessListener onSuccessListener = new PublicApi.OnSuccessListener() {
@@ -153,28 +155,40 @@ public class transportss extends Activity {
         };
 
 
+        getJsonString();
+
+
+        ssId = stCode.get(0);
+        esId = etCode.get(0);
+
+
         fnBtn = (Button) findViewById(R.id.finish_Button);
         sOkBtn = (Button) findViewById(R.id.search_Ok_Button);
         ttview = (TextView) findViewById(R.id.testTextView);
+
+
+
+
         recyclerView = (RecyclerView) findViewById(R.id.transRecycler);
         recyclerView.setHasFixedSize(true);
-
-
-
-
-
-        database = FirebaseDatabase.getInstance();
-
-
-
-
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
         TransAsyncTask transAsyncTask = new TransAsyncTask();
         transAsyncTask.execute();
+
+        srecyclerView = (RecyclerView) findViewById(R.id.subwayRecycler);
+        srecyclerView.setHasFixedSize(true);
+        LinearLayoutManager slayoutManager = new LinearLayoutManager(this);
+        slayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        srecyclerView.setLayoutManager(slayoutManager);
+        SubwayAdapter swAdapter = new SubwayAdapter(this, slist);
+        srecyclerView.setAdapter(swAdapter);
+
+
+
+        database = FirebaseDatabase.getInstance();
 
 
 
@@ -208,14 +222,13 @@ public class transportss extends Activity {
         });
 
 
-
         database.getReference("Nutji").child("User").child("Place").child("집").child("Address").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    String value = snapshot.getValue(String.class);
-                    startPoint = value;
-                    ttview.setText(startPoint);
-                }
+                String value = snapshot.getValue(String.class);
+                startPoint = value;
+                ttview.setText(startPoint);
+            }
 
 
             @Override
@@ -227,9 +240,9 @@ public class transportss extends Activity {
         database.getReference("Nutji").child("User").child("Place").child("학교").child("Address").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    String value = snapshot.getValue(String.class);
-                    arrivePoint = value;
-                }
+                String value = snapshot.getValue(String.class);
+                arrivePoint = value;
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -238,265 +251,165 @@ public class transportss extends Activity {
         });
 
 
-
-      Geocoder geocoder = new Geocoder(this);
-      try{
-          List<Address> mResultLocation =
-                  geocoder.getFromLocationName("강동구청역",1);
-          stpla = mResultLocation.get(0).getLatitude();
-          stplo = mResultLocation.get(0).getLongitude();
-          SX = String.valueOf(stplo);
-          SY = String.valueOf(stpla);
-      }catch (IOException e){
-          e.printStackTrace();
-      }
-
-      Geocoder mGeocoder = new Geocoder(this);
-      try{
-          List<Address> mResultLocations =
-                  mGeocoder.getFromLocationName("건대입구역",1);
-          arpla = mResultLocations.get(0).getLatitude();
-          arplo = mResultLocations.get(0).getLongitude();
-          EX = String.valueOf(arplo);
-          EY = String.valueOf(arpla);
-      }catch (IOException e){
+        Geocoder geocoder = new Geocoder(this);
+        try {
+            List<Address> mResultLocation =
+                    geocoder.getFromLocationName("강동구청역", 1);
+            stpla = mResultLocation.get(0).getLatitude();
+            stplo = mResultLocation.get(0).getLongitude();
+            SX = String.valueOf(stplo);
+            SY = String.valueOf(stpla);
+        } catch (IOException e) {
             e.printStackTrace();
-      }
+        }
 
-//        sOkBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                AssetManager assetManager = getAssets();
-//
-//                try{
-//                    InputStream is = assetManager.open("seoulCitySubway.json");
-//                    InputStreamReader isr = new InputStreamReader(is);
-//                    BufferedReader reader = new BufferedReader(isr);
-//
-//                    StringBuffer buffer = new StringBuffer();
-//                    String line = reader.readLine();
-//                    while (line!=null){
-//                        buffer.append(line+"\n");
-//                        line = reader.readLine();
-//                    }
-//
-//                    String jsonData = buffer.toString();
-//
-//                    JSONArray jsonArray = new JSONArray(jsonData);
-//
-//                    String s ="";
-//                    for(int i = 0; i<jsonArray.length(); i++){
-//                        JSONObject jo = jsonArray.getJSONObject(i);
-//
-//                        String station = jo.getString("station_nm");
-//                        String fCode = jo.getString("fr_code");
-//
-//                        s += station + ":" + fCode;
-//                    }
-//                    ttview.setText(s);
-//                }catch (IOException e){
-//                    e.printStackTrace();
-//                }catch (JSONException e){
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-        Context context = this;
+        Geocoder mGeocoder = new Geocoder(this);
+        try {
+            List<Address> mResultLocations =
+                    mGeocoder.getFromLocationName("건대입구역", 1);
+            arpla = mResultLocations.get(0).getLatitude();
+            arplo = mResultLocations.get(0).getLongitude();
+            EX = String.valueOf(arplo);
+            EY = String.valueOf(arpla);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-
-
-        // 싱글톤 생성, Key 값을 활용하여 객체 생성
         ODsayService odsayService = ODsayService.init(context, "aA9ke5zmlxhLEwa6zdtrHc1gR4YctbDBTch+0TVOm1g");
         // 서버 연결 제한 시간(단위(초), default : 5초)
         odsayService.setReadTimeout(5000);
         // 데이터 획득 제한 시간(단위(초), default : 5초)
         odsayService.setConnectionTimeout(5000);
-
         // 콜백 함수 구현
         OnResultCallbackListener onResultCallbackListener = new OnResultCallbackListener() {
             // 호출 성공 시 실행
             @Override
             public void onSuccess(ODsayData odsayData, API api) {
                 try {
-
+                    slist = new ArrayList<SubwayItems>();
+                    sub = new SubwayItems();
                     // API 호출구문
-                    if (api == API.SEARCH_PUB_TRANS_PATH) {
-                        //최초 출발역/정류장
+                    if (api == API.SUBWAY_PATH) {
+                        //출발역 명
+                        glsName = odsayData.getJson().getJSONObject("result").getString("globalStartName");
+                        sub.setGlsName(glsName);
+                        Log.d("testasdf", sub.getGlsName());
+                        slist.add(sub);
 
-                        String fssResult = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONObject("info").getString("firstStartStation");
-                        String fssResult1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONObject("info").getString("firstStartStation");
-                        String fssResult2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONObject("info").getString("firstStartStation");
-                        String fssResult3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONObject("info").getString("firstStartStation");
-                        String fssResult4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONObject("info").getString("firstStartStation");
-                        String fssResult5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONObject("info").getString("firstStartStation");
+                        //도착역 명
+                        gleName = odsayData.getJson().getJSONObject("result").getString("globalEndName");
+                        Log.d("testas", gleName);
+                        sub.setGleName(gleName);
 
-                        //최종 도착역/정류장
-                        String lesResult = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONObject("info").getString("lastEndStation");
-                        String lesResult1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONObject("info").getString("lastEndStation");
-                        String lesResult2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONObject("info").getString("lastEndStation");
-                        String lesResult3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONObject("info").getString("lastEndStation");
-                        String lesResult4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONObject("info").getString("lastEndStation");
-                        String lesResult5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONObject("info").getString("lastEndStation");
+                        slist.add(sub);
+                        //소요시간
+                        gltTime = odsayData.getJson().getJSONObject("result").getString("globalTravelTime");
+                        sub.setGtTime(gltTime);
+                        slist.add(sub);
 
-                        //버스 번호
-                        String bsName = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONArray("subPath").getJSONObject(1).getJSONArray("lane").getJSONObject(0).getString("busNo");
-                        String bsName1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONArray("subPath").getJSONObject(1).getJSONArray("lane").getJSONObject(0).getString("busNo");
-                        String bsName2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONArray("subPath").getJSONObject(1).getJSONArray("lane").getJSONObject(0).getString("busNo");
-                        String bsName3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONArray("subPath").getJSONObject(1).getJSONArray("lane").getJSONObject(0).getString("busNo");
-                        String bsName4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONArray("subPath").getJSONObject(1).getJSONArray("lane").getJSONObject(0).getString("busNo");
-                        String bsName5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(6).getJSONArray("subPath").getJSONObject(1).getJSONArray("lane").getJSONObject(0).getString("busNo");
+                        //정차역 수
+                        glsCount = odsayData.getJson().getJSONObject("result").getString("globalStationCount");
+                        sub.setGlsCount(glsCount);
+                        slist.add(sub);
 
-                        //지하철 노선명
-                        String swyName = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(1).getJSONArray("lane").getJSONObject(0).getString("name");
-                        String swyName1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(3).getJSONArray("lane").getJSONObject(0).getString("name");
-                        String swyName2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(5).getJSONArray("lane").getJSONObject(0).getString("name");
-                        //총 거리
-                        String ttDis = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONObject("info").getString("totalDistance");
-                        String ttDis1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONObject("info").getString("totalDistance");
-                        String ttDis2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONObject("info").getString("totalDistance");
-                        String ttDis3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONObject("info").getString("totalDistance");
-                        String ttDis4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONObject("info").getString("totalDistance");
-                        String ttDis5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONObject("info").getString("totalDistance");
+                        //카드요금
+                        adFare = odsayData.getJson().getJSONObject("result").getString("fare");
+                        sub.setAdFare(adFare);
+                        slist.add(sub);
 
-                        //총 요금
-                        String payment = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONObject("info").getString("payment");
-                        String payment1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONObject("info").getString("payment");
-                        String payment2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONObject("info").getString("payment");
-                        String payment3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONObject("info").getString("payment");
-                        String payment4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONObject("info").getString("payment");
-                        String payment5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONObject("info").getString("payment");
+                        //승차역 호선명
+                        laName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(0).getString("laneName");
+                        sub.setLnName(laName);
+                        slist.add(sub);
+                        try {
+                            selaName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(1).getString("laneName");
 
-                        //총 도보 이동거리
-                        String ttWalk = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONObject("info").getString("totalWalk");
-                        String ttWalk1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONObject("info").getString("totalWalk");
-                        String ttWalk2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONObject("info").getString("totalWalk");
-                        String ttWalk3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONObject("info").getString("totalWalk");
-                        String ttWalk4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONObject("info").getString("totalWalk");
-                        String ttWalk5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONObject("info").getString("totalWalk");
+                            thlaName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(2).getString("laneName");
 
-                        //총 소요 시간
-                        String ttTime = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONObject("info").getString("totalTime");
-                        String ttTime1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONObject("info").getString("totalTime");
-                        String ttTime2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONObject("info").getString("totalTime");
-                        String ttTime3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONObject("info").getString("totalTime");
-                        String ttTime4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONObject("info").getString("totalTime");
-                        String ttTime5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONObject("info").getString("totalTime");
+                        } catch (NullPointerException e) {
+                            e.printStackTrace();
+                            throw e;
 
-                        //승차 정류장/역명
-                        String staName = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(1).getString("startName");
-                        String staName1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONArray("subPath").getJSONObject(1).getString("startName");
-                        String staName2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONArray("subPath").getJSONObject(1).getString("startName");
-                        String staName3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONArray("subPath").getJSONObject(1).getString("startName");
-                        String staName4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONArray("subPath").getJSONObject(1).getString("startName");
-                        String staName5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONArray("subPath").getJSONObject(1).getString("startName");
-
-                        //하차 정류장/역명
-                        String edName = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(1).getString("endName");
-                        String edName1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONArray("subPath").getJSONObject(1).getString("endName");
-                        String edName2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONArray("subPath").getJSONObject(1).getString("endName");
-                        String edName3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONArray("subPath").getJSONObject(1).getString("endName");
-                        String edName4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONArray("subPath").getJSONObject(1).getString("endName");
-                        String edName5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONArray("subPath").getJSONObject(1).getString("endName");
-
-                        //방면 정보
-                        String dirWay = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(1).getString("way");
-                        String dirWay1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(3).getString("way");
-                        String dirWay2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(5).getString("way");
-
-                        //지하철 빠른 환승 위치
-                        String trDoor = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(1).getString("door");
-                        String trDoor1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(3).getString("door");
-                        String trDoor2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(5).getString("door");
-
-                        //지하철 들어가는 출구 번호
+                        } finally {
+                            //승차역 명
+                            sttName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(0).getString("startName");
+                            sub.setSttName(sttName);
+                            slist.add(sub);
+                            try {
+                                sesttName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(1).getString("startName");
 
 
-                        //출발역 호출
-                        onSuccessListener.onRequestSuccess(fssResult);
-                        onSuccessListener.onRequestSuccess(fssResult1);
-                        onSuccessListener.onRequestSuccess(fssResult2);
-                        onSuccessListener.onRequestSuccess(fssResult3);
-                        onSuccessListener.onRequestSuccess(fssResult4);
-                        onSuccessListener.onRequestSuccess(fssResult5);
+                                thsttName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(2).getString("startName");
 
-                        //도착역 호출
-                        onSuccessListener.onRequestSuccess(lesResult);
-                        onSuccessListener.onRequestSuccess(lesResult1);
-                        onSuccessListener.onRequestSuccess(lesResult2);
-                        onSuccessListener.onRequestSuccess(lesResult3);
-                        onSuccessListener.onRequestSuccess(lesResult4);
-                        onSuccessListener.onRequestSuccess(lesResult5);
+                            } catch (NullPointerException e) {
+                                e.printStackTrace();
+                                throw e;
+                            } finally {
+                                //이동역 수
+                                stCount = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(0).getString("stationCount");
+                                sub.setSttCount(stCount);
+                                slist.add(sub);
+                                try {
+                                    sestCount = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(1).getString("stationCount");
 
-                        //버스 번호 조회
-                        onSuccessListener.onRequestSuccess(bsName);
-                        onSuccessListener.onRequestSuccess(bsName1);
-                        onSuccessListener.onRequestSuccess(bsName2);
-                        onSuccessListener.onRequestSuccess(bsName3);
-                        onSuccessListener.onRequestSuccess(bsName4);
-                        onSuccessListener.onRequestSuccess(bsName5);
+                                    thstCount = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(2).getString("stationCount");
 
-                        //지하철 노선명 조회
-                        onSuccessListener.onRequestSuccess(swyName);
-                        onSuccessListener.onRequestSuccess(swyName1);
-                        onSuccessListener.onRequestSuccess(swyName2);
+                                } catch (NullPointerException e) {
+                                    e.printStackTrace();
+                                    throw e;
+                                } finally {
+                                    //방면 명
+                                    waName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(0).getString("wayName");
+                                    sub.setWaName(waName);
+                                    slist.add(sub);
+                                    try {
+                                        sewaName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(1).getString("wayName");
 
-                        //총 거리 조회
-                        onSuccessListener.onRequestSuccess(ttDis);
-                        onSuccessListener.onRequestSuccess(ttDis1);
-                        onSuccessListener.onRequestSuccess(ttDis2);
-                        onSuccessListener.onRequestSuccess(ttDis3);
-                        onSuccessListener.onRequestSuccess(ttDis4);
-                        onSuccessListener.onRequestSuccess(ttDis5);
 
-                        //총 요금 조회
-                        onSuccessListener.onRequestSuccess(payment);
-                        onSuccessListener.onRequestSuccess(payment1);
-                        onSuccessListener.onRequestSuccess(payment2);
-                        onSuccessListener.onRequestSuccess(payment3);
-                        onSuccessListener.onRequestSuccess(payment4);
-                        onSuccessListener.onRequestSuccess(payment5);
+                                        thwaName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(2).getString("wayName");
 
-                        //총 도보 이동거리 조회
-                        onSuccessListener.onRequestSuccess(ttWalk);
-                        onSuccessListener.onRequestSuccess(ttWalk1);
-                        onSuccessListener.onRequestSuccess(ttWalk2);
-                        onSuccessListener.onRequestSuccess(ttWalk3);
-                        onSuccessListener.onRequestSuccess(ttWalk4);
-                        onSuccessListener.onRequestSuccess(ttWalk5);
+                                    } catch (NullPointerException e) {
+                                        e.printStackTrace();
+                                        throw e;
+                                    } finally {
+                                        //출발역 명 호출
+                                        onSuccessListener.onRequestSuccess(glsName);
 
-                        //총 소요 시간 조회
-                        onSuccessListener.onRequestSuccess(ttTime);
-                        onSuccessListener.onRequestSuccess(ttTime1);
-                        onSuccessListener.onRequestSuccess(ttTime2);
-                        onSuccessListener.onRequestSuccess(ttTime3);
-                        onSuccessListener.onRequestSuccess(ttTime4);
-                        onSuccessListener.onRequestSuccess(ttTime5);
+                                        //도착역 명 호출
+                                        onSuccessListener.onRequestSuccess(gleName);
 
-                        //승차 정류장/역명 호출
-                        onSuccessListener.onRequestSuccess(staName);
-                        onSuccessListener.onRequestSuccess(staName1);
-                        onSuccessListener.onRequestSuccess(staName2);
-                        onSuccessListener.onRequestSuccess(staName3);
-                        onSuccessListener.onRequestSuccess(staName4);
-                        onSuccessListener.onRequestSuccess(staName5);
+                                        //소요시간 호출
+                                        onSuccessListener.onRequestSuccess(gltTime);
 
-                        //하차 정류장/역명 호출
-                        onSuccessListener.onRequestSuccess(edName);
-                        onSuccessListener.onRequestSuccess(edName1);
-                        onSuccessListener.onRequestSuccess(edName2);
-                        onSuccessListener.onRequestSuccess(edName3);
-                        onSuccessListener.onRequestSuccess(edName4);
-                        onSuccessListener.onRequestSuccess(edName5);
+                                        //정차역 수
+                                        onSuccessListener.onRequestSuccess(glsCount);
 
-                        //방면 정보 호출
-                        onSuccessListener.onRequestSuccess(dirWay);
-                        onSuccessListener.onRequestSuccess(dirWay1);
-                        onSuccessListener.onRequestSuccess(dirWay2);
+                                        //카드요금 호출
+                                        onSuccessListener.onRequestSuccess(adFare);
 
-                        //지하철 빠른 환승 위치
-                        onSuccessListener.onRequestSuccess(trDoor);
-                        onSuccessListener.onRequestSuccess(trDoor1);
-                        onSuccessListener.onRequestSuccess(trDoor2);
+                                        //승차역 호선명 호출
+                                        onSuccessListener.onRequestSuccess(laName);
+                                        onSuccessListener.onRequestSuccess(selaName);
+                                        onSuccessListener.onRequestSuccess(thlaName);
+
+                                        //승차역명 호출
+                                        onSuccessListener.onRequestSuccess(sttName);
+                                        onSuccessListener.onRequestSuccess(sesttName);
+                                        onSuccessListener.onRequestSuccess(thsttName);
+
+                                        //이동역수 호출
+                                        onSuccessListener.onRequestSuccess(stCount);
+                                        onSuccessListener.onRequestSuccess(sestCount);
+                                        onSuccessListener.onRequestSuccess(thstCount);
+
+                                        //방면명 호출
+                                        onSuccessListener.onRequestSuccess(waName);
+                                        onSuccessListener.onRequestSuccess(sewaName);
+                                        onSuccessListener.onRequestSuccess(thwaName);
+                                    }
+                                }
+                            }
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -506,15 +419,227 @@ public class transportss extends Activity {
             // 호출 실패 시 실행
             @Override
             public void onError(int i, String s, API api) {
-                if (api == API.SEARCH_PUB_TRANS_PATH) {
+                if (api == API.SUBWAY_PATH) {
                 }
             }
         };
-        // A PI 호출
-        odsayService.requestSearchPubTransPath(SX,SY,EX,EY,"1","0","0",onResultCallbackListener);
-
+        //API 호출
+        odsayService.requestSubwayPath("1000", ssId, esId, "1", onResultCallbackListener);
     }
 
+
+//        // 싱글톤 생성, Key 값을 활용하여 객체 생성
+//        ODsayService odsayService = ODsayService.init(context, "aA9ke5zmlxhLEwa6zdtrHc1gR4YctbDBTch+0TVOm1g");
+//        // 서버 연결 제한 시간(단위(초), default : 5초)
+//        odsayService.setReadTimeout(5000);
+//        // 데이터 획득 제한 시간(단위(초), default : 5초)
+//        odsayService.setConnectionTimeout(5000);
+//
+//        // 콜백 함수 구현
+//        OnResultCallbackListener onResultCallbackListener = new OnResultCallbackListener() {
+//            // 호출 성공 시 실행
+//            @Override
+//            public void onSuccess(ODsayData odsayData, API api) {
+//                try {
+//
+//                    // API 호출구문
+//                    if (api == API.SEARCH_PUB_TRANS_PATH) {
+//
+//
+//
+    //최초 출발역/정류장
+
+//                        String fssResult = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONObject("info").getString("firstStartStation");
+//                        String fssResult1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONObject("info").getString("firstStartStation");
+//                        String fssResult2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONObject("info").getString("firstStartStation");
+//                        String fssResult3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONObject("info").getString("firstStartStation");
+//                        String fssResult4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONObject("info").getString("firstStartStation");
+//                        String fssResult5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONObject("info").getString("firstStartStation");
+//
+//                        //최종 도착역/정류장
+//                        String lesResult = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONObject("info").getString("lastEndStation");
+//                        String lesResult1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONObject("info").getString("lastEndStation");
+//                        String lesResult2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONObject("info").getString("lastEndStation");
+//                        String lesResult3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONObject("info").getString("lastEndStation");
+//                        String lesResult4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONObject("info").getString("lastEndStation");
+//                        String lesResult5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONObject("info").getString("lastEndStation");
+//
+//                        //버스 번호
+//                        String bsName = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONArray("subPath").getJSONObject(1).getJSONArray("lane").getJSONObject(0).getString("busNo");
+//                        String bsName1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONArray("subPath").getJSONObject(1).getJSONArray("lane").getJSONObject(0).getString("busNo");
+//                        String bsName2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONArray("subPath").getJSONObject(1).getJSONArray("lane").getJSONObject(0).getString("busNo");
+//                        String bsName3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONArray("subPath").getJSONObject(1).getJSONArray("lane").getJSONObject(0).getString("busNo");
+//                        String bsName4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONArray("subPath").getJSONObject(1).getJSONArray("lane").getJSONObject(0).getString("busNo");
+//                        String bsName5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(6).getJSONArray("subPath").getJSONObject(1).getJSONArray("lane").getJSONObject(0).getString("busNo");
+//
+//                        //지하철 노선명
+//                        String swyName = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(1).getJSONArray("lane").getJSONObject(0).getString("name");
+//                        String swyName1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(3).getJSONArray("lane").getJSONObject(0).getString("name");
+//                        String swyName2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(5).getJSONArray("lane").getJSONObject(0).getString("name");
+//                        //총 거리
+//                        String ttDis = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONObject("info").getString("totalDistance");
+//                        String ttDis1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONObject("info").getString("totalDistance");
+//                        String ttDis2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONObject("info").getString("totalDistance");
+//                        String ttDis3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONObject("info").getString("totalDistance");
+//                        String ttDis4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONObject("info").getString("totalDistance");
+//                        String ttDis5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONObject("info").getString("totalDistance");
+//
+//                        //총 요금
+//                        String payment = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONObject("info").getString("payment");
+//                        String payment1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONObject("info").getString("payment");
+//                        String payment2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONObject("info").getString("payment");
+//                        String payment3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONObject("info").getString("payment");
+//                        String payment4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONObject("info").getString("payment");
+//                        String payment5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONObject("info").getString("payment");
+//
+//                        //총 도보 이동거리
+//                        String ttWalk = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONObject("info").getString("totalWalk");
+//                        String ttWalk1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONObject("info").getString("totalWalk");
+//                        String ttWalk2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONObject("info").getString("totalWalk");
+//                        String ttWalk3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONObject("info").getString("totalWalk");
+//                        String ttWalk4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONObject("info").getString("totalWalk");
+//                        String ttWalk5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONObject("info").getString("totalWalk");
+//
+//                        //총 소요 시간
+//                        String ttTime = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONObject("info").getString("totalTime");
+//                        String ttTime1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONObject("info").getString("totalTime");
+//                        String ttTime2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONObject("info").getString("totalTime");
+//                        String ttTime3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONObject("info").getString("totalTime");
+//                        String ttTime4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONObject("info").getString("totalTime");
+//                        String ttTime5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONObject("info").getString("totalTime");
+//
+//                        //승차 정류장/역명
+//                        String staName = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(1).getString("startName");
+//                        String staName1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONArray("subPath").getJSONObject(1).getString("startName");
+//                        String staName2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONArray("subPath").getJSONObject(1).getString("startName");
+//                        String staName3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONArray("subPath").getJSONObject(1).getString("startName");
+//                        String staName4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONArray("subPath").getJSONObject(1).getString("startName");
+//                        String staName5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONArray("subPath").getJSONObject(1).getString("startName");
+//
+//                        //하차 정류장/역명
+//                        String edName = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(1).getString("endName");
+//                        String edName1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(1).getJSONArray("subPath").getJSONObject(1).getString("endName");
+//                        String edName2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(2).getJSONArray("subPath").getJSONObject(1).getString("endName");
+//                        String edName3 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(3).getJSONArray("subPath").getJSONObject(1).getString("endName");
+//                        String edName4 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(4).getJSONArray("subPath").getJSONObject(1).getString("endName");
+//                        String edName5 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(5).getJSONArray("subPath").getJSONObject(1).getString("endName");
+//
+//                        //방면 정보
+//                        String dirWay = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(1).getString("way");
+//                        String dirWay1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(3).getString("way");
+//                        String dirWay2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(5).getString("way");
+//
+//                        //지하철 빠른 환승 위치
+//                        String trDoor = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(1).getString("door");
+//                        String trDoor1 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(3).getString("door");
+//                        String trDoor2 = odsayData.getJson().getJSONObject("result").getJSONArray("path").getJSONObject(0).getJSONArray("subPath").getJSONObject(5).getString("door");
+
+    //지하철 들어가는 출구 번호
+
+
+    //출발역 호출
+//                        onSuccessListener.onRequestSuccess(fssResult);
+//                        onSuccessListener.onRequestSuccess(fssResult1);
+//                        onSuccessListener.onRequestSuccess(fssResult2);
+//                        onSuccessListener.onRequestSuccess(fssResult3);
+//                        onSuccessListener.onRequestSuccess(fssResult4);
+//                        onSuccessListener.onRequestSuccess(fssResult5);
+//
+//                        //도착역 호출
+//                        onSuccessListener.onRequestSuccess(lesResult);
+//                        onSuccessListener.onRequestSuccess(lesResult1);
+//                        onSuccessListener.onRequestSuccess(lesResult2);
+//                        onSuccessListener.onRequestSuccess(lesResult3);
+//                        onSuccessListener.onRequestSuccess(lesResult4);
+//                        onSuccessListener.onRequestSuccess(lesResult5);
+//
+//                        //버스 번호 조회
+//                        onSuccessListener.onRequestSuccess(bsName);
+//                        onSuccessListener.onRequestSuccess(bsName1);
+//                        onSuccessListener.onRequestSuccess(bsName2);
+//                        onSuccessListener.onRequestSuccess(bsName3);
+//                        onSuccessListener.onRequestSuccess(bsName4);
+//                        onSuccessListener.onRequestSuccess(bsName5);
+//
+//                        //지하철 노선명 조회
+//                        onSuccessListener.onRequestSuccess(swyName);
+//                        onSuccessListener.onRequestSuccess(swyName1);
+//                        onSuccessListener.onRequestSuccess(swyName2);
+//
+//                        //총 거리 조회
+//                        onSuccessListener.onRequestSuccess(ttDis);
+//                        onSuccessListener.onRequestSuccess(ttDis1);
+//                        onSuccessListener.onRequestSuccess(ttDis2);
+//                        onSuccessListener.onRequestSuccess(ttDis3);
+//                        onSuccessListener.onRequestSuccess(ttDis4);
+//                        onSuccessListener.onRequestSuccess(ttDis5);
+//
+//                        //총 요금 조회
+//                        onSuccessListener.onRequestSuccess(payment);
+//                        onSuccessListener.onRequestSuccess(payment1);
+//                        onSuccessListener.onRequestSuccess(payment2);
+//                        onSuccessListener.onRequestSuccess(payment3);
+//                        onSuccessListener.onRequestSuccess(payment4);
+//                        onSuccessListener.onRequestSuccess(payment5);
+//
+//                        //총 도보 이동거리 조회
+//                        onSuccessListener.onRequestSuccess(ttWalk);
+//                        onSuccessListener.onRequestSuccess(ttWalk1);
+//                        onSuccessListener.onRequestSuccess(ttWalk2);
+//                        onSuccessListener.onRequestSuccess(ttWalk3);
+//                        onSuccessListener.onRequestSuccess(ttWalk4);
+//                        onSuccessListener.onRequestSuccess(ttWalk5);
+//
+//                        //총 소요 시간 조회
+//                        onSuccessListener.onRequestSuccess(ttTime);
+//                        onSuccessListener.onRequestSuccess(ttTime1);
+//                        onSuccessListener.onRequestSuccess(ttTime2);
+//                        onSuccessListener.onRequestSuccess(ttTime3);
+//                        onSuccessListener.onRequestSuccess(ttTime4);
+//                        onSuccessListener.onRequestSuccess(ttTime5);
+//
+//                        //승차 정류장/역명 호출
+//                        onSuccessListener.onRequestSuccess(staName);
+//                        onSuccessListener.onRequestSuccess(staName1);
+//                        onSuccessListener.onRequestSuccess(staName2);
+//                        onSuccessListener.onRequestSuccess(staName3);
+//                        onSuccessListener.onRequestSuccess(staName4);
+//                        onSuccessListener.onRequestSuccess(staName5);
+//
+//                        //하차 정류장/역명 호출
+//                        onSuccessListener.onRequestSuccess(edName);
+//                        onSuccessListener.onRequestSuccess(edName1);
+//                        onSuccessListener.onRequestSuccess(edName2);
+//                        onSuccessListener.onRequestSuccess(edName3);
+//                        onSuccessListener.onRequestSuccess(edName4);
+//                        onSuccessListener.onRequestSuccess(edName5);
+//
+//                        //방면 정보 호출
+//                        onSuccessListener.onRequestSuccess(dirWay);
+//                        onSuccessListener.onRequestSuccess(dirWay1);
+//                        onSuccessListener.onRequestSuccess(dirWay2);
+//
+//                        //지하철 빠른 환승 위치
+//                        onSuccessListener.onRequestSuccess(trDoor);
+//                        onSuccessListener.onRequestSuccess(trDoor1);
+//                        onSuccessListener.onRequestSuccess(trDoor2);
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            // 호출 실패 시 실행
+//            @Override
+//            public void onError(int i, String s, API api) {
+//                if (api == API.SEARCH_PUB_TRANS_PATH) {
+//                }
+//            }
+//        };
+//        // A PI 호출
+//        odsayService.requestSearchPubTransPath(SX,SY,EX,EY,"1","0","0",onResultCallbackListener);
+//
+//    }
 
 
     public class TransAsyncTask extends AsyncTask<String, Void, String> {
@@ -603,9 +728,8 @@ public class transportss extends Activity {
             TransAdapter adapter = new TransAdapter(getApplicationContext(), list);
             recyclerView.setAdapter(adapter);
         }
-
-
     }
 }
+
 
 

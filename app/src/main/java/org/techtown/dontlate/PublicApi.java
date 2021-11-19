@@ -2,9 +2,15 @@ package org.techtown.dontlate;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -15,8 +21,7 @@ import com.odsay.odsayandroidsdk.OnResultCallbackListener;
 
 import org.json.JSONException;
 
-public class PublicApi extends Fragment {
-
+public class PublicApi extends AppCompatActivity {
 
     public interface OnSuccessListener {
         void onRequestSuccess(String result);
@@ -133,4 +138,5 @@ public class PublicApi extends Fragment {
 //        // API 호출
 //        odsayService.requestSearchPubTransPath(String.valueOf(SX),String.valueOf(SY),String.valueOf(EX),String.valueOf(EY),"0","0","0",onResultCallbackListener);
 //    }
+
 }
