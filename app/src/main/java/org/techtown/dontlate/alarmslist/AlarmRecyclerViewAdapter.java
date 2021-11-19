@@ -3,33 +3,29 @@ package org.techtown.dontlate.alarmslist;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.techtown.dontlate.R;
+import org.techtown.dontlate.createalarm.CreateAlarmViewModel;
 import org.techtown.dontlate.data.Alarm;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
+public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHolder>  {
 
-
-public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHolder> {
-    private List<Alarm> alarms;
+    List<Alarm> alarms;
     private OnToggleAlarmListener listener;
+    private CreateAlarmViewModel createAlarmViewModel;
 
 
-    public interface OnItemClickListener{
-        void onItemClick(View v, int pos);
-    }
-
-    private OnItemClickListener mListener = null;
-
-    public void setOnItemClickListener(OnItemClickListener listener){
-        this.mListener = listener;
-    }
 
     public AlarmRecyclerViewAdapter(OnToggleAlarmListener listener) {
         this.alarms = new ArrayList<Alarm>();
@@ -40,6 +36,7 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHold
     @Override
     public AlarmViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_alarm, parent, false);
+        AlarmRecyclerViewAdapter.ViewHolder vholder = new ViewHolder(itemView);
         return new AlarmViewHolder(itemView, listener);
     }
 
@@ -68,7 +65,40 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHold
     public void removeItem(int position){
         alarms.remove(position);
         notifyItemRemoved(position);
+        //갱신처리 반드시 해야함
         notifyDataSetChanged();
     }
+
+
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        CardView cardView;
+        TextView alarmTime;
+        ImageView alarmRecurring;
+        TextView alarmRecurringDays;
+        TextView alarmTitle;
+
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            cardView = itemView.findViewById(R.id.cardview);
+            alarmTime = itemView.findViewById(R.id.item_alarm_time);
+            alarmRecurring = itemView.findViewById(R.id.item_alarm_recurring);
+            alarmRecurringDays = itemView.findViewById(R.id.item_alarm_recurringDays);
+            alarmTitle = itemView.findViewById(R.id.item_alarm_title);
+
+            itemView.setOnLongClickListener(v -> {
+                Alarm alarm = alarms.get(getAdapterPosition()+1);
+                int alarmid = alarm.getAlarmId();
+                createAlarmViewModel.delete(alarmid);
+                return true;
+            });
+        }
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(v.getContext(), "알람 선택", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
 

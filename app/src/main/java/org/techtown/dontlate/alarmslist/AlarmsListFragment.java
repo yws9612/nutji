@@ -68,9 +68,6 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
 //                Navigation.findNavController(v).navigate(R.id.createAlarmFragment);
                 Intent intent = new Intent(getActivity(), TimePickerActivity.class);
                 startActivity(intent);
-                System.out.println("인텐트");
-                System.out.println(intent);
-
 
             }
         });

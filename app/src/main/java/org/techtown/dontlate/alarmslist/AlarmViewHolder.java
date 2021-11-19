@@ -13,6 +13,7 @@ import org.techtown.dontlate.R;
 import org.techtown.dontlate.data.Alarm;
 
 
+
 public class AlarmViewHolder extends RecyclerView.ViewHolder {
     private TextView alarmTime;
     private ImageView alarmRecurring;
@@ -33,6 +34,7 @@ public class AlarmViewHolder extends RecyclerView.ViewHolder {
         alarmTitle = itemView.findViewById(R.id.item_alarm_title);
 
         this.listener = listener;
+
     }
 
     public void bind(Alarm alarm) {

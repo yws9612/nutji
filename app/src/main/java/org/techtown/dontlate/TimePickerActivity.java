@@ -24,20 +24,32 @@ import butterknife.ButterKnife;
 
 public class TimePickerActivity extends AppCompatActivity {
 
-    @BindView(R.id.fragment_createalarm_timePicker) TimePicker timePicker;
-    @BindView(R.id.fragment_createalarm_recurring) CheckBox recurring;
-    @BindView(R.id.fragment_createalarm_title) EditText title;
-    @BindView(R.id.fragment_createalarm_checkMon) CheckBox mon;
-    @BindView(R.id.fragment_createalarm_checkTue) CheckBox tue;
-    @BindView(R.id.fragment_createalarm_checkWed) CheckBox wed;
-    @BindView(R.id.fragment_createalarm_checkThu) CheckBox thu;
-    @BindView(R.id.fragment_createalarm_checkFri) CheckBox fri;
-    @BindView(R.id.fragment_createalarm_checkSat) CheckBox sat;
-    @BindView(R.id.fragment_createalarm_checkSun) CheckBox sun;
-    @BindView(R.id.fragment_createalarm_recurring_options) LinearLayout recurringOptions;
-    @BindView(R.id.okBtn) Button okBtn;
-    @BindView(R.id.backBtn) Button backBtn;
-
+    @BindView(R.id.fragment_createalarm_timePicker)
+    TimePicker timePicker;
+    @BindView(R.id.fragment_createalarm_recurring)
+    CheckBox recurring;
+    @BindView(R.id.fragment_createalarm_title)
+    EditText title;
+    @BindView(R.id.fragment_createalarm_checkMon)
+    CheckBox mon;
+    @BindView(R.id.fragment_createalarm_checkTue)
+    CheckBox tue;
+    @BindView(R.id.fragment_createalarm_checkWed)
+    CheckBox wed;
+    @BindView(R.id.fragment_createalarm_checkThu)
+    CheckBox thu;
+    @BindView(R.id.fragment_createalarm_checkFri)
+    CheckBox fri;
+    @BindView(R.id.fragment_createalarm_checkSat)
+    CheckBox sat;
+    @BindView(R.id.fragment_createalarm_checkSun)
+    CheckBox sun;
+    @BindView(R.id.fragment_createalarm_recurring_options)
+    LinearLayout recurringOptions;
+    @BindView(R.id.okBtn)
+    Button okBtn;
+    @BindView(R.id.backBtn)
+    Button backBtn;
 
     private CreateAlarmViewModel createAlarmViewModel;
 
@@ -51,9 +63,9 @@ public class TimePickerActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         recurring.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if(isChecked){
+            if (isChecked) {
                 recurringOptions.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 recurringOptions.setVisibility(View.GONE);
             }
         });
@@ -70,7 +82,7 @@ public class TimePickerActivity extends AppCompatActivity {
         });
 
         //뒤로가기 버튼 클릭 시 메인으로 복귀
-        backBtn = (Button)findViewById(R.id.backBtn);
+        backBtn = (Button) findViewById(R.id.backBtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
