@@ -59,6 +59,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.Buffer;
@@ -75,11 +76,9 @@ public class transportss extends Activity {
     private String queryUrl;
     private FirebaseDatabase database;
     ArrayList<Item> list = null;
-    ArrayList<SubwayItems> slist = new ArrayList<SubwayItems>();
     ArrayList<String> stCode = new ArrayList<>();
     ArrayList<String> etCode = new ArrayList<>();
     Item bus = null;
-    SubwayItems sub = null;
     RecyclerView recyclerView;
     RecyclerView srecyclerView;
     String startPoint, arrivePoint;
@@ -87,6 +86,9 @@ public class transportss extends Activity {
     public String SX, SY, EX, EY;
     String ssId, esId, globalStartName, globalEndName;
     String glsName, gleName, gltTime, glsCount, adFare, laName, selaName, thlaName, sttName, sesttName, thsttName, stCount, sestCount, thstCount, waName, sewaName, thwaName;
+    TextView gtTimes, glsNames, gleNames, glsCounts, adFares, lnNames, sttNames, sttCounts, waNames, selnNames, thlnNames, sesttNames, thsttNames, sesttCounts, thsttCounts, sewaNames, thwaNames;
+    String arsCode;
+    String ap;
 
 
     //seoulCitySubway.json 자체
@@ -140,7 +142,29 @@ public class transportss extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.transports);
 
-        srecyclerView = (RecyclerView) findViewById(R.id.subwayRecycler);
+        gtTimes = findViewById(R.id.tv_gtTimess);
+        glsNames = findViewById(R.id.tv_glsNamess);
+        gleNames = findViewById(R.id.tv_gleNamess);
+        glsCounts = findViewById(R.id.tv_glsCountss);
+        adFares= findViewById(R.id.tv_adFaress);
+
+        lnNames = findViewById(R.id.tv_lnNamess);
+        selnNames = findViewById(R.id.tv_selnNamess);
+        thlnNames = findViewById(R.id.tv_thlnNamess);
+
+        sttNames = findViewById(R.id.tv_sttNamess);
+        sesttNames = findViewById(R.id.tv_sesttNamess);
+        thsttNames = findViewById(R.id.tv_thsttNamess);
+
+        sttCounts = findViewById(R.id.tv_sttCountss);
+        sesttCounts = findViewById(R.id.tv_sesttCountss);
+        thsttCounts = findViewById(R.id.tv_thsttCountss);
+
+        waNames = findViewById(R.id.tv_waNamess);
+        sewaNames = findViewById(R.id.tv_sewaNamess);
+        thwaNames = findViewById(R.id.tv_thwaNamess);
+
+
 
         Context context = this;
 
@@ -148,17 +172,6 @@ public class transportss extends Activity {
         PublicApi.OnSuccessListener onSuccessListener = new PublicApi.OnSuccessListener() {
             @Override
             public void onRequestSuccess(String result) {
-                slist.add(sub);
-
-                LinearLayoutManager slayoutManager = new LinearLayoutManager(getApplicationContext());
-
-                srecyclerView.setLayoutManager(slayoutManager);
-                slayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
-                srecyclerView.setHasFixedSize(true);
-                SubwayAdapter swAdapter = new SubwayAdapter(getApplicationContext(), slist);
-                srecyclerView.setAdapter(swAdapter);
-                swAdapter.notifyDataSetChanged();
 
             }
         };
@@ -247,6 +260,7 @@ public class transportss extends Activity {
             }
         });
 
+        ap = "강동구청";
 
         Geocoder geocoder = new Geocoder(this);
         try {
@@ -272,6 +286,7 @@ public class transportss extends Activity {
             e.printStackTrace();
         }
 
+
         ODsayService odsayService = ODsayService.init(context, "aA9ke5zmlxhLEwa6zdtrHc1gR4YctbDBTch+0TVOm1g");
         // 서버 연결 제한 시간(단위(초), default : 5초)
         odsayService.setReadTimeout(5000);
@@ -283,42 +298,42 @@ public class transportss extends Activity {
             @Override
             public void onSuccess(ODsayData odsayData, API api) {
                 try {
-                    slist = new ArrayList<SubwayItems>();
+
                     // API 호출구문
                     if (api == API.SUBWAY_PATH) {
-                        sub = new SubwayItems();
+
                         //출발역 명
                         glsName = odsayData.getJson().getJSONObject("result").getString("globalStartName");
-                        sub.setGlsName(glsName);
+                        glsNames.setText(glsName);
 
                         //도착역 명
                         gleName = odsayData.getJson().getJSONObject("result").getString("globalEndName");
-                        sub.setGleName(gleName);
+                        gleNames.setText(gleName);
 
                         //소요시간
 
                         gltTime = odsayData.getJson().getJSONObject("result").getString("globalTravelTime");
-                        sub.setGtTime(gltTime);
+                        gtTimes.setText(gltTime);
 
 
                         //정차역 수
                         glsCount = odsayData.getJson().getJSONObject("result").getString("globalStationCount");
-                        sub.setGlsCount(glsCount);
-
+                        glsCounts.setText(glsCount);
 
                         //카드요금
                         adFare = odsayData.getJson().getJSONObject("result").getString("fare");
-                        sub.setAdFare(adFare);
+                        adFares.setText(adFare);
 
 
                         //승차역 호선명
                         laName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(0).getString("laneName");
-                        sub.setLnName(laName);
+                        lnNames.setText(laName);
                         try {
                             selaName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(1).getString("laneName");
+                            selnNames.setText(selaName);
 
                             thlaName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(2).getString("laneName");
-
+                            thlnNames.setText(thlaName);
                         } catch (NullPointerException e) {
                             e.printStackTrace();
                             throw e;
@@ -326,12 +341,13 @@ public class transportss extends Activity {
                         } finally {
                             //승차역 명
                             sttName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(0).getString("startName");
-                            sub.setSttName(sttName);
+                            sttNames.setText(sttName);
                             try {
                                 sesttName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(1).getString("startName");
-
+                                sesttNames.setText(sesttName);
 
                                 thsttName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(2).getString("startName");
+                                thsttNames.setText(thsttName);
 
                             } catch (NullPointerException e) {
                                 e.printStackTrace();
@@ -339,26 +355,26 @@ public class transportss extends Activity {
                             } finally {
                                 //이동역 수
                                 stCount = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(0).getString("stationCount");
-                                sub.setSttCount(stCount);
+                                sttCounts.setText(stCount);
                                 try {
                                     sestCount = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(1).getString("stationCount");
-
+                                    sesttCounts.setText(sestCount);
 
                                     thstCount = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(2).getString("stationCount");
-
+                                    thsttCounts.setText(thstCount);
                                 } catch (NullPointerException e) {
                                     e.printStackTrace();
                                     throw e;
                                 } finally {
                                     //방면 명
                                     waName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(0).getString("wayName");
-                                    sub.setWaName(waName);
+                                    waNames.setText(waName);
                                     try {
                                         sewaName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(1).getString("wayName");
-
+                                        sewaNames.setText(sewaName);
 
                                         thwaName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(2).getString("wayName");
-
+                                        thwaNames.setText(thwaName);
                                     } catch (NullPointerException e) {
                                         e.printStackTrace();
                                         throw e;
@@ -416,8 +432,6 @@ public class transportss extends Activity {
         };
         //API 호출
         odsayService.requestSubwayPath("1000", ssId, esId, "1", onResultCallbackListener);
-
-
 
     }
 
@@ -510,6 +524,7 @@ public class transportss extends Activity {
             recyclerView.setAdapter(adapter);
         }
     }
+
 }
 
 
