@@ -159,6 +159,7 @@ public class transportss extends Activity {
                 SubwayAdapter swAdapter = new SubwayAdapter(getApplicationContext(), slist);
                 srecyclerView.setAdapter(swAdapter);
                 swAdapter.notifyDataSetChanged();
+
             }
         };
 
@@ -342,6 +343,7 @@ public class transportss extends Activity {
                                 try {
                                     sestCount = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(1).getString("stationCount");
 
+
                                     thstCount = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(2).getString("stationCount");
 
                                 } catch (NullPointerException e) {
@@ -418,7 +420,7 @@ public class transportss extends Activity {
 
 
     }
-    
+
 
 
     public class TransAsyncTask extends AsyncTask<String, Void, String> {

@@ -88,19 +88,5 @@ public class SubwayItems {
         this.waNames = waNames;
     }
 
-
-//    @Override
-//    public String toString(){
-//        return"{" +
-//                "gtTimes = " + gtTimes + '\'' +
-//                ", glsNames = " + glsNames + '\'' +
-//                ", gleNames = " + gleNames + '\'' +
-//                ", glsCounts = " + glsCounts + '\'' +
-//                ", adFares = " + adFares + '\'' +
-//                ", lnNames = " + lnNames + '\'' +
-//                ", sttNames = " + sttNames + '\'' +
-//                ", sttCounts = " + sttCounts + '\'' +
-//                ", waNames = " + waNames + '\'' +
-//                "}";
-//    }
+    
 }
