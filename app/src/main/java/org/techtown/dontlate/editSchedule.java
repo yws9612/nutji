@@ -54,7 +54,6 @@ public class editSchedule extends AppCompatActivity {
         scheduleList = (RecyclerView) findViewById(R.id.ScheduleList);
         addbtn = (Button) findViewById(R.id.addbtn);
         back = (Button) findViewById(R.id.back);
-        test = (TextView) findViewById(R.id.test);
 
         context = this;
 

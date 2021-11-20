@@ -31,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -49,9 +50,8 @@ public class scheduless extends Fragment {
     private String elementS;
     private String elementE;
 
-    LinearLayout table;
-    float time, sum = 0;
-    ArrayList Time = new ArrayList();
+    LinearLayout table, summary;
+    float time = 0;
 
     ArrayList list1 = new ArrayList<ScheduleListItem>();
     ArrayList list2 = new ArrayList<ScheduleListItem>();
@@ -63,8 +63,8 @@ public class scheduless extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.schedules, container, false);
 
-        TextView test = (TextView) view.findViewById(R.id.test);
         table = (LinearLayout) view.findViewById(R.id.table);
+        summary = (LinearLayout) view.findViewById(R.id.summary);
 
         Button addbtn = view.findViewById(R.id.Addbtn);
         addbtn.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +116,7 @@ public class scheduless extends Fragment {
                 public void onCallback(List<String> listS, List<String> listE, List<String> listN, List<String> listM) {
 
                 for (int i=0; i<listS.size(); i++) {
-                    Log.d("test", String.valueOf(listS.size()));
+
                     elementS = listS.get(i);
                     elementE = listE.get(i);
 
@@ -144,6 +144,7 @@ public class scheduless extends Fragment {
                     color.add("#8BC34A");
 
                     table.removeAllViews();
+                    summary.removeAllViews();
 
                     Random random = new Random();
                     int ran = 0;
@@ -164,19 +165,29 @@ public class scheduless extends Fragment {
                         params.topMargin = 2;
                         table.addView(nameText, params);
                     }
+
+                    for (int k=0; k<listS.size(); k++) {
+
+                        TextView memoText = new TextView(getActivity().getApplicationContext());
+                        memoText.setText(listM.get(k));
+                        memoText.setGravity(Gravity.CENTER);
+                        LinearLayout.LayoutParams paramss = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT,
+                                time);
+                        paramss.topMargin = 2;
+                        summary.addView(memoText, paramss);
+                    }
                 }
-
-
-                // time 여기서 테이블 동적 그거
             }
         });
-        // time 여기로 나오면 또 0 된다
 
         return view;
     }
 
     public void readData(FirebaseCallback firebaseCallback) {
-        databaseReference.child("Nutji").child("Schedule").child("화요일").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("Nutji").child("Schedule").child("월요일").orderByChild("StartTime")
+                .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list1.clear(); list2.clear(); list3.clear(); list4.clear();
