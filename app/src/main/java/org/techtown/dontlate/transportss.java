@@ -13,9 +13,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -91,6 +94,8 @@ public class transportss extends Activity {
     String glsName, gleName, gltTime, glsCount, adFare, laName, selaName, thlaName, sttName, sesttName, thsttName, stCount, sestCount, thstCount, waName, sewaName, thwaName;
     TextView gtTimes, glsNames, gleNames, glsCounts, adFares, lnNames, sttNames, sttCounts, waNames, selnNames, thlnNames, sesttNames, thsttNames, sesttCounts, thsttCounts, sewaNames, thwaNames;
     String ars1,ars2,ars3,ars4,ars5,ars6,arsPoint;
+    Spinner srpt, arpt;
+    String qwer, qwerty;
 
 
     //seoulCitySubway.json 자체
@@ -166,8 +171,9 @@ public class transportss extends Activity {
         sewaNames = findViewById(R.id.tv_sewaNamess);
         thwaNames = findViewById(R.id.tv_thwaNamess);
 
-
-
+        srpt = findViewById(R.id.startPoint);
+        arpt = findViewById(R.id.arrivePoint);
+        TextView test = findViewById(R.id.guideText);
 
         Context context = this;
 
@@ -198,9 +204,6 @@ public class transportss extends Activity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-
-        TransAsyncTask transAsyncTask = new TransAsyncTask();
-        transAsyncTask.execute();
 
 
 
@@ -254,7 +257,7 @@ public class transportss extends Activity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String value = snapshot.getValue(String.class);
                 arrivePoint = value;
-                Log.d("test", arrivePoint);
+                //Log.d("test", arrivePoint);
             }
 
             @Override
@@ -262,6 +265,39 @@ public class transportss extends Activity {
 
             }
         });
+
+        //윤지네 집
+        ars1 = "24186";
+
+        //동서울대학교
+        ars2 = "48066";
+
+        //회사 (강남)
+        ars3 = "22011";
+
+        String[] items = {"선택", "집", "학교", "회사"};
+
+        ArrayAdapter<String> Sadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
+        Sadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        srpt.setAdapter(Sadapter);
+
+        srpt.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                qwer = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        ArrayAdapter<String> Aadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
+        Aadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        arpt.setAdapter(Aadapter);
+
 
 
         Geocoder geocoder = new Geocoder(this);
@@ -435,7 +471,26 @@ public class transportss extends Activity {
         //API 호출
         odsayService.requestSubwayPath("1000", ssId, esId, "1", onResultCallbackListener);
 
-
+        sOkBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (qwer) {
+                    case "선택":
+                        break;
+                    case "집":
+                        arsPoint = ars1;
+                        break;
+                    case "학교":
+                        arsPoint = ars2;
+                        break;
+                    case "회사":
+                        arsPoint = ars3;
+                        break;
+                }
+                TransAsyncTask transAsyncTask = new TransAsyncTask();
+                transAsyncTask.execute();
+            }
+        });
 
 
     }
@@ -446,25 +501,8 @@ public class transportss extends Activity {
         @Override
         protected String doInBackground(String... strings) {
 
-            //윤지네 집
-            ars1 = "24186";
-
-            //동서울대학교
-            ars2 = "48066";
-
-            //회사 (강남)
-            ars3 = "22011";
-
-            if(arrivePoint == "경기도 성남시 중원구 산성대로 526"){
-                arsPoint = ars1;
-            }else if(arrivePoint == "경기도 성남시 수정구 복정로 76"){
-                arsPoint = ars3;
-            }else if(arrivePoint == "경기도 성남시 분당구 불정로 6"){
-                arsPoint = ars5;
-            }
-
             queryUrl = "http://ws.bus.go.kr/api/rest/stationinfo/getLowStationByUid?"
-                    + "ServiceKey=de8Q96jmb%2FJj%2BopbZdsPv5k4%2F2XDiyfTluNAwrhznOJROomUFPdf7D4M%2Bzw%2BbXjCIY%2B1VqXP%2BTmJaY7wOShFIA%3D%3D&arsId="+ ars1;
+                    + "ServiceKey=de8Q96jmb%2FJj%2BopbZdsPv5k4%2F2XDiyfTluNAwrhznOJROomUFPdf7D4M%2Bzw%2BbXjCIY%2B1VqXP%2BTmJaY7wOShFIA%3D%3D&arsId="+ arsPoint;
 
             try {
                 boolean b_stnNm = false;
