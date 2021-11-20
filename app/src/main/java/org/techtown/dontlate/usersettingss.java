@@ -34,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public class usersettingss extends Fragment {
@@ -119,7 +120,11 @@ public class usersettingss extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 Place = items[which];
-                                adapter.addItem(new UserListItem(Place, "클릭하세요"));
+                                //adapter.addItem(new UserListItem(Place, "클릭하세요"));
+
+                                HashMap result = new HashMap<>();
+                                result.put("PlaceName", Place);
+                                result.put("Address", "클릭하세요");
                             }
                         })
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
