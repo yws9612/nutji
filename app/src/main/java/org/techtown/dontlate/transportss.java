@@ -27,6 +27,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.common.util.Strings;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -67,6 +68,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import retrofit2.http.Url;
+
 public class transportss extends Activity {
 
     Button fnBtn, sOkBtn;
@@ -87,8 +90,7 @@ public class transportss extends Activity {
     String ssId, esId, globalStartName, globalEndName;
     String glsName, gleName, gltTime, glsCount, adFare, laName, selaName, thlaName, sttName, sesttName, thsttName, stCount, sestCount, thstCount, waName, sewaName, thwaName;
     TextView gtTimes, glsNames, gleNames, glsCounts, adFares, lnNames, sttNames, sttCounts, waNames, selnNames, thlnNames, sesttNames, thsttNames, sesttCounts, thsttCounts, sewaNames, thwaNames;
-    String arsCode;
-    String ap;
+    String ars1,ars2,ars3,ars4,ars5,ars6,arsPoint;
 
 
     //seoulCitySubway.json 자체
@@ -163,6 +165,7 @@ public class transportss extends Activity {
         waNames = findViewById(R.id.tv_waNamess);
         sewaNames = findViewById(R.id.tv_sewaNamess);
         thwaNames = findViewById(R.id.tv_thwaNamess);
+
 
 
 
@@ -260,7 +263,25 @@ public class transportss extends Activity {
             }
         });
 
-        ap = "강동구청";
+        //은행시장
+        ars1 = "48057";//상행
+        ars2 = "49046";//하행
+
+        //동서울대학교
+        ars3 = "48066";
+        ars4 = "48065";
+
+        //네이버
+        ars5 = "07329";
+        ars6 = "07308";
+
+        if(arrivePoint == "경기도 성남시 중원구 산성대로 526"){
+            arsPoint = ars1;
+        }else if(arrivePoint == "경기도 성남시 수정구 복정로 76"){
+            arsPoint = ars3;
+        }else if(arrivePoint == "경기도 성남시 분당구 불정로 6"){
+            arsPoint = ars5;
+        }
 
         Geocoder geocoder = new Geocoder(this);
         try {
@@ -433,6 +454,9 @@ public class transportss extends Activity {
         //API 호출
         odsayService.requestSubwayPath("1000", ssId, esId, "1", onResultCallbackListener);
 
+
+
+
     }
 
 
@@ -442,7 +466,7 @@ public class transportss extends Activity {
         @Override
         protected String doInBackground(String... strings) {
             queryUrl = "http://ws.bus.go.kr/api/rest/stationinfo/getLowStationByUid?"
-                    + "ServiceKey=de8Q96jmb%2FJj%2BopbZdsPv5k4%2F2XDiyfTluNAwrhznOJROomUFPdf7D4M%2Bzw%2BbXjCIY%2B1VqXP%2BTmJaY7wOShFIA%3D%3D&arsId=48066";
+                    + "ServiceKey=de8Q96jmb%2FJj%2BopbZdsPv5k4%2F2XDiyfTluNAwrhznOJROomUFPdf7D4M%2Bzw%2BbXjCIY%2B1VqXP%2BTmJaY7wOShFIA%3D%3D&arsId="+arsPoint;
 
             try {
                 boolean b_stnNm = false;
@@ -524,6 +548,7 @@ public class transportss extends Activity {
             recyclerView.setAdapter(adapter);
         }
     }
+
 
 }
 
