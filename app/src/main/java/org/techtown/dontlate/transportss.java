@@ -79,7 +79,7 @@ public class transportss extends Activity {
     TextView ttview;
     private NetworkThread thread;
     private NetworkThreadArsId threadArsId;
-    private String queryUrl;
+    String queryUrl;
     private FirebaseDatabase database;
     ArrayList<Item> list = null;
     ArrayList<String> stCode = new ArrayList<>();
@@ -96,6 +96,9 @@ public class transportss extends Activity {
     String ars1,ars2,ars3,ars4,ars5,ars6,arsPoint;
     Spinner srpt, arpt;
     String qwer, qwerty;
+
+    String [] stspitems = {"선택해주세요", "집", "학교", "회사"};
+    String [] arspitems = {"선택해주세요", "집", "학교", "회사"};
 
 
     //seoulCitySubway.json 자체
@@ -503,6 +506,7 @@ public class transportss extends Activity {
 
             queryUrl = "http://ws.bus.go.kr/api/rest/stationinfo/getLowStationByUid?"
                     + "ServiceKey=de8Q96jmb%2FJj%2BopbZdsPv5k4%2F2XDiyfTluNAwrhznOJROomUFPdf7D4M%2Bzw%2BbXjCIY%2B1VqXP%2BTmJaY7wOShFIA%3D%3D&arsId="+ arsPoint;
+
 
             try {
                 boolean b_stnNm = false;
