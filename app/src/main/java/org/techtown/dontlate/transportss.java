@@ -240,7 +240,6 @@ public class transportss extends Activity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String value = snapshot.getValue(String.class);
                 startPoint = value;
-                ttview.setText(startPoint);
             }
 
 
@@ -255,6 +254,7 @@ public class transportss extends Activity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String value = snapshot.getValue(String.class);
                 arrivePoint = value;
+                Log.d("test", arrivePoint);
             }
 
             @Override
@@ -263,25 +263,6 @@ public class transportss extends Activity {
             }
         });
 
-        //은행시장
-        ars1 = "48057";//상행
-        ars2 = "49046";//하행
-
-        //동서울대학교
-        ars3 = "48066";
-        ars4 = "48065";
-
-        //네이버
-        ars5 = "07329";
-        ars6 = "07308";
-
-        if(arrivePoint == "경기도 성남시 중원구 산성대로 526"){
-            arsPoint = ars1;
-        }else if(arrivePoint == "경기도 성남시 수정구 복정로 76"){
-            arsPoint = ars3;
-        }else if(arrivePoint == "경기도 성남시 분당구 불정로 6"){
-            arsPoint = ars5;
-        }
 
         Geocoder geocoder = new Geocoder(this);
         try {
@@ -460,13 +441,30 @@ public class transportss extends Activity {
     }
 
 
-
     public class TransAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... strings) {
+
+            //윤지네 집
+            ars1 = "24186";
+
+            //동서울대학교
+            ars2 = "48066";
+
+            //회사 (강남)
+            ars3 = "22011";
+
+            if(arrivePoint == "경기도 성남시 중원구 산성대로 526"){
+                arsPoint = ars1;
+            }else if(arrivePoint == "경기도 성남시 수정구 복정로 76"){
+                arsPoint = ars3;
+            }else if(arrivePoint == "경기도 성남시 분당구 불정로 6"){
+                arsPoint = ars5;
+            }
+
             queryUrl = "http://ws.bus.go.kr/api/rest/stationinfo/getLowStationByUid?"
-                    + "ServiceKey=de8Q96jmb%2FJj%2BopbZdsPv5k4%2F2XDiyfTluNAwrhznOJROomUFPdf7D4M%2Bzw%2BbXjCIY%2B1VqXP%2BTmJaY7wOShFIA%3D%3D&arsId="+arsPoint;
+                    + "ServiceKey=de8Q96jmb%2FJj%2BopbZdsPv5k4%2F2XDiyfTluNAwrhznOJROomUFPdf7D4M%2Bzw%2BbXjCIY%2B1VqXP%2BTmJaY7wOShFIA%3D%3D&arsId="+ ars1;
 
             try {
                 boolean b_stnNm = false;
