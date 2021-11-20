@@ -49,13 +49,13 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.google.android.material:material:1.2.1'
-    implementation files('C:/nutji/libs/ODsayAndroidSDK.aar') //대중교통 api
+    implementation files('D:/graduate/nm/libs/ODsayAndroidSDK.aar') //대중교통 api
 
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
     implementation 'com.android.support:appcompat-v7:30.1.1'
 
-    implementation files('C:/nutji/libs/com.skt.Tmap_1.68.jar')
+    implementation files('D:/graduate/nm/libs/com.skt.Tmap_1.68.jar')
 
     implementation platform('com.google.firebase:firebase-bom:28.4.2')
     implementation 'com.google.firebase:firebase-analytics' // firebase

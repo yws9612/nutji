@@ -97,8 +97,6 @@ public class transportss extends Activity {
     Spinner srpt, arpt;
     String qwer, qwerty;
 
-    String [] stspitems = {"선택해주세요", "집", "학교", "회사"};
-    String [] arspitems = {"선택해주세요", "집", "학교", "회사"};
 
 
     //seoulCitySubway.json 자체
