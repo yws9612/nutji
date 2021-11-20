@@ -2,211 +2,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:baselineAligned="true"
     android:orientation="horizontal">
 
-<!--    <EditText-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/et_user_name"-->
-<!--        android:text="이름"-->
-<!--        android:textSize="30dp" />-->
-
-<!--    <EditText-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/et_user_email"-->
-<!--        android:text="이메일"-->
-<!--        android:textSize="30dp" />-->
-
-
-<!--    <Button-->
-<!--        android:id="@+id/btn_save"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="저장"-->
-<!--        android:layout_marginLeft="150dp"/>-->
-
-
-    <TableLayout
+    <LinearLayout
+        android:id="@+id/table"
         android:layout_width="100dp"
-        android:layout_height="520dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="85dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
         android:orientation="vertical"
-        android:weightSum="48"
         android:background="#33691E"
         android:padding="1dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="외출 준비"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:background="#C5E1A5"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:background="#F1F8E9" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="6"
-            android:text="자바"
-            android:gravity="center"
-            android:background="#7CB342"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="점심시간"
-            android:gravity="center"
-            android:background="#9CCC65"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="8"
-            android:text="우주공강"
-            android:gravity="center"
-            android:background="#558B2F"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="교양"
-            android:gravity="center"
-            android:background="#7CB342"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="6"
-            android:background="#F1F8E9" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="저녁 운동"
-            android:gravity="center"
-            android:background="#AED581"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:background="#F1F8E9" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:text="과제"
-            android:gravity="center"
-            android:background="#689F38"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:background="#F1F8E9" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="휴식"
-            android:gravity="center"
-            android:background="#8BC34A"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="취침 준비"
-            android:gravity="center"
-            android:background="#558B2F"
-            android:textColor="@color/white" />
-
-
-    </TableLayout>
+    </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/summary"
+        android:layout_width="170dp"
         android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="7:00" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="500dp"
-            android:text="24:00" />
+        android:layout_marginBottom="85dp"
+        android:orientation="vertical"
+        android:padding="1dp">
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginTop="32dp"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="83dp"
-            android:text="1307 조민양 교수님" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="123dp"
-            android:text="1204 서장원 교수님" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="155dp"
-            android:text="JSP 레포트" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="58dp"
-            android:text="유미의 세포들 1화" />
-
-    </LinearLayout>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="일정 편집"
+            android:drawableTop="@drawable/setting"
             android:background="#00FF0000"
-            android:layout_marginTop="10dp"
-            android:id="@+id/Addbtn"/>
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="13dp"
+            android:id="@+id/Addbtn" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

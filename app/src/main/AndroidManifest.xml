@@ -30,6 +30,8 @@
         <activity android:name=".PublicApi"></activity>
 
 
+        <activity android:name=".addSchedule"></activity>
+        <activity android:name=".editSchedule"></activity>
         android:usesCleartextTraffic="true"
     </application>
 
