@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -93,7 +94,6 @@ public class addSchedule extends AppCompatActivity {
             @Override
             public void onClick(View v) { finish(); }
         });
-
 
         CheckBox check = (CheckBox) findViewById(R.id.Check);
         if(check.isChecked()) {

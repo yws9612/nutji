@@ -73,7 +73,7 @@ public class editSchedule extends AppCompatActivity {
         Sadapter = new ScheduleAdapter(arrayList, this);
         scheduleList.setAdapter(Sadapter);
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.orderByChild("StartTime").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                 arrayList.clear();
