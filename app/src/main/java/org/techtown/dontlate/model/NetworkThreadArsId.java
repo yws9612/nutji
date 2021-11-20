@@ -1,4 +1,4 @@
-package org.techtown.dontlate;
+package org.techtown.dontlate.model;
 
 import android.util.Log;
 
@@ -8,17 +8,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-import retrofit2.http.HTTP;
-
-public class NetworkThread extends Thread{
-
+public class NetworkThreadArsId extends Thread{
     @Override
     public void run() {
-        try {
-            StringBuilder urlBuilder = new StringBuilder("http://ws.bus.go.kr/api/rest/stationinfo/getStationByName");
+
+        try{
+            StringBuilder urlBuilder = new StringBuilder("http://ws.bus.go.kr/api/rest/stationinfo/getStationByUid");
             Log.e("MY_TEST", "urlBuilder");
             urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=de8Q96jmb%2FJj%2BopbZdsPv5k4%2F2XDiyfTluNAwrhznOJROomUFPdf7D4M%2Bzw%2BbXjCIY%2B1VqXP%2BTmJaY7wOShFIA%3D%3D");
-            urlBuilder.append("&" + URLEncoder.encode("stSrch", "UTF-8") + "=" + URLEncoder.encode("동서울대학교", "UTF-8"));
+            urlBuilder.append("&" + URLEncoder.encode("arsId", "UTF-8") + "=" + URLEncoder.encode("48066", "UTF-8"));
 
             URL url = new URL(urlBuilder.toString());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -38,7 +36,7 @@ public class NetworkThread extends Thread{
             while ((line = rd.readLine()) != null) {
                 sb.append(line);
             }
-            Log.e("Station_Name_TEST", sb.toString());
+            Log.e("Station_Name_TEST_ARSID", sb.toString());
             rd.close();
             conn.disconnect();
         }catch(Exception e){
@@ -46,6 +44,3 @@ public class NetworkThread extends Thread{
         }
     }
 }
-
-
-
