@@ -158,15 +158,15 @@ public class transportss extends Activity {
 
         subsummary = (LinearLayout) findViewById(R.id.subsummary);
         subsummary1 = (LinearLayout) findViewById(R.id.subsummary1);
-        subsummary2 = (LinearLayout) findViewById(R.id.subsummary2);
+        //subsummary2 = (LinearLayout) findViewById(R.id.subsummary2);
 
         subsummary3 = (LinearLayout) findViewById(R.id.subsummary3);
         subsummary4 = (LinearLayout) findViewById(R.id.subsummary4);
-        subsummary5 = (LinearLayout) findViewById(R.id.subsummary5);
+        //subsummary5 = (LinearLayout) findViewById(R.id.subsummary5);
 
         subtable = (LinearLayout) findViewById(R.id.subtable);
         subtable1 = (LinearLayout) findViewById(R.id.subtable1);
-        subtable2 = (LinearLayout) findViewById(R.id.subtable2);
+//        subtable2 = (LinearLayout) findViewById(R.id.subtable2);
 
 
 
@@ -182,7 +182,7 @@ public class transportss extends Activity {
 //
         sttNames = findViewById(R.id.tv_sttNamess);
         sesttNames = findViewById(R.id.tv_sesttNamess);
-        thsttNames = findViewById(R.id.tv_thsttNamess);
+//        thsttNames = findViewById(R.id.tv_thsttNamess);
 //
 //        sttCounts = findViewById(R.id.tv_sttCountss);
 //        sesttCounts = findViewById(R.id.tv_sesttCountss);
@@ -411,27 +411,20 @@ public class transportss extends Activity {
                         //승차역 호선명
                         laName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(0).getString("laneName");
                         tv.setText(laName);
-//                        lnNames.setText(laName);
 
                         try {
                             selaName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(1).getString("laneName");
                             tv1.setText(selaName);
                             if(selaName != null){
-                                subtable1.addView(tv1);}
-                            if(selaName == null){
-                                subtable1.setVisibility(View.GONE);
+                                subtable1.addView(tv1);
                             }
-//                            selnNames.setText(selaName);
 
                             thlaName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(2).getString("laneName");
                             tv2.setText(thlaName);
                             if(thlaName != null){
                                 subtable2.addView(tv2);
                             }
-                            if(thlaName == null){
-                                subtable2.setVisibility(View.GONE);
-                            }
-//                            thlnNames.setText(thlaName);
+
                         } catch (NullPointerException e) {
                             e.printStackTrace();
                             throw e;
@@ -547,106 +540,101 @@ public class transportss extends Activity {
         //API 호출
         odsayService.requestSubwayPath("1000", ssId, esId, "1", onResultCallbackListener);
 
-
-
-
-
-
-
-
+        //첫번째 호선
         tv.setTextSize(14);
-        tv1.setTextSize(14);
-        tv2.setTextSize(14);
-
-        stv.setTextSize(14);
-        stv1.setTextSize(14);
-        stv2.setTextSize(14);
-
-        stv3.setTextSize(14);
-        stv4.setTextSize(14);
-        stv5.setTextSize(14);
-
         tv.setTypeface(null, Typeface.BOLD);
-        tv1.setTypeface(null, Typeface.BOLD);
-        tv2.setTypeface(null, Typeface.BOLD);
-
-        stv.setTypeface(null, Typeface.BOLD);
-        stv1.setTypeface(null, Typeface.BOLD);
-        stv2.setTypeface(null, Typeface.BOLD);
-
-
-
         tv.setId(0);
-        tv1.setId(0);
-        tv2.setId(0);
-
-        stv.setId(0);
-        stv1.setId(0);
-        stv2.setId(0);
-
-        stv3.setId(0);
-        stv4.setId(0);
-        stv5.setId(0);
-
+        tv.setGravity(Gravity.CENTER);
         LinearLayout.LayoutParams subparams =
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         weight);
 
+        //두번째 호선
+        tv1.setTextSize(14);
+        tv1.setTypeface(null, Typeface.BOLD);
+        tv1.setId(0);
+        tv1.setGravity(Gravity.CENTER);
         LinearLayout.LayoutParams subparams1 =
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         weight);
 
+        //세번째 호선
+        tv2.setTextSize(14);
+        tv2.setTypeface(null, Typeface.BOLD);
+        tv2.setId(0);
         LinearLayout.LayoutParams subparams2 =
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         weight);
 
-
-
-
+        //첫번째 방면
+        stv.setTextSize(14);
+        stv.setTypeface(null, Typeface.BOLD);
+        stv.setId(0);
+        stv.setGravity(Gravity.CENTER_VERTICAL);
+        tv2.setGravity(Gravity.CENTER);
         LinearLayout.LayoutParams ssubparams =
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         weight);
 
+        //두번째 방면
+        stv1.setTextSize(14);
+        stv1.setTypeface(null, Typeface.BOLD);
+        stv1.setId(0);
+        stv1.setGravity(Gravity.CENTER_VERTICAL);
         LinearLayout.LayoutParams ssubparams1 =
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         weight);
 
+        //세번째방면
+        stv2.setTextSize(14);
+        stv2.setTypeface(null, Typeface.BOLD);
+        stv2.setId(0);
+        stv2.setGravity(Gravity.CENTER_VERTICAL);
         LinearLayout.LayoutParams ssubparams2 =
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         weight);
 
-
-
+        //역 개수 1
+        stv3.setTextSize(14);
+        stv3.setId(0);
+        stv3.setGravity(Gravity.CENTER_VERTICAL);
         LinearLayout.LayoutParams ssubparams3 =
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         weight);
 
+        //역 개수 2
+        stv4.setTextSize(14);
+        stv4.setId(0);
+        stv4.setGravity(Gravity.CENTER_VERTICAL);
         LinearLayout.LayoutParams ssubparams4 =
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         weight);
 
+        //역 개수 3
+        stv5.setTextSize(14);
+        stv5.setId(0);
+        stv5.setGravity(Gravity.CENTER_VERTICAL);
         LinearLayout.LayoutParams ssubparams5 =
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         weight);
-
 
 
         tv.setLayoutParams(subparams);
@@ -682,22 +670,6 @@ public class transportss extends Activity {
 
 
 
-        tv.setGravity(Gravity.CENTER);
-        tv1.setGravity(Gravity.CENTER);
-        tv2.setGravity(Gravity.CENTER);
-
-        stv.setGravity(Gravity.CENTER_VERTICAL);
-        stv1.setGravity(Gravity.CENTER_VERTICAL);
-        stv2.setGravity(Gravity.CENTER_VERTICAL);
-
-        stv3.setGravity(Gravity.CENTER_VERTICAL);
-        stv4.setGravity(Gravity.CENTER_VERTICAL);
-        stv5.setGravity(Gravity.CENTER_VERTICAL);
-
-
-
-
-
         sOkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -714,20 +686,10 @@ public class transportss extends Activity {
                         arsPoint = ars3;
                         break;
                 }
-
-
-
-                
-
                 TransAsyncTask transAsyncTask = new TransAsyncTask();
                 transAsyncTask.execute();
             }
         });
-
-
-
-
-
     }
 
 
@@ -738,7 +700,6 @@ public class transportss extends Activity {
 
             queryUrl = "http://ws.bus.go.kr/api/rest/stationinfo/getLowStationByUid?"
                     + "ServiceKey=de8Q96jmb%2FJj%2BopbZdsPv5k4%2F2XDiyfTluNAwrhznOJROomUFPdf7D4M%2Bzw%2BbXjCIY%2B1VqXP%2BTmJaY7wOShFIA%3D%3D&arsId="+ arsPoint;
-
 
             try {
                 boolean b_stnNm = false;
@@ -814,7 +775,6 @@ public class transportss extends Activity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-
 
             TransAdapter adapter = new TransAdapter(getApplicationContext(), list);
             recyclerView.setAdapter(adapter);

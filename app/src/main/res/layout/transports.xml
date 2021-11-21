@@ -150,13 +150,13 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/tv_sttNamess"
                             android:textSize="17dp"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="30dp"
                             android:textStyle="bold"/>
 
                         <LinearLayout
                             android:id="@+id/subtable"
                             android:layout_width="20dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="150dp"
                             android:layout_marginBottom="10dp"
                             android:layout_marginTop="10dp"
                             android:orientation="vertical"
@@ -173,29 +173,29 @@
                         <LinearLayout
                             android:id="@+id/subtable1"
                             android:layout_width="20dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="150dp"
                             android:layout_marginBottom="10dp"
                             android:layout_marginTop="10dp"
                             android:orientation="vertical"
                             android:padding="1dp">
                         </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/tv_thsttNamess"
-                            android:textSize="17dp"
-                            android:textStyle="bold"/>
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:id="@+id/tv_thsttNamess"-->
+<!--                            android:textSize="17dp"-->
+<!--                            android:textStyle="bold"/>-->
 
-                        <LinearLayout
-                            android:id="@+id/subtable2"
-                            android:layout_width="20dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginTop="10dp"
-                            android:orientation="vertical"
-                            android:padding="1dp">
-                        </LinearLayout>
+<!--                        <LinearLayout-->
+<!--                            android:id="@+id/subtable2"-->
+<!--                            android:layout_width="20dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginBottom="10dp"-->
+<!--                            android:layout_marginTop="10dp"-->
+<!--                            android:orientation="vertical"-->
+<!--                            android:padding="1dp">-->
+<!--                        </LinearLayout>-->
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -214,7 +214,7 @@
                             android:id="@+id/subsummary"
                             android:layout_width="70dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="17dp"
+                            android:layout_marginTop="32dp"
                             android:layout_marginBottom="5dp"
                             android:orientation="vertical">
                         </LinearLayout>
@@ -222,9 +222,10 @@
                         <LinearLayout
                             android:id="@+id/subsummary3"
                             android:layout_width="70dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="130dp"
                             android:layout_marginTop="20dp"
                             android:layout_marginBottom="10dp"
+                            android:gravity="center"
                             android:orientation="vertical">
                         </LinearLayout>
 
@@ -232,7 +233,7 @@
                             android:id="@+id/subsummary1"
                             android:layout_width="70dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="7dp"
+                            android:layout_marginTop="8dp"
                             android:layout_marginBottom="20dp"
                             android:orientation="vertical">
                         </LinearLayout>
@@ -240,29 +241,30 @@
                         <LinearLayout
                             android:id="@+id/subsummary4"
                             android:layout_width="70dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="123dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="15dp"
+                            android:gravity="center"
                             android:orientation="vertical">
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:id="@+id/subsummary2"
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
-                            android:layout_marginBottom="10dp"
-                            android:orientation="vertical">
-                        </LinearLayout>
+<!--                        <LinearLayout-->
+<!--                            android:id="@+id/subsummary2"-->
+<!--                            android:layout_width="70dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="30dp"-->
+<!--                            android:layout_marginBottom="10dp"-->
+<!--                            android:orientation="vertical">-->
+<!--                        </LinearLayout>-->
 
-                        <LinearLayout
-                            android:id="@+id/subsummary5"
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
-                            android:layout_marginBottom="10dp"
-                            android:orientation="vertical">
-                        </LinearLayout>
+<!--                        <LinearLayout-->
+<!--                            android:id="@+id/subsummary5"-->
+<!--                            android:layout_width="70dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="30dp"-->
+<!--                            android:layout_marginBottom="10dp"-->
+<!--                            android:orientation="vertical">-->
+<!--                        </LinearLayout>-->
 
                     </LinearLayout>
 
@@ -281,15 +283,14 @@
                             android:id="@+id/tv_glsCountss"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24dp"
+                            android:textSize="20dp"
                             android:layout_marginTop="30dp"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="개역"
-                            android:textSize="24dp"
+                            android:text="개 역  "
+                            android:textSize="20dp"
                             android:layout_marginTop="30dp"/>
-
 
                         <TextView
                             android:id="@+id/tv_gtTimess"
@@ -312,7 +313,8 @@
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -321,7 +323,7 @@
                             android:layout_marginLeft="20dp"/>
                         <TextView
                             android:id="@+id/tv_adFaress"
-                            android:textColor="#ff0000"
+                            android:textColor="#7CA57E"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="18dp"/>
