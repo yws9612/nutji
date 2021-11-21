@@ -61,7 +61,6 @@
 {"line_num":"04호선","station_cd":"0425","station_nm":"회현","fr_code":"425"},
 {"line_num":"04호선","station_cd":"0433","station_nm":"사당","fr_code":"433"},
 {"line_num":"경의선","station_cd":"1011","station_nm":"옥수","fr_code":"K114"},
-{"line_num":"수인분당선","station_cd":"1031","station_nm":"복정","fr_code":"K222"},
 {"line_num":"02호선","station_cd":"0229","station_nm":"봉천","fr_code":"229"},
 {"line_num":"03호선","station_cd":"0328","station_nm":"잠원","fr_code":"338"},
 {"line_num":"03호선","station_cd":"0335","station_nm":"대치","fr_code":"345"},

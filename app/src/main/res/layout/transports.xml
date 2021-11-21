@@ -7,47 +7,51 @@
 
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/search_Ok_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="9dp"
-            android:layout_marginRight="10dp"
-            android:clickable="true"
-            android:text="검색" />
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="7dp"
+        android:gravity="center_horizontal">
 
 
         <Button
             android:id="@+id/finish_Button"
-            android:layout_width="wrap_content"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="#00ff0000"
+            android:layout_gravity="left"
+            android:text="←"
+            android:textSize="18dp"/>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="224dp"
-            android:layout_marginRight="10dp"
-            android:layout_toStartOf="@+id/search_Ok_Button"
-            android:text="종료" />
+            android:text="출발 지점                 도착 지점"
+            android:textSize="20dp"
+            android:id="@+id/guideText"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="10"/>
+
+
+        <Button
+            android:id="@+id/search_Ok_Button"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:clickable="true"
+            android:text="+"
+            android:textSize="18dp"
+            android:background="#00ff0000"
+            android:layout_gravity="right"/>
 
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="출발 지점                      도착 지점"
-        android:textSize="20dp"
-        android:layout_marginTop="20dp"
-        android:id="@+id/guideText"
-        android:gravity="center"/>
 
 
 
@@ -60,24 +64,36 @@
         android:gravity="center_horizontal">
 
         <Spinner
-            android:layout_marginRight="10dp"
-            android:layout_width="130dp"
+            android:layout_width="120dp"
             android:layout_height="30dp"
-            android:id="@+id/startPoint" />
+            android:id="@+id/startPoint"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="27dp"
+            android:layout_marginBottom="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="→"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:layout_marginBottom="7dp"/>
 
         <Spinner
-            android:layout_marginLeft="10dp"
-            android:layout_width="130dp"
+            android:layout_width="120dp"
             android:layout_height="30dp"
-            android:id="@+id/arrivePoint" />
+            android:id="@+id/arrivePoint"
+            android:layout_marginLeft="27dp"
+            android:layout_marginBottom="15dp"/>
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#E2E2E2"/>
 
     <TabHost
         android:layout_width="match_parent"
@@ -111,8 +127,7 @@
                         android:id="@+id/transRecycler"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scrollbars="vertical"/>
-
+                        android:scrollbars="vertical" />
 
 
                 </LinearLayout>
@@ -126,19 +141,68 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
+
                         <TextView
-                            android:text="소요 시간(분) : "
+                            android:id="@+id/tv_glsCountss"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:textSize="27dp"
+                            android:layout_marginLeft="230dp"
+                            android:layout_marginTop="30dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="개 역"
+                            android:textSize="27dp"
+                            android:layout_marginTop="30dp"/>
+
+
                         <TextView
                             android:id="@+id/tv_gtTimess"
-                            android:textSize="32dp"
-                            android:textColor="#0000ff"
+                            android:textSize="27dp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="30dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="분"
+                            android:textSize="27dp"
+                            android:gravity="right"
+                            android:layout_marginTop="30dp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="요금 "
+                            android:textSize="18dp"
+                            android:layout_marginLeft="292dp"/>
+                        <TextView
+                            android:id="@+id/tv_adFaress"
+                            android:textColor="#ff0000"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textSize="18dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="원"
+                            android:textSize="18dp"/>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -155,33 +219,8 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="도착역 명 : "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/tv_gleNamess"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="정차역 수 : "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/tv_glsCountss"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
+
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -192,10 +231,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
-                            android:id="@+id/tv_adFaress"
-                            android:textColor="#ff0000"
+                            android:id="@+id/tv_gleNamess"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
+
                     </LinearLayout>
 
                     <LinearLayout

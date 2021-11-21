@@ -95,7 +95,7 @@ public class transportss extends Activity {
     TextView gtTimes, glsNames, gleNames, glsCounts, adFares, lnNames, sttNames, sttCounts, waNames, selnNames, thlnNames, sesttNames, thsttNames, sesttCounts, thsttCounts, sewaNames, thwaNames;
     String ars1,ars2,ars3,ars4,ars5,ars6,arsPoint;
     Spinner srpt, arpt;
-    String qwer, qwerty;
+    String qwer, asdf;
 
 
 
@@ -121,8 +121,8 @@ public class transportss extends Activity {
             JSONArray jsonArray = new JSONArray(json);
 
             globalStartName = "강동구청";
-
             globalEndName = "정발산";
+
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject obj = jsonArray.getJSONObject(i);
@@ -295,9 +295,23 @@ public class transportss extends Activity {
         });
 
 
+
+
         ArrayAdapter<String> Aadapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
         Aadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         arpt.setAdapter(Aadapter);
+
+        arpt.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                asdf =  parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
 
@@ -488,6 +502,7 @@ public class transportss extends Activity {
                         arsPoint = ars3;
                         break;
                 }
+
                 TransAsyncTask transAsyncTask = new TransAsyncTask();
                 transAsyncTask.execute();
             }

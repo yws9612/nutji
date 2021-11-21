@@ -4,75 +4,96 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:text="도착 예정 버스 번호 :"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/tv_rtNm"
-            android:textSize="32dp"
-            android:textColor="#0000ff"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="도착 예정 버스의 위치 :"
+            android:textSize="24dp"
+            android:textColor="#7ea369"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="3dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="3dp"
+            android:text="---"
+            android:textSize="18dp"/>
         <TextView
             android:id="@+id/tv_stationNm1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="정류장 이름 :"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tv_stnNm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="3dp"/>
+
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:text="도착 시간 :"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+
         <TextView
             android:id="@+id/tv_arrmsg1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:layout_marginLeft="27dp"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="left"/>
+
     </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_stnNm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:layout_marginLeft="27dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="------->"
+            android:textSize="18dp"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="동서울대학교"
+            android:textSize="18dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="15dp"/>
+    </LinearLayout>
+
+
 
     <!--구분선-->
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="16dp"
-        android:layout_centerInParent="true"
         android:background="#e3e3e3"/>
 
 
