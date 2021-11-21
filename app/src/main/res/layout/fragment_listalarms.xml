@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/fragment_listalarms_myAlarms"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="알람"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="40dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/border"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_listalarms_recylerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toTopOf="@+id/test"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_listalarms_addAlarm">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/fragment_listalarms_addAlarm"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_gravity="bottom"
+            android:textSize="15dp"
+            android:text="추가"
+            android:background="#00ff0000"
+            app:layout_constraintRight_toRightOf="@id/fragment_listalarms_myAlarms"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/test"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            app:layout_constraintBottom_toBottomOf="parent"></TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

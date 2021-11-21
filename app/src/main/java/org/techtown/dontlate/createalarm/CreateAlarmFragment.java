@@ -1,19 +1,23 @@
-package org.techtown.dontlate;
+package org.techtown.dontlate.createalarm;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TimePicker;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 
-import org.techtown.dontlate.createalarm.CreateAlarmViewModel;
-import org.techtown.dontlate.createalarm.TimePickerUtil;
+import org.techtown.dontlate.R;
 import org.techtown.dontlate.data.Alarm;
 
 import java.util.Random;
@@ -22,14 +26,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class TimePickerActivity extends AppCompatActivity {
-
+public class CreateAlarmFragment extends Fragment {
     @BindView(R.id.fragment_createalarm_timePicker)
     TimePicker timePicker;
-    @BindView(R.id.fragment_createalarm_recurring)
-    CheckBox recurring;
     @BindView(R.id.fragment_createalarm_title)
     EditText title;
+    @BindView(R.id.fragment_createalarm_memo)
+    EditText memo;
+    @BindView(R.id.okBtn)
+    Button scheduleAlarm;
+    @BindView(R.id.fragment_createalarm_recurring)
+    CheckBox recurring;
     @BindView(R.id.fragment_createalarm_checkMon)
     CheckBox mon;
     @BindView(R.id.fragment_createalarm_checkTue)
@@ -46,61 +53,46 @@ public class TimePickerActivity extends AppCompatActivity {
     CheckBox sun;
     @BindView(R.id.fragment_createalarm_recurring_options)
     LinearLayout recurringOptions;
-    @BindView(R.id.okBtn)
-    Button okBtn;
-    @BindView(R.id.backBtn)
-    Button backBtn;
-    @BindView(R.id.fragment_createalarm_memo)
-    EditText memo;
+
 
     private CreateAlarmViewModel createAlarmViewModel;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_createalarm);
 
         createAlarmViewModel = ViewModelProviders.of(this).get(CreateAlarmViewModel.class);
+    }
 
-        ButterKnife.bind(this);
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_createalarm, container, false);
 
-        recurring.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                recurringOptions.setVisibility(View.VISIBLE);
-            } else {
-                recurringOptions.setVisibility(View.GONE);
+        ButterKnife.bind(this, view);
+
+        recurring.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    recurringOptions.setVisibility(View.VISIBLE);
+                } else {
+                    recurringOptions.setVisibility(View.GONE);
+                }
             }
         });
 
-        okBtn = (Button) findViewById(R.id.okBtn);
-        okBtn.setOnClickListener(new View.OnClickListener() {
+        scheduleAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 scheduleAlarm();
-                Intent intent = new Intent(getApplication(), MainActivity.class);
-                startActivity(intent);
-                finish();
-
+//                Navigation.findNavController(v).navigate(R.id.action_createAlarmFragment_to_alarmsListFragment);
+//                Navigation.findNavController(getActivity(),R.id.action_createAlarmFragment_to_alarmsListFragment);
             }
         });
 
-        //뒤로가기 버튼 클릭 시 메인으로 복귀
-        backBtn = (Button) findViewById(R.id.backBtn);
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        
-
-    }
-
-    //휴대폰 뒤로가기버튼 터치 시 메인으로 복귀
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+        return view;
     }
 
     private void scheduleAlarm() {
@@ -126,7 +118,6 @@ public class TimePickerActivity extends AppCompatActivity {
 
         createAlarmViewModel.insert(alarm);
 
-        alarm.schedule(getApplicationContext());
-
+        alarm.schedule(getContext());
     }
 }

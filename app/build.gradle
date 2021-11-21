@@ -44,6 +44,7 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.firebase:firebase-database:20.0.2'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -59,5 +60,20 @@ dependencies {
 
     implementation platform('com.google.firebase:firebase-bom:28.4.2')
     implementation 'com.google.firebase:firebase-analytics' // firebase
+
+        def nav_version = "2.3.5"
+
+        // Java language implementation
+        implementation "androidx.navigation:navigation-fragment:$nav_version"
+        implementation "androidx.navigation:navigation-ui:$nav_version"
+
+
+        def room_version = "2.3.0"
+
+        implementation "androidx.room:room-runtime:$room_version"
+        annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
 }

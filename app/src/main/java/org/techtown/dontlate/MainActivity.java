@@ -1,52 +1,28 @@
 package org.techtown.dontlate;
 
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.odsay.odsayandroidsdk.API;
-import com.odsay.odsayandroidsdk.ODsayData;
-import com.odsay.odsayandroidsdk.ODsayService;
-import com.odsay.odsayandroidsdk.OnResultCallbackListener;
-
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
-import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabLayout;
 
-
-import org.json.JSONException;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import org.techtown.dontlate.alarmslist.AlarmsListFragment;
 
 public class MainActivity extends AppCompatActivity { //객체 추가  implements View.OnClickListener
 
     private BottomNavigationView bottomNavigationView; //바텀 네비게이션 뷰
     private FragmentManager fm;
     private FragmentTransaction ft;
+    private AlarmsListFragment Alarmss;
+//    private alarmss Alarmss;
 
-    private alarmss Alarmss;
     private navigationss Navigationss;
     private scheduless Scheduless;
     private transportss Transportss;
@@ -112,13 +88,13 @@ public class MainActivity extends AppCompatActivity { //객체 추가  implement
             }
         }); //드로어블 해결함
 
-        Alarmss = new alarmss();
+        Alarmss = new AlarmsListFragment();
         Navigationss = new navigationss();
         Scheduless = new scheduless();
         Transportss = new transportss();
         Usersettingss = new usersettingss();
 
-        bottomNavigationView.setSelectedItemId(R.id.schedule); //첫 Fragment 화면 지정
+        bottomNavigationView.setSelectedItemId(R.id.alarm); //첫 Fragment 화면 지정(알람화면으로 해둠)
 
 
     }
@@ -172,10 +148,23 @@ public class MainActivity extends AppCompatActivity { //객체 추가  implement
         }
     }*/
 
+    //뒤로가기버튼 1회 터치 후 2초안에 추가 터치시 어플 종료
+    long pressedtime = 0;
 
+    @Override
+    public void onBackPressed() {
+        if(System.currentTimeMillis()>pressedtime+2000){
+            pressedtime = System.currentTimeMillis();
+            Toast.makeText(getApplicationContext(),"한번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT).show();
+        } else{
+            Toast.makeText(getApplicationContext(),"어플을 종료합니다.",Toast.LENGTH_SHORT).show();
+            finishAffinity();
+            System.runFinalization();
+            System.exit(0);
+            //2회 터치 시 어플 완전 종료
+        }
 
-
-
+    }
 }
 
 
