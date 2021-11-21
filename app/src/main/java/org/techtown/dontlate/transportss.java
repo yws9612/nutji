@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.graphics.PointF;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,6 +99,9 @@ public class transportss extends Activity {
     String ars1,ars2,ars3,ars4,ars5,ars6,arsPoint;
     Spinner srpt, arpt;
     String qwer, asdf;
+    LinearLayout subtable, subsummary, subtable1, subtable2, subsummary1, subsummary2, subsummary3, subsummary4, subsummary5;
+    float weight = 0;
+
 
 
 
@@ -120,8 +126,8 @@ public class transportss extends Activity {
             json = new String(buffer, "UTF-8");
             JSONArray jsonArray = new JSONArray(json);
 
-            globalStartName = "강동구청";
-            globalEndName = "정발산";
+            globalStartName = "석촌";
+            globalEndName = "강남";
 
 
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -150,27 +156,41 @@ public class transportss extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.transports);
 
+        subsummary = (LinearLayout) findViewById(R.id.subsummary);
+        subsummary1 = (LinearLayout) findViewById(R.id.subsummary1);
+        subsummary2 = (LinearLayout) findViewById(R.id.subsummary2);
+
+        subsummary3 = (LinearLayout) findViewById(R.id.subsummary3);
+        subsummary4 = (LinearLayout) findViewById(R.id.subsummary4);
+        subsummary5 = (LinearLayout) findViewById(R.id.subsummary5);
+
+        subtable = (LinearLayout) findViewById(R.id.subtable);
+        subtable1 = (LinearLayout) findViewById(R.id.subtable1);
+        subtable2 = (LinearLayout) findViewById(R.id.subtable2);
+
+
+
         gtTimes = findViewById(R.id.tv_gtTimess);
-        glsNames = findViewById(R.id.tv_glsNamess);
+//        glsNames = findViewById(R.id.tv_glsNamess);
         gleNames = findViewById(R.id.tv_gleNamess);
         glsCounts = findViewById(R.id.tv_glsCountss);
         adFares= findViewById(R.id.tv_adFaress);
 
-        lnNames = findViewById(R.id.tv_lnNamess);
-        selnNames = findViewById(R.id.tv_selnNamess);
-        thlnNames = findViewById(R.id.tv_thlnNamess);
-
+//        lnNames = findViewById(R.id.tv_lnNamess);
+//        selnNames = findViewById(R.id.tv_selnNamess);
+//        thlnNames = findViewById(R.id.tv_thlnNamess);
+//
         sttNames = findViewById(R.id.tv_sttNamess);
         sesttNames = findViewById(R.id.tv_sesttNamess);
         thsttNames = findViewById(R.id.tv_thsttNamess);
-
-        sttCounts = findViewById(R.id.tv_sttCountss);
-        sesttCounts = findViewById(R.id.tv_sesttCountss);
-        thsttCounts = findViewById(R.id.tv_thsttCountss);
-
-        waNames = findViewById(R.id.tv_waNamess);
-        sewaNames = findViewById(R.id.tv_sewaNamess);
-        thwaNames = findViewById(R.id.tv_thwaNamess);
+//
+//        sttCounts = findViewById(R.id.tv_sttCountss);
+//        sesttCounts = findViewById(R.id.tv_sesttCountss);
+//        thsttCounts = findViewById(R.id.tv_thsttCountss);
+//
+//        waNames = findViewById(R.id.tv_waNamess);
+//        sewaNames = findViewById(R.id.tv_sewaNamess);
+//        thwaNames = findViewById(R.id.tv_thwaNamess);
 
         srpt = findViewById(R.id.startPoint);
         arpt = findViewById(R.id.arrivePoint);
@@ -198,6 +218,16 @@ public class transportss extends Activity {
         sOkBtn = (Button) findViewById(R.id.search_Ok_Button);
 
 
+        TextView tv = new TextView(this);
+        TextView tv1 = new TextView(this);
+        TextView tv2 = new TextView(this);
+
+        TextView stv = new TextView(this);
+        TextView stv1 = new TextView(this);
+        TextView stv2 = new TextView(this);
+        TextView stv3 = new TextView(this);
+        TextView stv4 = new TextView(this);
+        TextView stv5 = new TextView(this);
 
 
         recyclerView = (RecyclerView) findViewById(R.id.transRecycler);
@@ -356,8 +386,8 @@ public class transportss extends Activity {
                     if (api == API.SUBWAY_PATH) {
 
                         //출발역 명
-                        glsName = odsayData.getJson().getJSONObject("result").getString("globalStartName");
-                        glsNames.setText(glsName);
+//                        glsName = odsayData.getJson().getJSONObject("result").getString("globalStartName");
+//                        glsNames.setText(glsName);
 
                         //도착역 명
                         gleName = odsayData.getJson().getJSONObject("result").getString("globalEndName");
@@ -380,13 +410,28 @@ public class transportss extends Activity {
 
                         //승차역 호선명
                         laName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(0).getString("laneName");
-                        lnNames.setText(laName);
+                        tv.setText(laName);
+//                        lnNames.setText(laName);
+
                         try {
                             selaName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(1).getString("laneName");
-                            selnNames.setText(selaName);
+                            tv1.setText(selaName);
+                            if(selaName != null){
+                                subtable1.addView(tv1);}
+                            if(selaName == null){
+                                subtable1.setVisibility(View.GONE);
+                            }
+//                            selnNames.setText(selaName);
 
                             thlaName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(2).getString("laneName");
-                            thlnNames.setText(thlaName);
+                            tv2.setText(thlaName);
+                            if(thlaName != null){
+                                subtable2.addView(tv2);
+                            }
+                            if(thlaName == null){
+                                subtable2.setVisibility(View.GONE);
+                            }
+//                            thlnNames.setText(thlaName);
                         } catch (NullPointerException e) {
                             e.printStackTrace();
                             throw e;
@@ -408,26 +453,42 @@ public class transportss extends Activity {
                             } finally {
                                 //이동역 수
                                 stCount = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(0).getString("stationCount");
-                                sttCounts.setText(stCount);
+                                stv.setText(stCount + "개역");
                                 try {
                                     sestCount = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(1).getString("stationCount");
-                                    sesttCounts.setText(sestCount);
+                                    stv1.setText(sestCount+ "개역");
+                                    if(sestCount != null){
+                                        subsummary4.addView(stv1);}
+                                    if(sestCount == null){
+                                        subsummary4.setVisibility(View.GONE);}
 
                                     thstCount = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(2).getString("stationCount");
-                                    thsttCounts.setText(thstCount);
+                                    stv2.setText(thstCount+ "개역");
+                                    if(thstCount != null){
+                                        subsummary5.addView(stv2);}
+                                    if(thstCount == null){
+                                        subsummary5.setVisibility(View.GONE);}
                                 } catch (NullPointerException e) {
                                     e.printStackTrace();
                                     throw e;
                                 } finally {
                                     //방면 명
                                     waName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(0).getString("wayName");
-                                    waNames.setText(waName);
+                                    stv3.setText(waName+"행");
                                     try {
                                         sewaName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(1).getString("wayName");
-                                        sewaNames.setText(sewaName);
+                                        stv4.setText(sewaName+"행");
+                                        if(sewaName != null){
+                                            subsummary1.addView(stv4);}
+                                        if(sewaName == null){
+                                            subsummary1.setVisibility(View.GONE);}
 
                                         thwaName = odsayData.getJson().getJSONObject("result").getJSONObject("driveInfoSet").getJSONArray("driveInfo").getJSONObject(2).getString("wayName");
-                                        thwaNames.setText(thwaName);
+                                        stv5.setText(thwaName+"행");
+                                        if(thwaName != null){
+                                            subsummary2.addView(stv5);}
+                                        if(thwaName == null){
+                                            subsummary2.setVisibility(View.GONE);}
                                     } catch (NullPointerException e) {
                                         e.printStackTrace();
                                         throw e;
@@ -486,6 +547,157 @@ public class transportss extends Activity {
         //API 호출
         odsayService.requestSubwayPath("1000", ssId, esId, "1", onResultCallbackListener);
 
+
+
+
+
+
+
+
+        tv.setTextSize(14);
+        tv1.setTextSize(14);
+        tv2.setTextSize(14);
+
+        stv.setTextSize(14);
+        stv1.setTextSize(14);
+        stv2.setTextSize(14);
+
+        stv3.setTextSize(14);
+        stv4.setTextSize(14);
+        stv5.setTextSize(14);
+
+        tv.setTypeface(null, Typeface.BOLD);
+        tv1.setTypeface(null, Typeface.BOLD);
+        tv2.setTypeface(null, Typeface.BOLD);
+
+        stv.setTypeface(null, Typeface.BOLD);
+        stv1.setTypeface(null, Typeface.BOLD);
+        stv2.setTypeface(null, Typeface.BOLD);
+
+
+
+        tv.setId(0);
+        tv1.setId(0);
+        tv2.setId(0);
+
+        stv.setId(0);
+        stv1.setId(0);
+        stv2.setId(0);
+
+        stv3.setId(0);
+        stv4.setId(0);
+        stv5.setId(0);
+
+        LinearLayout.LayoutParams subparams =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        weight);
+
+        LinearLayout.LayoutParams subparams1 =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        weight);
+
+        LinearLayout.LayoutParams subparams2 =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        weight);
+
+
+
+
+        LinearLayout.LayoutParams ssubparams =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        weight);
+
+        LinearLayout.LayoutParams ssubparams1 =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        weight);
+
+        LinearLayout.LayoutParams ssubparams2 =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        weight);
+
+
+
+        LinearLayout.LayoutParams ssubparams3 =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        weight);
+
+        LinearLayout.LayoutParams ssubparams4 =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        weight);
+
+        LinearLayout.LayoutParams ssubparams5 =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        weight);
+
+
+
+        tv.setLayoutParams(subparams);
+        tv1.setLayoutParams(subparams1);
+        tv2.setLayoutParams(subparams2);
+
+        stv.setLayoutParams(ssubparams3);
+        stv1.setLayoutParams(ssubparams4);
+        stv2.setLayoutParams(ssubparams5);
+
+        stv3.setLayoutParams(ssubparams);
+        stv4.setLayoutParams(ssubparams1);
+        stv5.setLayoutParams(ssubparams2);
+
+        tv.setTextColor(Color.parseColor("#FFFFFF"));
+        tv1.setTextColor(Color.parseColor("#FFFFFF"));
+        tv2.setTextColor(Color.parseColor("#FFFFFF"));
+        tv.setBackgroundColor(Color.parseColor("#9CCC65"));
+        tv1.setBackgroundColor(Color.parseColor("#9CCC65"));
+        tv2.setBackgroundColor(Color.parseColor("#9CCC65"));
+
+        stv.setTextColor(Color.parseColor("#000000"));
+        stv1.setTextColor(Color.parseColor("#000000"));
+        stv2.setTextColor(Color.parseColor("#000000"));
+
+        stv3.setTextColor(Color.parseColor("#000000"));
+        stv4.setTextColor(Color.parseColor("#000000"));
+        stv5.setTextColor(Color.parseColor("#000000"));
+
+        subtable.addView(tv);
+        subsummary.addView(stv3);
+        subsummary3.addView(stv);
+
+
+
+        tv.setGravity(Gravity.CENTER);
+        tv1.setGravity(Gravity.CENTER);
+        tv2.setGravity(Gravity.CENTER);
+
+        stv.setGravity(Gravity.CENTER_VERTICAL);
+        stv1.setGravity(Gravity.CENTER_VERTICAL);
+        stv2.setGravity(Gravity.CENTER_VERTICAL);
+
+        stv3.setGravity(Gravity.CENTER_VERTICAL);
+        stv4.setGravity(Gravity.CENTER_VERTICAL);
+        stv5.setGravity(Gravity.CENTER_VERTICAL);
+
+
+
+
+
         sOkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -503,10 +715,17 @@ public class transportss extends Activity {
                         break;
                 }
 
+
+
+                
+
                 TransAsyncTask transAsyncTask = new TransAsyncTask();
                 transAsyncTask.execute();
             }
         });
+
+
+
 
 
     }

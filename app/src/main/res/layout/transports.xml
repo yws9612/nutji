@@ -138,8 +138,140 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#00ff0000"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv_sttNamess"
+                            android:textSize="17dp"
+                            android:layout_marginTop="15dp"
+                            android:textStyle="bold"/>
 
+                        <LinearLayout
+                            android:id="@+id/subtable"
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical"
+                            android:padding="1dp">
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv_sesttNamess"
+                            android:textSize="17dp"
+                            android:textStyle="bold"/>
+
+                        <LinearLayout
+                            android:id="@+id/subtable1"
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical"
+                            android:padding="1dp">
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv_thsttNamess"
+                            android:textSize="17dp"
+                            android:textStyle="bold"/>
+
+                        <LinearLayout
+                            android:id="@+id/subtable2"
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical"
+                            android:padding="1dp">
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/tv_gleNamess"
+                            android:textSize="17dp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+                        <LinearLayout
+                            android:id="@+id/subsummary"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="17dp"
+                            android:layout_marginBottom="5dp"
+                            android:orientation="vertical">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/subsummary3"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="vertical">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/subsummary1"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginBottom="20dp"
+                            android:orientation="vertical">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/subsummary4"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="vertical">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/subsummary2"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="vertical">
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/subsummary5"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="vertical">
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="#00ff0000"
+                        android:layout_weight="1">
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="wrap_content"
@@ -149,23 +281,21 @@
                             android:id="@+id/tv_glsCountss"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="27dp"
-                            android:layout_marginLeft="230dp"
+                            android:textSize="24dp"
                             android:layout_marginTop="30dp"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="개 역"
-                            android:textSize="27dp"
+                            android:text="개역"
+                            android:textSize="24dp"
                             android:layout_marginTop="30dp"/>
 
 
                         <TextView
                             android:id="@+id/tv_gtTimess"
-                            android:textSize="27dp"
+                            android:textSize="24dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
                             android:layout_marginTop="30dp"
                             android:textStyle="bold"/>
 
@@ -173,8 +303,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="분"
-                            android:textSize="27dp"
-                            android:gravity="right"
+                            android:textSize="24dp"
                             android:layout_marginTop="30dp"
                             android:textStyle="bold"/>
                     </LinearLayout>
@@ -189,218 +318,21 @@
                             android:layout_height="wrap_content"
                             android:text="요금 "
                             android:textSize="18dp"
-                            android:layout_marginLeft="292dp"/>
+                            android:layout_marginLeft="20dp"/>
                         <TextView
                             android:id="@+id/tv_adFaress"
                             android:textColor="#ff0000"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="right"
                             android:textSize="18dp"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="원"
-                            android:textSize="18dp"/>
+                            android:textSize="18dp" />
 
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="출발역 명 : "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/tv_glsNamess"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
                     </LinearLayout>
-
-
-
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="카드 요금(성인 기준) : "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/tv_gleNamess"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="첫번째 승차역 호선명 : "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/tv_lnNamess"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                    <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                        <TextView
-                            android:text="두번째 승차역 호선명 : "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/tv_selnNamess"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                    <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                        <TextView
-                            android:text="세번째 승차역 호선명 : "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/tv_thlnNamess"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="첫번째 승차역 명 : "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/tv_sttNamess"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                    <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                        <TextView
-                            android:text="두번째 승차역 명 : "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/tv_sesttNamess"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                    <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                        <TextView
-                            android:text="세번째 승차역 명 : "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/tv_thsttNamess"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="첫번째 호선 이동 역 수 : "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/tv_sttCountss"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                    <LinearLayout
-                         android:orientation="horizontal"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content">
-                         <TextView
-                            android:text="두번째 호선 이동 역 수 : "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                         <TextView
-                            android:id="@+id/tv_sesttCountss"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                         android:orientation="horizontal"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content">
-                         <TextView
-                             android:text="세번째 호선 이동 역 수 : "
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content" />
-                         <TextView
-                             android:id="@+id/tv_thsttCountss"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="첫번째 열차의 방면 명 : "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/tv_waNamess"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="두번째 열차의 방면 명 : "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/tv_sewaNamess"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="세번째 열차의 방면 명 : "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/tv_thwaNamess"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-
 
               </LinearLayout>
             </FrameLayout>

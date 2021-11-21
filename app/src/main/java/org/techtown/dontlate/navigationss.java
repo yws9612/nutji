@@ -1,10 +1,13 @@
  package org.techtown.dontlate;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +25,7 @@ import androidx.fragment.app.Fragment;
 
 
 import com.skt.Tmap.TMapData;
+import com.skt.Tmap.TMapGpsManager;
 import com.skt.Tmap.TMapMarkerItem;
 import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapPolyLine;
@@ -53,16 +57,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class navigationss extends Fragment {
+public class navigationss extends Fragment implements TMapGpsManager.onLocationChangedCallback {
 
 
     private View view;
     private Button button;
 
-
+    TMapView tMapView = null;
+    TMapGpsManager tMapGps = null;
 
     private RetrofitClient retrofitClient;
     private RetrofitInterface retrofitInterface;
+
+
 
 
 
@@ -85,38 +92,38 @@ public class navigationss extends Fragment {
 
 
 
-        LinearLayout linearLayoutTmap = (LinearLayout) v.findViewById(R.id.linearLayoutTmap);
-        TMapView tMapView = new TMapView(getActivity());
+
+        tMapView = new TMapView(getActivity());
 
         tMapView.setSKTMapApiKey("l7xxddf8547d834c4053946c4a168738d92f");
+
+        tMapView.setZoomLevel(17);
+        tMapView.setIconVisibility(true);
+        tMapView.setMapType(TMapView.MAPTYPE_STANDARD);
+        tMapView.setLanguage(TMapView.LANGUAGE_KOREAN);
+
+        LinearLayout linearLayoutTmap = (LinearLayout) v.findViewById(R.id.linearLayoutTmap);
         linearLayoutTmap.addView(tMapView);
 
-        TMapPoint tMapPointStart = new TMapPoint(37.45985169031009, 127.12924506912951);//동서울대
-        TMapPoint tMapPointEnd = new TMapPoint(37.47053257461367, 127.12667001018319);//복정역
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
 
+        tMapGps = new TMapGpsManager(getActivity());
 
+        tMapGps.setMinTime(1000);
+        tMapGps.setMinDistance(10);
+        tMapGps.setProvider(tMapGps.NETWORK_PROVIDER);
 
-        new Thread(){
-            @Override
-            public void run() {
-                try {
-                    TMapPolyLine tMapPolyLine = new TMapData().findPathDataWithType(TMapData.TMapPathType.CAR_PATH,tMapPointStart,tMapPointEnd);
-                    tMapPolyLine.setLineColor(Color.BLUE);
-                    tMapPolyLine.setLineWidth(5);
-                    tMapView.addTMapPolyLine("Line1", tMapPolyLine);
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
-
-
-
-
+        tMapGps.OpenGps();
 
 
         return v;
+    }
+    @Override
+    public void onLocationChange(Location location){
+        tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
+        tMapView.setCenterPoint(location.getLongitude(), location.getLatitude());
     }
 //    public void callSearchPoiInfo() {
 //
