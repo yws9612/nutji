@@ -9,9 +9,10 @@
     android:targetSdkVersion="[integer]" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
 
-
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -20,7 +21,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DontLate">
+        android:theme="@style/Theme.DontLate"
+        android:name=".application.App">
         <activity android:name=".MainActivity">
         </activity>
         <activity android:name=".Loading">
@@ -34,6 +36,17 @@
         <activity android:name=".TimePickerActivity"></activity>
         <activity android:name=".activities.AlarmMainActivity"></activity>
         <activity android:name=".activities.RingActivity"></activity>
+
+        <receiver android:name=".broadcastreceiver.AlarmBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".service.AlarmService" />
+        <service android:name=".service.RescheduleAlarmsService"></service>
+
+
 
     </application>
 

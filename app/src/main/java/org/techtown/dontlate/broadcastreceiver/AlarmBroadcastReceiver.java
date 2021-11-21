@@ -24,6 +24,7 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
     public static final String SUNDAY = "SUNDAY";
     public static final String RECURRING = "RECURRING";
     public static final String TITLE = "TITLE";
+    public static final String Memo = "Memo";
 
     @Override
     public void onReceive(Context context, Intent intent) {

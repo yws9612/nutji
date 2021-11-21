@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,20 +72,21 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHold
 
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        CardView cardView;
+        LinearLayout cardView;
         TextView alarmTime;
         ImageView alarmRecurring;
         TextView alarmRecurringDays;
         TextView alarmTitle;
+        TextView alarmMemo;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.cardview);
             alarmTime = itemView.findViewById(R.id.item_alarm_time);
-            alarmRecurring = itemView.findViewById(R.id.item_alarm_recurring);
             alarmRecurringDays = itemView.findViewById(R.id.item_alarm_recurringDays);
             alarmTitle = itemView.findViewById(R.id.item_alarm_title);
+            alarmMemo = itemView.findViewById(R.id.item_alarm_memo);
 
             itemView.setOnLongClickListener(v -> {
                 Alarm alarm = alarms.get(getAdapterPosition()+1);

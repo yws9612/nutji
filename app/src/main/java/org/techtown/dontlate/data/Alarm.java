@@ -19,6 +19,7 @@ import java.util.Calendar;
 
 import static org.techtown.dontlate.broadcastreceiver.AlarmBroadcastReceiver.FRIDAY;
 import static org.techtown.dontlate.broadcastreceiver.AlarmBroadcastReceiver.MONDAY;
+import static org.techtown.dontlate.broadcastreceiver.AlarmBroadcastReceiver.Memo;
 import static org.techtown.dontlate.broadcastreceiver.AlarmBroadcastReceiver.RECURRING;
 import static org.techtown.dontlate.broadcastreceiver.AlarmBroadcastReceiver.SATURDAY;
 import static org.techtown.dontlate.broadcastreceiver.AlarmBroadcastReceiver.SUNDAY;
@@ -31,6 +32,7 @@ import static org.techtown.dontlate.broadcastreceiver.AlarmBroadcastReceiver.WED
 
 @Entity(tableName = "alarm_table")
 public class Alarm {
+
     @PrimaryKey
     @NonNull
     private int alarmId;
@@ -39,14 +41,16 @@ public class Alarm {
     private boolean started, recurring;
     private boolean monday, tuesday, wednesday, thursday, friday, saturday, sunday;
     private String title;
+    private String memo;
 
     private long created;
 
-    public Alarm(int alarmId, int hour, int minute, String title, long created, boolean started, boolean recurring, boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday, boolean saturday, boolean sunday) {
+    public Alarm(int alarmId, int hour, int minute, String title,String memo, long created, boolean started, boolean recurring, boolean monday, boolean tuesday, boolean wednesday, boolean thursday, boolean friday, boolean saturday, boolean sunday) {
         this.alarmId = alarmId;
         this.hour = hour;
         this.minute = minute;
         this.started = started;
+        this.memo = memo;
 
         this.recurring = recurring;
 
@@ -130,6 +134,7 @@ public class Alarm {
         intent.putExtra(SUNDAY, sunday);
 
         intent.putExtra(TITLE, title);
+        intent.putExtra(Memo, memo);
 
         PendingIntent alarmPendingIntent = PendingIntent.getBroadcast(context, alarmId, intent, 0);
 
@@ -221,6 +226,8 @@ public class Alarm {
     public String getTitle() {
         return title;
     }
+
+    public String getMemo() {return memo;}
 
     public long getCreated() {
         return created;

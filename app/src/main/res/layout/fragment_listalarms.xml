@@ -13,11 +13,14 @@
         <TextView
             android:id="@+id/fragment_listalarms_myAlarms"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="내 알람"
+            android:layout_height="70dp"
+            android:text="알람"
+            android:gravity="center"
             android:textAlignment="center"
+            android:textSize="40dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/border"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragment_listalarms_recylerView"
@@ -31,11 +34,14 @@
 
         <Button
             android:id="@+id/fragment_listalarms_addAlarm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
             android:layout_gravity="bottom"
-            android:text="알람 추가하기"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_listalarms_myAlarms" />
+            android:textSize="15dp"
+            android:text="추가"
+            android:background="#00ff0000"
+            app:layout_constraintRight_toRightOf="@id/fragment_listalarms_myAlarms"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/test"

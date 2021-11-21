@@ -57,7 +57,8 @@ public class RingActivity extends AppCompatActivity {
                         new Random().nextInt(Integer.MAX_VALUE),
                         calendar.get(Calendar.HOUR_OF_DAY),
                         calendar.get(Calendar.MINUTE),
-                        "Snooze",
+                        "10분뒤 알림",
+                        "10분뒤 알람이 울립니다.",
                         System.currentTimeMillis(),
                         true,
                         false,
@@ -81,10 +82,12 @@ public class RingActivity extends AppCompatActivity {
         animateClock();
     }
 
+
     private void animateClock() {
         ObjectAnimator rotateAnimation = ObjectAnimator.ofFloat(clock, "rotation", 0f, 20f, 0f, -20f, 0f);
         rotateAnimation.setRepeatCount(ValueAnimator.INFINITE);
         rotateAnimation.setDuration(800);
         rotateAnimation.start();
     }
+
 }

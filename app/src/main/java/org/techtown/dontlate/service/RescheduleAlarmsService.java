@@ -36,7 +36,7 @@ public class RescheduleAlarmsService extends LifecycleService {
             }
         });
 
-        return START_STICKY;
+        return START_NOT_STICKY;
     }
 
     @Override

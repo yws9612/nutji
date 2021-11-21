@@ -174,7 +174,10 @@ public class MainActivity extends AppCompatActivity { //객체 추가  implement
             Toast.makeText(getApplicationContext(),"한번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT).show();
         } else{
             Toast.makeText(getApplicationContext(),"어플을 종료합니다.",Toast.LENGTH_SHORT).show();
-            finish();
+            finishAffinity();
+            System.runFinalization();
+            System.exit(0);
+            //2회 터치 시 어플 완전 종료
         }
 
     }

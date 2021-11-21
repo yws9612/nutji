@@ -31,6 +31,8 @@ public class CreateAlarmFragment extends Fragment {
     TimePicker timePicker;
     @BindView(R.id.fragment_createalarm_title)
     EditText title;
+    @BindView(R.id.fragment_createalarm_memo)
+    EditText memo;
     @BindView(R.id.okBtn)
     Button scheduleAlarm;
     @BindView(R.id.fragment_createalarm_recurring)
@@ -51,6 +53,7 @@ public class CreateAlarmFragment extends Fragment {
     CheckBox sun;
     @BindView(R.id.fragment_createalarm_recurring_options)
     LinearLayout recurringOptions;
+
 
     private CreateAlarmViewModel createAlarmViewModel;
 
@@ -100,6 +103,7 @@ public class CreateAlarmFragment extends Fragment {
                 TimePickerUtil.getTimePickerHour(timePicker),
                 TimePickerUtil.getTimePickerMinute(timePicker),
                 title.getText().toString(),
+                memo.getText().toString(),
                 System.currentTimeMillis(),
                 true,
                 recurring.isChecked(),

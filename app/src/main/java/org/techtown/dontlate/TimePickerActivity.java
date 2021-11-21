@@ -50,6 +50,8 @@ public class TimePickerActivity extends AppCompatActivity {
     Button okBtn;
     @BindView(R.id.backBtn)
     Button backBtn;
+    @BindView(R.id.fragment_createalarm_memo)
+    EditText memo;
 
     private CreateAlarmViewModel createAlarmViewModel;
 
@@ -77,6 +79,7 @@ public class TimePickerActivity extends AppCompatActivity {
                 scheduleAlarm();
                 Intent intent = new Intent(getApplication(), MainActivity.class);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -108,6 +111,7 @@ public class TimePickerActivity extends AppCompatActivity {
                 TimePickerUtil.getTimePickerHour(timePicker),
                 TimePickerUtil.getTimePickerMinute(timePicker),
                 title.getText().toString(),
+                memo.getText().toString(),
                 System.currentTimeMillis(),
                 true,
                 recurring.isChecked(),

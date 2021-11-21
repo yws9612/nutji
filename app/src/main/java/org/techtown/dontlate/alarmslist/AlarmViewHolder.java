@@ -19,6 +19,8 @@ public class AlarmViewHolder extends RecyclerView.ViewHolder {
     private ImageView alarmRecurring;
     private TextView alarmRecurringDays;
     private TextView alarmTitle;
+    private TextView alarmMemo;
+    private TextView AM_PM;
 
     Switch alarmStarted;
 
@@ -29,25 +31,32 @@ public class AlarmViewHolder extends RecyclerView.ViewHolder {
 
         alarmTime = itemView.findViewById(R.id.item_alarm_time);
         alarmStarted = itemView.findViewById(R.id.item_alarm_started);
-        alarmRecurring = itemView.findViewById(R.id.item_alarm_recurring);
         alarmRecurringDays = itemView.findViewById(R.id.item_alarm_recurringDays);
         alarmTitle = itemView.findViewById(R.id.item_alarm_title);
+        alarmMemo = itemView.findViewById(R.id.item_alarm_memo);
+        AM_PM = itemView.findViewById(R.id.show_am_pm);
 
         this.listener = listener;
 
     }
 
     public void bind(Alarm alarm) {
-        String alarmText = String.format("%02d:%02d", alarm.getHour(), alarm.getMinute());
+        String alarmText;
+        if(alarm.getHour()>12){
+            int hour = alarm.getHour() - 12;
+            alarmText = String.format("%02d : %02d", hour, alarm.getMinute());
+            AM_PM.setText("오후");
+        } else{
+            alarmText = String.format("%02d : %02d", alarm.getHour(), alarm.getMinute());
+            AM_PM.setText("오전");
+        }
 
         alarmTime.setText(alarmText);
         alarmStarted.setChecked(alarm.isStarted());
 
         if (alarm.isRecurring()) {
-            alarmRecurring.setImageResource(R.drawable.ic_repeat_black_24dp);
             alarmRecurringDays.setText(alarm.getRecurringDaysText());
         } else {
-            alarmRecurring.setImageResource(R.drawable.ic_looks_one_black_24dp);
             alarmRecurringDays.setText("한번만 울림");
         }
 
@@ -55,6 +64,12 @@ public class AlarmViewHolder extends RecyclerView.ViewHolder {
             alarmTitle.setText(String.format("%s", alarm.getTitle()));
         } else {
             alarmTitle.setText(String.format("%s", "알람"));
+        }
+
+        if(alarm.getMemo().length() != 0){
+            alarmMemo.setText(String.format("%s",alarm.getMemo()));
+        } else{
+            alarmMemo.setText(String.format(""));
         }
 
         alarmStarted.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
