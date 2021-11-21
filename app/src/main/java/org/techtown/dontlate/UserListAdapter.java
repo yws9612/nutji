@@ -12,9 +12,13 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHolder> implements OnRecycleItemClickListener{
 
@@ -59,8 +63,15 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
                             .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
+                                    int pos = getAdapterPosition();
+                                    UserListItem item = listItems.get(pos);
+                                    String name = item.getplaceName();
+
+                                    FirebaseDatabase.getInstance().getReference().child("Nutji").child("User").child("Place").child(name).removeValue();
+
                                     listItems.remove(getAdapterPosition());
-                                    notifyItemRemoved(getAdapterPosition());
+
+                                    notifyItemRemoved(pos);
                                     notifyDataSetChanged();
                                 }
                             })
@@ -113,6 +124,15 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
 
     @Override
     public int getItemCount() { return (listItems != null ? listItems.size() : 0); }
+
+    public void updateItems(List<UserListItem> itemss) {
+        final DiffCallback callback = new DiffCallback(this.listItems, itemss);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(callback);
+
+        this.listItems.clear();
+        this.listItems.addAll(itemss);
+        diffResult.dispatchUpdatesTo(this);
+    }
 
     public void addItem(UserListItem item){
         listItems.add(item);

@@ -3,6 +3,7 @@ package org.techtown.dontlate;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,19 +46,24 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
             database = FirebaseDatabase.getInstance();
             databaseReference = database.getReference();
 
-            v.setOnClickListener(new View.OnClickListener() {
+            v.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
-                public void onClick(View view) {
+                public boolean onLongClick(View view) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setMessage("선택한 항목을 삭제하시겠습니까?")
                             .setTitle("항목 삭제")
                             .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    schedules.remove(getAdapterPosition());
-                                    notifyItemRemoved(getAdapterPosition());
-                                    deleteSchedule(getAdapterPosition());
+                                    int pos = getAdapterPosition();
+                                    ScheduleListItem item = schedules.get(pos);
+                                    String name = item.getScheduleName();
 
+                                    FirebaseDatabase.getInstance().getReference().child("Nutji").child("Schedule").child("월요일").child(name).removeValue();
+
+                                    schedules.remove(getAdapterPosition());
+
+                                    notifyItemRemoved(pos);
                                     notifyDataSetChanged();
                                 }
                             })
@@ -67,6 +73,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
 
                                 }
                             }).show();
+
+                    return true;
                 }
             });
         }
