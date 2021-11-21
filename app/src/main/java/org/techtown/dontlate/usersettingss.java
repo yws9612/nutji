@@ -22,10 +22,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +39,13 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import static org.techtown.dontlate.editSchedule.context;
+
 public class usersettingss extends Fragment {
+
+    private interface FirebaseInput {
+        void onInput(String result);
+    }
 
     private RecyclerView recyclerView;
     private UserListAdapter adapter;
@@ -114,6 +122,7 @@ public class usersettingss extends Fragment {
             @Override
             public void onClick(View view) {
                 final String[] items = new String[]{"집", "회사", "학교"};
+                final HashMap result = new HashMap<>();
 
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                 dialog.setTitle("장소를 선택하세요")
@@ -123,7 +132,6 @@ public class usersettingss extends Fragment {
                                 Place = items[which];
                                 //adapter.addItem(new UserListItem(Place, "클릭하세요"));
 
-                                HashMap result = new HashMap<>();
                                 result.put("PlaceName", Place);
                                 result.put("Address", "클릭하세요");
                             }
@@ -131,8 +139,14 @@ public class usersettingss extends Fragment {
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
-                                adapter.notifyItemInserted(0);
-                                adapter.notifyDataSetChanged();
+                                FirebaseDatabase.getInstance().getReference().child("Nutji").child("User").child("Place").child(Place).setValue(result)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                                ft.detach(usersettingss.this).attach(usersettingss.this).commit();
+                                            }
+                                        });
                             }
                         })
                         .setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -171,35 +185,26 @@ public class usersettingss extends Fragment {
         return v;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+    public void onActivityResult(int requestCode, int resultCode, Intent i) {
+        super.onActivityResult(requestCode, resultCode, i);
 
-        //conditionRef.add
-    }
+        switch (requestCode) {
+            case 10000:
+                if (resultCode == Activity.RESULT_OK) {
+                    String data = i.getExtras().getString("data");
+                    if (data != null) {
 
+                        HashMap result = new HashMap<>();
+                        result.put("Address", data);
 
-        public void onActivityResult(int requestCode, int resultCode, Intent i) {
-            super.onActivityResult(requestCode, resultCode, i);
-            Log.i("test", "onActivityResult");
+                        FirebaseDatabase.getInstance().getReference().child("Nutji").child("User").child("Place").child("회사").updateChildren(result);
 
-            switch (requestCode) {
-                case 10000:
-                    if (resultCode == Activity.RESULT_OK) {
-                        String data = i.getExtras().getString("data");
-                        if (data != null) {
-
-                            UserListItem item = new UserListItem(Place, data);
-                            ArrayList<UserListItem> list = new ArrayList<>();
-                            list.add(item);
-
-                            adapter.setItems(list);
-                            adapter.notifyDataSetChanged();
-                            //adapter.notifyItemChanged(adapter.getItemCount()-1, "data");
-                        }
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.detach(this).attach(this).commit();
                     }
                     break;
-            }
+                }
         }
     }
+}
 
