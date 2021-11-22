@@ -55,6 +55,8 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
         View view;
         view = inflater.inflate(R.layout.fragment_listalarms, container, false);
 
+
+
         alarmsRecyclerView = view.findViewById(R.id.fragment_listalarms_recylerView);
         alarmsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         alarmsRecyclerView.setAdapter(alarmRecyclerViewAdapter);

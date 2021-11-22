@@ -13,12 +13,13 @@ public interface AlarmDao {
     @Insert
     void insert(Alarm alarm);
 
-    @Query("DELETE FROM alarm_table WHERE alarmId = :alarmId")
-    void delete(int alarmId);
+    @Query("DELETE FROM alarm_table WHERE created = :created")
+    void delete(long created);
 
     @Query("SELECT * FROM alarm_table ORDER BY created ASC")
     LiveData<List<Alarm>> getAlarms();
 
     @Update
     void update(Alarm alarm);
+
 }

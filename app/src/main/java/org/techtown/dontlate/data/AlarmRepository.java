@@ -29,9 +29,9 @@ public class AlarmRepository {
         });
     }
 
-    public void delete(int alarmId){
+    public void delete(long created){
         AlarmDatabase.databaseWriteExecutor.execute(() ->{
-            alarmDao.delete(alarmId);
+            alarmDao.delete(created);
         });
     }
 

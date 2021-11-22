@@ -165,7 +165,7 @@ public class Alarm {
                     alarmPendingIntent
             );
         } else {
-            String toastText = String.format("반복알람 %s (이)가 %s 요일마다 울리도록 설정되었습니다.", title, getRecurringDaysText());
+            String toastText = String.format("알람이 설정되었습니다.", title, getRecurringDaysText());
             Toast.makeText(context, toastText, Toast.LENGTH_LONG).show();
 
             final long RUN_DAILY = 24 * 60 * 60 * 1000;

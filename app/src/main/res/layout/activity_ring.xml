@@ -37,6 +37,7 @@
         app:layout_constraintBottom_toTopOf="@+id/activity_ring_snooze"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="#00ff0000"
         android:background="@drawable/border"/>
 
     <Button
@@ -47,6 +48,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="#00ff0000"
         android:background="@drawable/border"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
