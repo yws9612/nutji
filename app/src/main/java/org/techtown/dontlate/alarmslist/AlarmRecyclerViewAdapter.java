@@ -56,9 +56,10 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHold
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+                v.setBackgroundColor(Color.parseColor("#E2E2E2"));
                 AlertDialog.Builder alert = new AlertDialog.Builder(holder.itemView.getContext())
                         .setTitle("알람 삭제")
-                        .setMessage("알람을 삭제하시겠습니까?")
+                        .setMessage("선택하신 알람을 삭제하시겠습니까?")
                         .setPositiveButton("예", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -71,6 +72,7 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHold
                         removeItem(position);
                         notifyItemRemoved(position);
                         notifyItemChanged(position,alarms.size());
+                        v.setBackgroundColor(Color.parseColor("#ffffff"));
 
                     }
                 })
@@ -78,6 +80,7 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHold
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(holder.itemView.getContext(),"취소하셨습니다.",Toast.LENGTH_SHORT).show();
+                        v.setBackgroundColor(Color.parseColor("#ffffff"));
                     }
                 });
 
