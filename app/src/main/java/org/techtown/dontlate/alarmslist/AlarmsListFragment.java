@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.techtown.dontlate.R;
 import org.techtown.dontlate.TimePickerActivity;
 import org.techtown.dontlate.data.Alarm;
+import org.techtown.dontlate.data.AlarmDatabase;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
     private AlarmsListViewModel alarmsListViewModel;
     private RecyclerView alarmsRecyclerView;
     private Button addAlarm;
+    private AlarmDatabase adb;
 
 
     FragmentManager fragmentManager = getFragmentManager();
@@ -55,6 +57,8 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
         View view;
         view = inflater.inflate(R.layout.fragment_listalarms, container, false);
 
+
+
         alarmsRecyclerView = view.findViewById(R.id.fragment_listalarms_recylerView);
         alarmsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         alarmsRecyclerView.setAdapter(alarmRecyclerViewAdapter);
@@ -64,8 +68,6 @@ public class AlarmsListFragment extends Fragment implements OnToggleAlarmListene
         addAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                v.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_alarmsListFragment_to_createAlarmFragment,null));
-//                Navigation.findNavController(v).navigate(R.id.createAlarmFragment);
                 Intent intent = new Intent(getActivity(), TimePickerActivity.class);
                 startActivity(intent);
 

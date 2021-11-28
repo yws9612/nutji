@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +42,7 @@ public class RingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentService = new Intent(getApplicationContext(), AlarmService.class);
+                Toast.makeText(getApplicationContext(),"알람을 종료합니다.",Toast.LENGTH_SHORT).show();
                 getApplicationContext().stopService(intentService);
                 finish();
             }

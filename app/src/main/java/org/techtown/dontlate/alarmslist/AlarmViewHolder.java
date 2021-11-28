@@ -1,17 +1,22 @@
 package org.techtown.dontlate.alarmslist;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.RoomDatabase;
 
 import org.techtown.dontlate.R;
 import org.techtown.dontlate.data.Alarm;
-
+import org.techtown.dontlate.data.AlarmDao;
+import org.techtown.dontlate.data.AlarmDatabase;
 
 
 public class AlarmViewHolder extends RecyclerView.ViewHolder {
@@ -21,6 +26,7 @@ public class AlarmViewHolder extends RecyclerView.ViewHolder {
     private TextView alarmTitle;
     private TextView alarmMemo;
     private TextView AM_PM;
+    private LinearLayout cardview;
 
     Switch alarmStarted;
 
@@ -35,6 +41,7 @@ public class AlarmViewHolder extends RecyclerView.ViewHolder {
         alarmTitle = itemView.findViewById(R.id.item_alarm_title);
         alarmMemo = itemView.findViewById(R.id.item_alarm_memo);
         AM_PM = itemView.findViewById(R.id.show_am_pm);
+        cardview = itemView.findViewById(R.id.cardview);
 
         this.listener = listener;
 

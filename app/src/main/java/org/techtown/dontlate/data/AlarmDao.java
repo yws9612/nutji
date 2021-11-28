@@ -2,6 +2,7 @@ package org.techtown.dontlate.data;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -13,12 +14,13 @@ public interface AlarmDao {
     @Insert
     void insert(Alarm alarm);
 
-    @Query("DELETE FROM alarm_table WHERE alarmId = :alarmId")
-    void delete(int alarmId);
-
     @Query("SELECT * FROM alarm_table ORDER BY created ASC")
     LiveData<List<Alarm>> getAlarms();
 
     @Update
     void update(Alarm alarm);
+
+    @Delete
+    void delete(Alarm alarm);
+
 }

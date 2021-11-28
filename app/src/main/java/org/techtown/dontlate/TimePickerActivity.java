@@ -8,6 +8,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
@@ -76,15 +77,19 @@ public class TimePickerActivity extends AppCompatActivity {
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                scheduleAlarm();
-                Intent intent = new Intent(getApplication(), MainActivity.class);
-                startActivity(intent);
-                finish();
-
+                if(mon.isChecked()||tue.isChecked()||wed.isChecked()||thu.isChecked()||fri.isChecked()||sat.isChecked()||sun.isChecked()) {
+                    scheduleAlarm();
+                    Intent intent = new Intent(getApplication(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else{
+                    Toast.makeText(getApplicationContext(),"최소 1개의 요일을 선택해주세요",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
-        //뒤로가기 버튼 클릭 시 메인으로 복귀
+
+        //뒤로가기 버튼 터치 시 메인으로 복귀
         backBtn = (Button) findViewById(R.id.backBtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +97,7 @@ public class TimePickerActivity extends AppCompatActivity {
                 finish();
             }
         });
-        
+
 
     }
 
@@ -106,27 +111,37 @@ public class TimePickerActivity extends AppCompatActivity {
     private void scheduleAlarm() {
         int alarmId = new Random().nextInt(Integer.MAX_VALUE);
 
-        Alarm alarm = new Alarm(
-                alarmId,
-                TimePickerUtil.getTimePickerHour(timePicker),
-                TimePickerUtil.getTimePickerMinute(timePicker),
-                title.getText().toString(),
-                memo.getText().toString(),
-                System.currentTimeMillis(),
-                true,
-                recurring.isChecked(),
-                mon.isChecked(),
-                tue.isChecked(),
-                wed.isChecked(),
-                thu.isChecked(),
-                fri.isChecked(),
-                sat.isChecked(),
-                sun.isChecked()
-        );
+        if(mon.isChecked()||tue.isChecked()||wed.isChecked()||thu.isChecked()||fri.isChecked()||sat.isChecked()||sun.isChecked()){
 
-        createAlarmViewModel.insert(alarm);
+            Alarm alarm = new Alarm(
+                    alarmId,
+                    TimePickerUtil.getTimePickerHour(timePicker),
+                    TimePickerUtil.getTimePickerMinute(timePicker),
+                    title.getText().toString(),
+                    memo.getText().toString(),
+                    System.currentTimeMillis(),
+                    true,
+                    recurring.isChecked(),
+                    mon.isChecked(),
+                    tue.isChecked(),
+                    wed.isChecked(),
+                    thu.isChecked(),
+                    fri.isChecked(),
+                    sat.isChecked(),
+                    sun.isChecked()
+            );
 
-        alarm.schedule(getApplicationContext());
+
+            createAlarmViewModel.insert(alarm);
+
+            alarm.schedule(getApplicationContext());
+
+        } else {
+
+        }
+
+
+
 
     }
 }
