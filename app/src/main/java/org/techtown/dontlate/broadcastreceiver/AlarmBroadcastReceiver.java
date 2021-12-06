@@ -40,7 +40,7 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
             }
         }
     }
-
+    //현재 시간을 체크하여 알람이 설정되어있으면 알람을 실행시킴
     private boolean alarmIsToday(Intent intent) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
@@ -79,6 +79,7 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
         return false;
     }
 
+    //알람을 울리는 클래스를 실행시킴
     private void startAlarmService(Context context, Intent intent) {
         Intent intentService = new Intent(context, AlarmService.class);
         intentService.putExtra(TITLE, intent.getStringExtra(TITLE));
@@ -89,6 +90,7 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
         }
     }
 
+    //10분뒤 알람이 울리도록 설정하는 클래스 실행
     private void startRescheduleAlarmsService(Context context) {
         Intent intentService = new Intent(context, RescheduleAlarmsService.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

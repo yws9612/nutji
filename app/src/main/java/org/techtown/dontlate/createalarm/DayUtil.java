@@ -2,6 +2,7 @@ package org.techtown.dontlate.createalarm;
 
 import java.util.Calendar;
 
+//알람 설정에 필요한 요일을 Calendar 사용하여 받아옴
 public final class DayUtil {
     public static final String toDay(int day) throws Exception {
         switch (day) {

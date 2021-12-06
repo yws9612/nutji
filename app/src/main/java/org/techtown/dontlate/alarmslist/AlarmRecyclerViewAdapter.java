@@ -6,18 +6,13 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
-import androidx.room.RoomDatabase;
 
-import org.techtown.dontlate.MainActivity;
 import org.techtown.dontlate.R;
-import org.techtown.dontlate.createalarm.CreateAlarmViewModel;
 import org.techtown.dontlate.data.Alarm;
 import org.techtown.dontlate.data.AlarmDao;
 import org.techtown.dontlate.data.AlarmDatabase;
@@ -45,10 +40,12 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHold
     @Override
     public AlarmViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_alarm, parent, false);
-        AlarmRecyclerViewAdapter.ViewHolder vholder = new ViewHolder(itemView);
+//        AlarmRecyclerViewAdapter.ViewHolder vholder = new ViewHolder(itemView);
         return new AlarmViewHolder(itemView, listener);
     }
 
+
+    //RecyclerView 아이템 LongClick시 확인창 띄우고 삭제
     @Override
     public void onBindViewHolder(@NonNull AlarmViewHolder holder, int pos) {
         Alarm alarm = alarms.get(pos);
@@ -63,12 +60,14 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHold
                         .setPositiveButton("예", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        //데이터베이스에 저장되어있는 선택된 알람 데이터 삭제(DB데이터 삭제)
                         AlarmDatabase adb = Room.databaseBuilder(holder.itemView.getContext(),AlarmDatabase.class,"alarm_database").allowMainThreadQueries().build();
                         AlarmDao adao = adb.alarmDao();
                         position = holder.getAdapterPosition();
                         System.out.println(position);
                         Alarm alarm = alarms.get(position);
                         adao.delete(alarm);
+                        //RecyclerView에서 선택된 아이템 삭제(View에서 삭제)
                         removeItem(position);
                         notifyItemRemoved(position);
                         notifyItemChanged(position,alarms.size());
@@ -93,22 +92,27 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHold
 
     }
 
+    
+    //설정된 알람 리스트들의 크기 계산 후 반환
     @Override
     public int getItemCount() {
         return alarms.size();
     }
 
+    //알람 설정시 리스트 추가 후 반환
     public void setAlarms(List<Alarm> alarms) {
         this.alarms = alarms;
         notifyDataSetChanged();
     }
-
+    
+    
     @Override
     public void onViewRecycled(@NonNull AlarmViewHolder holder) {
         super.onViewRecycled(holder);
         holder.alarmStarted.setOnCheckedChangeListener(null);
     }
 
+    //View에서 아이템을 지우는 메서드
     public void removeItem(int position){
         alarms.remove(position);
         notifyItemRemoved(position);
@@ -118,26 +122,26 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmViewHold
 
 
 
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout cardView;
-        TextView alarmTime;
-        TextView alarmRecurringDays;
-        TextView alarmTitle;
-        TextView alarmMemo;
-
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            cardView = itemView.findViewById(R.id.cardview);
-            alarmTime = itemView.findViewById(R.id.item_alarm_time);
-            alarmRecurringDays = itemView.findViewById(R.id.item_alarm_recurringDays);
-            alarmTitle = itemView.findViewById(R.id.item_alarm_title);
-            alarmMemo = itemView.findViewById(R.id.item_alarm_memo);
-
-        }
-
-    }
+//    //item과 view를 묶어줌
+//    public class ViewHolder extends RecyclerView.ViewHolder {
+//        LinearLayout cardView;
+//        TextView alarmTime;
+//        TextView alarmRecurringDays;
+//        TextView alarmTitle;
+//        TextView alarmMemo;
+//
+//
+//        public ViewHolder(@NonNull View itemView) {
+//            super(itemView);
+//            cardView = itemView.findViewById(R.id.cardview);
+//            alarmTime = itemView.findViewById(R.id.item_alarm_time);
+//            alarmRecurringDays = itemView.findViewById(R.id.item_alarm_recurringDays);
+//            alarmTitle = itemView.findViewById(R.id.item_alarm_title);
+//            alarmMemo = itemView.findViewById(R.id.item_alarm_memo);
+//
+//        }
+//
+//    }
 
 }
 

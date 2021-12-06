@@ -25,6 +25,7 @@ import butterknife.ButterKnife;
 
 public class TimePickerActivity extends AppCompatActivity {
 
+    //View 아이템 바인딩
     @BindView(R.id.fragment_createalarm_timePicker)
     TimePicker timePicker;
     @BindView(R.id.fragment_createalarm_recurring)
@@ -108,6 +109,8 @@ public class TimePickerActivity extends AppCompatActivity {
         finish();
     }
 
+    
+    //사용자가 선택한 요일, 시간, 제목, 메모를 입력받아 Alarm 객체 생성
     private void scheduleAlarm() {
         int alarmId = new Random().nextInt(Integer.MAX_VALUE);
 

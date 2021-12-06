@@ -3,6 +3,7 @@ package org.techtown.dontlate.createalarm;
 import android.os.Build;
 import android.widget.TimePicker;
 
+//TimePicker 시간 받아옴
 public final class TimePickerUtil {
     public static int getTimePickerHour(TimePicker tp) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

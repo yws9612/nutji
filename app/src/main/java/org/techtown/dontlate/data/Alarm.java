@@ -192,6 +192,7 @@ public class Alarm {
         Log.i("cancel", toastText);
     }
 
+    //체크된 체크박스 확인하여 반복 요일 텍스트에 추가
     public String getRecurringDaysText() {
         if (!recurring) {
             return null;

@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.Navigation;
 
 import org.techtown.dontlate.R;
 import org.techtown.dontlate.data.Alarm;
@@ -25,7 +24,7 @@ import java.util.Random;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
+/* 사용되지 않는 코드 */
 public class CreateAlarmFragment extends Fragment {
     @BindView(R.id.fragment_createalarm_timePicker)
     TimePicker timePicker;
